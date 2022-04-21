@@ -85,7 +85,7 @@ public class JwtAuthenticationFilter extends BasicAuthenticationFilter {
             		User user = userService.getUserByUserId(user_email);
                 if(user != null) {
                         // 식별된 정상 유저인 경우, 요청 context 내에서 참조 가능한 인증 정보(jwtAuthentication) 생성.
-                		SsafyUserDetails userDetails = new SsafyUserDetails(user);
+                    NuriUserDetails userDetails = new NuriUserDetails(user);
                 		UsernamePasswordAuthenticationToken jwtAuthentication = new UsernamePasswordAuthenticationToken(user_email,
                 				null, userDetails.getAuthorities());
                 		jwtAuthentication.setDetails(userDetails);
