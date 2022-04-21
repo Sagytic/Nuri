@@ -37,9 +37,8 @@ public class UserServiceImpl implements UserService {
 		user.setUserEmail(userRegisterInfo.getUserEmail());
 		// 보안을 위해서 유저 패스워드 암호화 하여 디비에 저장.
 		user.setUserPassword(passwordEncoder.encode(userRegisterInfo.getUserPassword()));
-		user.setUserPhone(userRegisterInfo.getUserPhone());
 		user.setUserNickname(userRegisterInfo.getUserNickname());
-		user.setUserKind(userRegisterInfo.getUserKind());
+		user.setIsAdmin(userRegisterInfo.getIsAdmin());
 
 		return userRepository.save(user);
 	}
@@ -74,11 +73,8 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public void updateUser(User user, UserUpdatePostReq userUpdatePostReq) {
 		// 수정할 회원 정보 현재 회원 정보에 setting
-		user.setUserPhone(userUpdatePostReq.getUserPhone());
-		user.setUserKind(userUpdatePostReq.getUserKind());
+		user.setIsAdmin(userUpdatePostReq.getIsAdmin());
 		user.setUserNickname(userUpdatePostReq.getUserNickname());
-		user.setUserGrade(userUpdatePostReq.getUserGrade());
-		user.setUserActive(userUpdatePostReq.getUserActive());
 		// db에 update
 		userRepository.save(user);
 	}

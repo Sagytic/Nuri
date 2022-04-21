@@ -14,19 +14,15 @@ package com.ssafy.api.request;
 @ApiModel("UserUpdatePostRequest")
 public class UserUpdatePostReq {
     String userPhone;
-    Integer userKind;
+    Integer isAdmin;
     String userNickname;
-    Integer userGrade;
-    Boolean userActive;
 
     @Override
     public String toString() {
         return "UserUpdatePostReq{" +
                 "userPhone='" + userPhone + '\'' +
-                ", userKind='" + userKind + '\'' +
+                ", isAdmin='" + isAdmin + '\'' +
                 ", userNickname='" + userNickname + '\'' +
-                ", userGrade='" + userGrade + '\'' +
-                ", userActive='" + userActive + '\'' +
                 '}';
     }
 }

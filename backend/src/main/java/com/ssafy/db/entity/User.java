@@ -21,13 +21,8 @@ public class User extends BaseEntity{
 
     String userNickname;
     String userEmail;
-    String userPhone;
     String userPhoto;
-    Integer userKind;
-    Integer userGrade;
-    boolean userActive;
-    Integer userRegdate;
-
+    Integer isAdmin;
 
 
     @JsonIgnore
@@ -39,12 +34,8 @@ public class User extends BaseEntity{
         return "User{" +
                 ", userNickname='" + userNickname + '\'' +
                 ", userEmail='" + userEmail + '\'' +
-                ", userPhone='" + userPhone + '\'' +
                 ", userPhoto='" + userPhoto + '\'' +
-                ", userKind='" + userKind + '\'' +
-                ", userGrade='" + userGrade + '\'' +
-                ", userActive='" + userActive + '\'' +
-                ", userRegdate='" + userRegdate + '\'' +
+                ", isAdmin='" + isAdmin + '\'' +
                 ", userPassword='" + userPassword + '\'' +
                 '}';
     }

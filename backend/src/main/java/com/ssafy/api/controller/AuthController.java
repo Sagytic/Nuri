@@ -99,7 +99,7 @@ public class AuthController {
 		}
 
 		registerInfo.setUserNickname(nickname.toString() + randomStr);
-		registerInfo.setUserKind(0);
+		registerInfo.setIsAdmin(0);
 		registerInfo.setUserPassword("faASd156!@#156SDASCQWE@G");
 
 		if(userService.checkUser(userEmail.toString())){
