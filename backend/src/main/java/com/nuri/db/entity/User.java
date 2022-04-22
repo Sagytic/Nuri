@@ -8,7 +8,7 @@ import lombok.Setter;
 
 import javax.persistence.Entity;
 import javax.persistence.Table;
-import java.sql.Blob;
+import java.util.Date;
 
 /**
  * 유저 모델 정의.
@@ -20,10 +20,10 @@ import java.sql.Blob;
 public class User extends BaseEntity{
 
     String userNickname;
-    String userEmail;
+    String userId;
     String userPhoto;
     Integer isAdmin;
-
+    Date createdAt;
 
     @JsonIgnore
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
@@ -33,10 +33,11 @@ public class User extends BaseEntity{
     public String toString() {
         return "User{" +
                 ", userNickname='" + userNickname + '\'' +
-                ", userEmail='" + userEmail + '\'' +
+                ", userId='" + userId + '\'' +
                 ", userPhoto='" + userPhoto + '\'' +
                 ", isAdmin='" + isAdmin + '\'' +
                 ", userPassword='" + userPassword + '\'' +
+                ", createdAt='" + createdAt + '\'' +
                 '}';
     }
 

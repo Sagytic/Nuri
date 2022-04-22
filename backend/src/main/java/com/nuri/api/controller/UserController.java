@@ -56,8 +56,8 @@ public class UserController {
 		 * 액세스 토큰이 없이 요청하는 경우, 403 에러({"error": "Forbidden", "message": "Access Denied"}) 발생.
 		 */
 		NuriUserDetails userDetails = (NuriUserDetails)authentication.getDetails();
-		String userEmail = userDetails.getUsername();
-		User user = userService.getUserByUserId(userEmail);
+		String userId = userDetails.getUsername();
+		User user = userService.getUserByUserId(userId);
 		return ResponseEntity.status(200).body(UserRes.of(user));
 	}
 
@@ -69,9 +69,9 @@ public class UserController {
 			@ApiResponse(code = 404, message = "사용자 없음"),
 			@ApiResponse(code = 500, message = "서버 오류")
 	})
-	public ResponseEntity<UserRes> checkUser(String userEmail){
-		if(userService.checkUser(userEmail)){
-			User user = userService.getUserByUserId(userEmail);
+	public ResponseEntity<UserRes> checkUser(String userId){
+		if(userService.checkUser(userId)){
+			User user = userService.getUserByUserId(userId);
 			return ResponseEntity.status(200).body(UserRes.of(user));
 		}
 		return null;
@@ -86,10 +86,10 @@ public class UserController {
 			@ApiResponse(code = 200, message = "성공"),
 			@ApiResponse(code = 500, message = "서버 오류")
 	})
-	public ResponseEntity<? extends BaseResponseBody> updateUser(String userEmail, @RequestBody @ApiParam(value="수정 내용", required = true)UserUpdatePostReq userUpdatePostReq, @ApiIgnore Authentication authentication) {
+	public ResponseEntity<? extends BaseResponseBody> updateUser(String userId, @RequestBody @ApiParam(value="수정 내용", required = true)UserUpdatePostReq userUpdatePostReq, @ApiIgnore Authentication authentication) {
 		NuriUserDetails userDetails = (NuriUserDetails) authentication.getDetails();
-		String getUserEmail = userDetails.getUsername();
-		User user = userService.getUserByUserId(getUserEmail);
+		String getUserId = userDetails.getUsername();
+		User user = userService.getUserByUserId(getUserId);
 		userService.updateUser(user, userUpdatePostReq);
 		return ResponseEntity.status(200).body(BaseResponseBody.of(200, "Success"));
 	}
@@ -103,8 +103,8 @@ public class UserController {
 	})
 	public ResponseEntity<? extends BaseResponseBody> updateProfileImage(@RequestPart("userPhoto") MultipartFile userPhoto, @ApiIgnore Authentication authentication) throws IOException {
 		NuriUserDetails userDetails = (NuriUserDetails) authentication.getDetails();
-		String getUserEmail = userDetails.getUsername();
-		User user = userService.getUserByUserId(getUserEmail);
+		String getUserId = userDetails.getUsername();
+		User user = userService.getUserByUserId(getUserId);
 
 		Base64.Encoder encoder = Base64.getEncoder();
 		byte[] photoEncode = encoder.encode(userPhoto.getBytes());
@@ -125,8 +125,8 @@ public class UserController {
 	})
 	public ResponseEntity<? extends BaseResponseBody> deleteUser(@ApiIgnore Authentication authentication){
 		NuriUserDetails userDetails = (NuriUserDetails)authentication.getDetails();
-		String userEmail = userDetails.getUsername();
-		User user = userService.getUserByUserId(userEmail);
+		String userId = userDetails.getUsername();
+		User user = userService.getUserByUserId(userId);
 		userService.deleteUser(user);
 		return ResponseEntity.status(200).body(BaseResponseBody.of(200, "Success"));
 	}

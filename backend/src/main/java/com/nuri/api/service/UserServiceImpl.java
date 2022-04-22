@@ -34,26 +34,27 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public User createUser(UserRegisterPostReq userRegisterInfo) {
 		User user = new User();
-		user.setUserEmail(userRegisterInfo.getUserEmail());
+		user.setUserId(userRegisterInfo.getUserId());
 		// 보안을 위해서 유저 패스워드 암호화 하여 디비에 저장.
 		user.setUserPassword(passwordEncoder.encode(userRegisterInfo.getUserPassword()));
 		user.setUserNickname(userRegisterInfo.getUserNickname());
 		user.setIsAdmin(userRegisterInfo.getIsAdmin());
+		user.setCreatedAt(userRegisterInfo.getCreatedAt());
 
 		return userRepository.save(user);
 	}
 
 	@Override
-	public User getUserByUserId(String userEmail) {
+	public User getUserByUserId(String userId) {
 		// 디비에 유저 정보 조회
-		User user = userRepositorySupport.findUserByUserId(userEmail).get();
+		User user = userRepositorySupport.findUserByUserId(userId).get();
 		return user;
 	}
 
 	@Override
-	public boolean checkUser(String userEmail) {
+	public boolean checkUser(String userId) {
 		try{
-			User user = userRepositorySupport.findUserByUserId(userEmail).get();
+			User user = userRepositorySupport.findUserByUserId(userId).get();
 		}catch (Exception e){
 			return false;
 		}
@@ -89,11 +90,6 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public void deleteUser(User user) {
 		userRepository.delete(user);
-	}
-
-	@Override
-	public void updateUserActive(Long userId) {
-		userRepository.updateUserActive(userId);
 	}
 
 	@Override

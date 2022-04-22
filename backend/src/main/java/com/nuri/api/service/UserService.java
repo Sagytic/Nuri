@@ -11,13 +11,12 @@ import java.util.List;
  */
 public interface UserService {
 	User createUser(UserRegisterPostReq userRegisterInfo);
-	User getUserByUserId(String userEmail);
-	boolean checkUser(String userEmail);
+	User getUserByUserId(String userId);
+	boolean checkUser(String userId);
 	boolean checkUsername(String userNickname);
 	void updateUser(User user, UserUpdatePostReq userUpdatePostReq);
 	void deleteUser(User user);
 	void updateUserPhoto(User user, String userPhoto);
-	void updateUserActive(Long userId);
 
     String kakaoToken(String code);
 
