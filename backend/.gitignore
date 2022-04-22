@@ -6,7 +6,7 @@ build/
 !**/src/main/**/build/
 !**/src/test/**/build/
 
-ssafy-web.log
+nuri-web.log
 
 ### STS ###
 .apt_generated
