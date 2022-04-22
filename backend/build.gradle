@@ -45,7 +45,7 @@ repositories {
     maven { url "https://build.shibboleth.net/nexus/content/repositories/releases" }
 }
 
-group 'com.ssafy'
+group 'com.nuri'
 version '1.0-SNAPSHOT'
 sourceCompatibility = '11'
 
