@@ -1,12 +1,16 @@
 package com.nuri.convert;
 
+import org.apache.commons.lang3.StringUtils;
+
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.StringTokenizer;
 
 public class Convert {
-    static public ArrayList<String> lexcial(String userCode){
+    static ArrayList<String> convertCode;
+    static public ArrayList<String> lexical(String userCode){
         StringTokenizer tokens = new StringTokenizer(userCode, " (){};+-*/\n", true);
-        ArrayList<String> convertCode = new ArrayList<>();
+        convertCode = new ArrayList<>();
 
         while(tokens.hasMoreTokens()) {
             String token = tokens.nextToken();
@@ -46,9 +50,10 @@ public class Convert {
                     break;
                 case "구간반복":
                     convertCode.add("for");
+                    convertFor(tokens);
                     break;
                 case "조건반복":
-                    convertCode.add("int");
+                    convertCode.add("while");
                     break;
                 case "만약":
                     convertCode.add("if");
@@ -77,7 +82,7 @@ public class Convert {
                     convertCode.add("break");
                     break;
                 case "기본":
-                    convertCode.add("defalut");
+                    convertCode.add("default");
                     break;
                 case "입력":
                     convertCode.add("scanner.nextInt()");
@@ -89,5 +94,37 @@ public class Convert {
         }
 
         return convertCode;
+    }
+
+    private static void convertFor(StringTokenizer tokens) {
+        while(tokens.hasMoreTokens()){
+            String token = tokens.nextToken();
+
+            if(token.equals(" ") || token.equals("(")){
+                convertCode.add(token);
+            }else if(token.equals(")")){
+                convertCode.add(token);
+                break;
+            }else{
+                String[] val = token.split("=|,");
+                System.out.println(val[0]);
+                System.out.println(val[1]);
+                System.out.println(val[2]);
+                convertCode.add("int");
+                convertCode.add(" ");
+                convertCode.add(val[0]);
+                convertCode.add("=");
+                convertCode.add(val[1]);
+                convertCode.add(";");
+                convertCode.add(" ");
+                convertCode.add(val[0]);
+                convertCode.add("<");
+                convertCode.add(val[2]);
+                convertCode.add(";");
+                convertCode.add(" ");
+                convertCode.add(val[0]);
+                convertCode.add("++");
+            }
+        }
     }
 }
