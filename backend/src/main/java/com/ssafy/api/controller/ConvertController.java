@@ -1,6 +1,6 @@
-package com.ssafy.api;
+package com.ssafy.api.controller;
 
-import com.ssafy.service.ConvertService;
+import com.ssafy.api.service.ConvertService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;

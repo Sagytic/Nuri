@@ -1,4 +1,4 @@
-package com.ssafy.service;
+package com.ssafy.api.service;
 
 import com.ssafy.convert.Convert;
 import org.springframework.stereotype.Service;
