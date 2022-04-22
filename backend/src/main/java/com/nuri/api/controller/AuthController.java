@@ -28,9 +28,9 @@ import java.util.Random;
 /**
  * 인증 관련 API 요청 처리를 위한 컨트롤러 정의.
  */
-@Api(value = "인증 API", tags = {"Auth."})
+@Api(value = "인증 API", tags = {"User"})
 @RestController
-@RequestMapping("/api/v1/restAuth")
+@RequestMapping("/api/v1/user")
 public class AuthController {
 	@Autowired
 	UserService userService;
