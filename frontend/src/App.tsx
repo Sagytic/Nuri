@@ -1,6 +1,7 @@
 import React from 'react';
 import Main from './pages/main/Main';
 import './App.css';
+import { Outlet } from 'react-router-dom';
 
 function App() {
   return (
@@ -9,6 +10,7 @@ function App() {
         <p>
           Edit <code>src/App.tsx</code> and save to reload.
         </p>
+        <Outlet />
         <Main />
         <a
           className="App-link"
