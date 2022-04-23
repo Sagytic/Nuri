@@ -61,32 +61,16 @@ public class UserController {
 		return ResponseEntity.status(200).body(UserRes.of(user));
 	}
 
-	@GetMapping("{user_email}")
-	@ApiOperation(value = "회원 본인 정보 조회(아이디 기반)", notes = "로그인한 회원 본인의 정보를 응답한다.")
-	@ApiResponses({
-			@ApiResponse(code = 200, message = "성공"),
-			@ApiResponse(code = 401, message = "인증 실패"),
-			@ApiResponse(code = 404, message = "사용자 없음"),
-			@ApiResponse(code = 500, message = "서버 오류")
-	})
-	public ResponseEntity<UserRes> checkUser(String userId){
-		if(userService.checkUser(userId)){
-			User user = userService.getUserByUserId(userId);
-			return ResponseEntity.status(200).body(UserRes.of(user));
-		}
-		return null;
-	}
-
 	private final Logger log = LoggerFactory.getLogger(UserController.class);
 
 	// Update(갱신)
 	@PatchMapping()
-	@ApiOperation(value = "userId 회원 수정", notes = "해당 아이디 회원의 정보를 수정한다.")
+	@ApiOperation(value = "회원 수정(로그인 후 토큰 방식)", notes = "해당 아이디 회원의 정보를 수정한다.")
 	@ApiResponses({
 			@ApiResponse(code = 200, message = "성공"),
 			@ApiResponse(code = 500, message = "서버 오류")
 	})
-	public ResponseEntity<? extends BaseResponseBody> updateUser(String userId, @RequestBody @ApiParam(value="수정 내용", required = true)UserUpdatePostReq userUpdatePostReq, @ApiIgnore Authentication authentication) {
+	public ResponseEntity<? extends BaseResponseBody> updateUser(@RequestBody @ApiParam(value="수정 내용", required = true)UserUpdatePostReq userUpdatePostReq, @ApiIgnore Authentication authentication) {
 		NuriUserDetails userDetails = (NuriUserDetails) authentication.getDetails();
 		String getUserId = userDetails.getUsername();
 		User user = userService.getUserByUserId(getUserId);
@@ -131,7 +115,22 @@ public class UserController {
 		return ResponseEntity.status(200).body(BaseResponseBody.of(200, "Success"));
 	}
 
-	@GetMapping("{user_nickname_check}")
+	@GetMapping("{user_id}")
+	@ApiOperation(value = "아이디 중복 체크(사용가능한 아이디 true)", notes = "아이디 중복 체크")
+	@ApiResponses({
+			@ApiResponse(code = 200, message = "성공"),
+			@ApiResponse(code = 401, message = "인증 실패"),
+			@ApiResponse(code = 404, message = "사용자 없음"),
+			@ApiResponse(code = 500, message = "서버 오류")
+	})
+	public ResponseEntity<Boolean> checkUserId(String userId){
+		if(userService.checkUser(userId)){
+			return ResponseEntity.status(200).body(false);
+		}
+		return ResponseEntity.status(200).body(true);
+	}
+
+	@GetMapping("{user_nickname}")
 	@ApiOperation(value = "닉네임 중복 체크(사용가능한 닉네임 true)", notes = "닉네임 중복 체크")
 	@ApiResponses({
 			@ApiResponse(code = 200, message = "성공"),

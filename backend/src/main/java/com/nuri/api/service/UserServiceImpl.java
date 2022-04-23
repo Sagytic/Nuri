@@ -62,19 +62,8 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public boolean checkUsername(String userNickname) {
-		try{
-			User user = userRepositorySupport.findUserByUserNickname(userNickname).get();
-		}catch (Exception e){
-			return false;
-		}
-		return true;
-	}
-
-	@Override
 	public void updateUser(User user, UserUpdatePostReq userUpdatePostReq) {
 		// 수정할 회원 정보 현재 회원 정보에 setting
-		user.setIsAdmin(userUpdatePostReq.getIsAdmin());
 		user.setUserNickname(userUpdatePostReq.getUserNickname());
 		// db에 update
 		userRepository.save(user);
