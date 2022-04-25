@@ -15,14 +15,12 @@ import java.util.Optional;
  */
 @Repository
 public interface UserRepository extends JpaRepository<User, Long> {
-    // 아래와 같이, Query Method 인터페이스(반환값, 메소드명, 인자) 정의를 하면 자동으로 Query Method 구현됨.
-    Optional<User> findByUserId(String user_email);
 
     @Query(value = "SELECT * from user where user_kind = 2 and user_active = 1",nativeQuery = true)
     List<User> findActiveUser();
 
     @Transactional
     @Modifying
-    @Query(value = "update user set user_active = if(user_active = 1,0,1) where user_id = :userId",nativeQuery = true)
-    void updateUserActive(@Param("userId") Long userId);
+    @Query(value = "update user set user_active = if(user_active = 1,0,1) where user_id = :id",nativeQuery = true)
+    void updateUserActive(@Param("id") Long id);
 }
