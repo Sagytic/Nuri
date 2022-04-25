@@ -11,7 +11,7 @@ import Intro from './pages/intro/Intro'
 import Math from './pages/math/Math'
 import Game from './pages/game/Game'
 import Reference from './pages/reference/Reference'
-import MyPage from './pages/myPage/MyPage'
+import MyPage from './pages/mypage/MyPage'
 import SignUp from './pages/user/SignUp'
 import Login from './pages/user/Login'
 // 
