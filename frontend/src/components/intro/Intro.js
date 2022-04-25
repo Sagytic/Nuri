@@ -1,7 +1,7 @@
 import React from "react";
 
-function Main() {
+function Intro() {
   return <div>intro componentes</div>
 }
 
-export default Main
+export default Intro
