@@ -13,15 +13,11 @@ package com.nuri.api.request;
 @Setter
 @ApiModel("UserUpdatePostRequest")
 public class UserUpdatePostReq {
-    String userPhone;
-    Integer isAdmin;
     String userNickname;
 
     @Override
     public String toString() {
         return "UserUpdatePostReq{" +
-                "userPhone='" + userPhone + '\'' +
-                ", isAdmin='" + isAdmin + '\'' +
                 ", userNickname='" + userNickname + '\'' +
                 '}';
     }

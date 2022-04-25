@@ -1,14 +1,17 @@
-import logo from './logo.svg';
+import React from 'react';
+import Landing from './pages/landing/Landing';
 import './App.css';
+import { Outlet } from 'react-router-dom';
 
 function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
         <p>
-          Edit <code>src/App.js</code> and save to reload.
+          Edit <code>src/App.tsx</code> and save to reload.
         </p>
+        <Outlet />
+        <Landing />
         <a
           className="App-link"
           href="https://reactjs.org"
