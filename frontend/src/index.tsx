@@ -6,6 +6,7 @@ import reportWebVitals from './reportWebVitals';
 
 // routing
 import { Routes, Route, BrowserRouter } from 'react-router-dom';
+import Landing from './pages/landing/Landing'
 import Main from './pages/main/Main'
 import Intro from './pages/intro/Intro'
 import Math from './pages/math/Math'
@@ -22,8 +23,9 @@ const root = ReactDOM.createRoot(
 root.render(
   <BrowserRouter>
     <Routes>
-      <Route path="/" element={<App />}></Route>
-        <Route path="" element={<Main />}></Route>
+      <Route path="/"  element={<App />}></Route>
+        <Route path="" element={<Landing />}></Route>
+        <Route path="main" element={<Main />}></Route>
         <Route path="intro" element={<Intro />}></Route>
         <Route path="math/:id" element={<Math />}></Route>
         <Route path="game/:id" element={<Game />}></Route>
