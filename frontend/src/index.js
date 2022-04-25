@@ -18,7 +18,7 @@ import Login from './pages/user/Login'
 // 
 
 const root = ReactDOM.createRoot(
-  document.getElementById('root') as HTMLElement
+  document.getElementById('root')
 );
 root.render(
   <BrowserRouter>

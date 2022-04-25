@@ -1,5 +1,5 @@
 import React from "react";
-import { Wave } from "react-animated-text";
+// import { Wave } from "react-animated-text";
 
 function Landing() {
   return <div className="landingTitle">
