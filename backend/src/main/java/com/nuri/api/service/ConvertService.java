@@ -7,8 +7,8 @@ import java.util.ArrayList;
 
 @Service
 public class ConvertService {
-    public String convert(Long id, String userCode, Long mathGameId) {
-        ArrayList tokens = Convert.lexcial(userCode);
-        return null;
+    public ArrayList<String> convert(Long id, String userCode, Long mathGameId) {
+        ArrayList tokens = Convert.lexical(userCode);
+        return tokens;
     }
 }

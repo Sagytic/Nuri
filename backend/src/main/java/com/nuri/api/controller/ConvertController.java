@@ -8,6 +8,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+
 @CrossOrigin(origins = "*")
 @RestController
 @RequestMapping("/api/v1/console")
@@ -17,8 +20,8 @@ public class ConvertController {
     ConvertService convertService;
 
     @PostMapping("/convert")
-    public ResponseEntity<String> convert(Long id, String userCode, Long mathGameId){
-        String convertCode = convertService.convert(id, userCode, mathGameId);
+    public ResponseEntity<ArrayList<String>> convert(Long id, String userCode, Long mathGameId){
+        ArrayList<String> convertCode = convertService.convert(id, userCode, mathGameId);
         if(convertCode!=null){
             return ResponseEntity.status(200).body(convertCode);
         }else{
