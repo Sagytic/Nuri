@@ -23,8 +23,8 @@ const root = ReactDOM.createRoot(
 root.render(
   <BrowserRouter>
     <Routes>
-      <Route path="/"  element={<App />}></Route>
-        <Route path="" element={<Landing />}></Route>
+      <Route path="/"  element={<App />}>
+        <Route path="landing" element={<Landing />}></Route>
         <Route path="main" element={<Main />}></Route>
         <Route path="intro" element={<Intro />}></Route>
         <Route path="math/:id" element={<Math />}></Route>
@@ -33,6 +33,7 @@ root.render(
         <Route path="mypage/:id" element={<MyPage />}></Route>
         <Route path="user/signup" element={<SignUp />}></Route>
         <Route path="user/login" element={<Login />}></Route>
+      </Route>
     </Routes>
   </BrowserRouter>
 );
