@@ -1,7 +1,10 @@
 package com.nuri.api.controller;
 
+import com.nuri.api.response.AnswerCodeRes;
+import com.nuri.api.service.CodeService;
 import com.nuri.api.service.MathGameService;
 import com.nuri.common.model.response.BaseResponseBody;
+import com.nuri.db.entity.Code;
 import com.nuri.db.entity.MathGame;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -22,6 +25,9 @@ public class MathGameController {
 
     @Autowired
     MathGameService mathgameService;
+
+    @Autowired
+    CodeService codeService;
 
     @GetMapping("{type}")
     @ApiOperation(value = "전체 게임/문제 목록 조회")
@@ -47,5 +53,21 @@ public class MathGameController {
     public ResponseEntity<Integer> updateMathGameViews(@PathVariable("mathgame_id") int mathgameId){
         int updateviews = mathgameService.updateMathGameViews(mathgameId);
         return ResponseEntity.status(200).body(updateviews);
+    }
+
+    @GetMapping("/answer/{mathgame_id}")
+    @ApiOperation(value = "")
+    @ApiResponses({
+            @ApiResponse(code = 200, message = "성공"),
+            @ApiResponse(code = 401, message = "인증 실패"),
+            @ApiResponse(code = 404, message = "사용자 없음"),
+            @ApiResponse(code = 500, message = "서버 오류")
+    })
+    public ResponseEntity<Code> getAnswer(@PathVariable("mathgame_id") Long mathgameId){
+         Code answercode = codeService.getAnswer(mathgameId);
+        System.out.println("여깅");
+         if(answercode!=null) {
+             return ResponseEntity.status(200).body(answercode);
+         }else return ResponseEntity.status(500).body(null);
     }
 }
