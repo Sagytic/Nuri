@@ -1,15 +1,23 @@
+@font-face {
+  font-family: 'Yeongdo-Rg';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2202-2@1.0/Yeongdo-Rg.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
 .Nav {
   box-sizing: border-box;
   display: flex;
-  padding: 0px 10vw;
+  padding: 0px 7vw;
   width: 100vw;
-  height: 100px;
+  height: 80px;
   justify-content: space-between;
   align-items: center;
   font-weight: bold;
   border-style: none none solid;
-  border-width: 2px;
-  font-size: 1rem;
+  border-width: 1px;
+  border-color: rgb(219, 219, 219);
+  font-family: 'Yeongdo-Rg';
 }
 
 .Nav-logo {
@@ -18,37 +26,68 @@
   color: black;
 }
 
-.Nav-items {
+.Nav-content {
   display: flex;
-  width: 50vw;
-  justify-content: flex-end;
-  column-gap: 5vw;
+  align-items: center;
+  column-gap: 3vw;
 }
 
-@media (max-width: 750px) {
+.Nav-items {
+  display: flex;
+  column-gap: 3vw;
+}
+
+@media (max-width: 760px) {
   .Nav-items {
+    position: absolute;
+    top: 60px;
+    background-color: white;
+    border-radius: 15px;
+    padding: 5px;
+    border-style: solid;
     display: flex;
     flex-direction: column;
-    align-items: flex-end;
-    width: 40vw
+  }
+
+  .Nav-item {
+    padding: 5px 0px;
   }
 }
 
 .Nav-item {
+  position: relative;
   text-decoration: none;
   color: black;
+  text-align: center;
+}
+
+.Nav-item::after {
+  z-index: -1;
+  opacity: 70%;
+  position: absolute;
+  left: 0;
+  width: 0%;
+  top: 0px;
+  height: 15px;
+  transform: translate(0%, 70%);
+  transition: width 0.3s;
+  background-color: #FFD644;
+  content: '';
+}
+
+.Nav-item:hover::after {
+  width: 64px;
 }
 
 .Nav-item-button {
   width: 100px;
-  height: 50px;
-  border-radius: 20px;
-  border-style: solid;
-  border-width: 3px;
-  border-color: black;
+  height: 40px;
+  border-radius: 15px;
+  border-style: none;
   background-color: #FFD644;
-  font-size: 1rem;
+  font-size: small;
   font-weight: bold;
+  font-family: 'Yeongdo-Rg';
 }
 
 .Nav-item-button:hover {
