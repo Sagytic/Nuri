@@ -13,9 +13,6 @@ public class CodeServiceImpl implements CodeService{
     @Override
     public Code getAnswer(Long mathgameId) {
         Code answercode = codeRepository.getAnswer(mathgameId);
-        System.out.println("answercode-------------------------------------");
-        System.out.println(answercode.getCode());
-        System.out.println("------------------------------------------------");
         return answercode;
     }
 }

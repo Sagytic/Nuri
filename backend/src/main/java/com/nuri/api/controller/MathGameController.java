@@ -65,7 +65,6 @@ public class MathGameController {
     })
     public ResponseEntity<Code> getAnswer(@PathVariable("mathgame_id") Long mathgameId){
          Code answercode = codeService.getAnswer(mathgameId);
-        System.out.println("여깅");
          if(answercode!=null) {
              return ResponseEntity.status(200).body(answercode);
          }else return ResponseEntity.status(500).body(null);
