@@ -6,6 +6,7 @@
 }
 
 .Nav {
+  position: absolute;
   box-sizing: border-box;
   display: flex;
   padding: 0px 7vw;
@@ -41,7 +42,6 @@
   .Nav-items {
     position: absolute;
     top: 60px;
-    background-color: white;
     border-radius: 15px;
     padding: 5px;
     border-style: solid;
@@ -50,7 +50,16 @@
   }
 
   .Nav-item {
-    padding: 5px 0px;
+    padding: 10px 0px;
+  }
+
+  .Nav-item::after {
+    top: 10px !important;
+    height: 10px !important;
+  }
+
+  .Nav-item:hover::after {
+    width: 55px !important;
   }
 }
 
@@ -92,5 +101,5 @@
 
 .Nav-item-button:hover {
   cursor: pointer;
-  background-color: #fde798;
+  background-color: #fac60c;
 }
