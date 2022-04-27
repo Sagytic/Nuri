@@ -26,11 +26,11 @@ function SignUp() {
   }
   
   async function nickNameValidation() {
-    const nickNameCheck = /^([a-zA-Z0-9ㄱ-ㅎ|ㅏ-ㅣ|가-힣]).{1,20}$/;
+    const nickNameCheck = /^([a-zA-Z0-9ㄱ-ㅎ|ㅏ-ㅣ|가-힣]){2,20}$/;
     if (nickName === "") {
       setNickNameMessage("닉네임을 입력해 주세요")
     } else if (!nickNameCheck.test(nickName)) {
-      setNickNameMessage("영문, 숫자,한글로 이루어진 2~20자 사이로 입력해 주세요")
+      setNickNameMessage("영문, 숫자, 한글로 이루어진 2~20자 사이로 입력해 주세요")
     } else {
       setNickNameMessage("")
       return true
@@ -38,7 +38,7 @@ function SignUp() {
   }
   
   async function passwordValidation() {
-    const passwordCheck = /^(?=.*[a-zA-Z])(?=.*[0-9]).{4,20}$/;
+    const passwordCheck = /^(?=.*[a-zA-Z])(?=.*[0-9]){4,20}$/;
     if (password === "") {
       setPasswordMessage("비밀번호를 입력해 주세요")
     } else if (!passwordCheck.test(password)) {
@@ -60,6 +60,7 @@ function SignUp() {
 
   function deleteAll(event) {
     event.preventDefault();
+    console.log("모두 지우기")
     setEmail("");
     setNickName("");
     setPassword("");
