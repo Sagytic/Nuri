@@ -58,6 +58,10 @@
 
 4. nginx를 설치한다.
 
+```
+sudo apt-get isntall nginx -y
+```
+
 5. 만약 프로젝트에서 개별적으로 사용한 추가 파일이 있을 경우 개별적으로 설치한다. (readme에선 기초 설정만 다룸)
 
 ### 3. DB(Mysql) 설치 및 Mysql Workbench에서 실행
