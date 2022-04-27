@@ -26,10 +26,11 @@ function SignUp() {
   }
   
   async function nickNameValidation() {
+    const nickNameCheck = /^([a-zA-Z0-9ㄱ-ㅎ|ㅏ-ㅣ|가-힣]).{1,20}$/;
     if (nickName === "") {
       setNickNameMessage("닉네임을 입력해 주세요")
-    } else if (nickName.length < 4 || nickName.length > 20) {
-      setNickNameMessage("4~20자 사이로 입력해 주세요")
+    } else if (!nickNameCheck.test(nickName)) {
+      setNickNameMessage("영문, 숫자,한글로 이루어진 2~20자 사이로 입력해 주세요")
     } else {
       setNickNameMessage("")
       return true
@@ -100,7 +101,7 @@ function SignUp() {
           setInput={setNickName} 
           value={nickName}
           message={nickNameMessage}
-          placeholder="4~20자로 입력해 주세요" 
+          placeholder="2~20자로 입력해 주세요" 
         />
         <Input 
           type="password" 
