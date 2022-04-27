@@ -115,7 +115,7 @@ public class UserController {
 		return ResponseEntity.status(200).body(BaseResponseBody.of(200, "Success"));
 	}
 
-	@GetMapping("{user_id}")
+	@GetMapping("checkid")
 	@ApiOperation(value = "아이디 중복 체크(사용가능한 아이디 true)", notes = "아이디 중복 체크")
 	@ApiResponses({
 			@ApiResponse(code = 200, message = "성공"),
@@ -130,7 +130,7 @@ public class UserController {
 		return ResponseEntity.status(200).body(true);
 	}
 
-	@GetMapping("{user_nickname}")
+	@GetMapping("checkname")
 	@ApiOperation(value = "닉네임 중복 체크(사용가능한 닉네임 true)", notes = "닉네임 중복 체크")
 	@ApiResponses({
 			@ApiResponse(code = 200, message = "성공"),
