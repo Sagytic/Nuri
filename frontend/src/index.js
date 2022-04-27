@@ -15,6 +15,7 @@ import Reference from './pages/reference/Reference'
 import MyPage from './pages/myPage/MyPage'
 import SignUp from './pages/user/SignUp'
 import Login from './pages/user/Login'
+import Ide from './pages/ide/Ide'
 // 
 
 const root = ReactDOM.createRoot(
@@ -33,6 +34,7 @@ root.render(
         <Route path="mypage/:id" element={<MyPage />}></Route>
         <Route path="user/signup" element={<SignUp />}></Route>
         <Route path="user/login" element={<Login />}></Route>
+        <Route path="ide" element={<Ide />}></Route>
       </Route>
     </Routes>
   </BrowserRouter>
