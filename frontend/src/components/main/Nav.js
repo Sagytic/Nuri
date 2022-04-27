@@ -6,7 +6,8 @@ import "./Nav.css"
 function Nav() {
   const navigate = useNavigate();
   const [menuIconShow, setMenuIconShow] = useState(window.innerWidth <= 760 ? true : false);
-  
+  const [menuShow, setMenuShow] = useState(false);
+
   function moveLogin() {
     navigate("/user/login")
   }
@@ -19,12 +20,16 @@ function Nav() {
     }
   }
 
+  function toggleMenu() {
+    setMenuShow(!menuShow)
+  }
+
   useEffect(() => {
     window.addEventListener('resize', resizeHandler);
     return function() {
       window.removeEventListener('resize', resizeHandler);
     }
-  }, [])
+  }, [menuShow])
 
   return (
     <div className="Nav">
@@ -33,8 +38,8 @@ function Nav() {
         {menuIconShow
         ? 
         <>
-          <FiMenu size="2rem"/>
-          <div className="Nav-items">
+          <FiMenu size="2rem" onClick={() => toggleMenu()} style={{cursor: "pointer"}} />
+          <div className="Nav-items" style={{ visibility: menuShow ? "visible" : "hidden" }}>
             <NavLink className="Nav-item" to="/intro" >누리소개</NavLink>
             <NavLink className="Nav-item" to="/reference" >살펴보기</NavLink>
             <NavLink className="Nav-item" to="/game" >게임하기</NavLink>
