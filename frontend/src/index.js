@@ -24,8 +24,8 @@ const root = ReactDOM.createRoot(
 root.render(
   <BrowserRouter>
     <Routes>
+      <Route path="/" element={<Landing />}></Route>
       <Route path="/"  element={<App />}>
-        <Route path="" element={<Landing />}></Route>
         <Route path="main" element={<Main />}></Route>
         <Route path="intro" element={<Intro />}></Route>
         <Route path="math/:id" element={<Math />}></Route>

@@ -6,7 +6,7 @@ import "./User.css";
 
 function Login() {
 
-  const [email, setEmail] = useState("");
+  const [id, setId] = useState("");
   const [password, setPassword] = useState("");
   const [loginMessage, setLoginMessage] = useState("");
   const navigate = useNavigate();
@@ -27,12 +27,12 @@ function Login() {
       <div style={{ fontSize: "30px", fontWeight: "500" }}>로그인</div>
       <form>
         <Input 
-          type="email" 
-          title="이메일 입력" 
-          setInput={setEmail} 
-          value={email} 
+          type="text" 
+          title="아이디 입력" 
+          setInput={setId} 
+          value={id} 
           message={loginMessage}
-          placeholder="이메일을 입력해 주세요" 
+          placeholder="아이디를 입력해 주세요" 
         />
         <Input 
           type="password" 
