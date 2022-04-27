@@ -1,23 +1,30 @@
-import React from "react";
+// import { dividerClasses } from "@mui/material";
+// import React, {useEffect}  from "react";
 import { Wave } from "react-animated-text";
+import { useNavigate } from "react-router-dom";
+import "./Landing.css"
 
-const landingAnimation = {
-  display: "inline-block",
-  marginBottom: "1em",
-  padding: "2em 1em 1em 1em",
-  width: "100%",
-  fontSize: "1.5rem",
-  textAlign: "center",
-  backgroundImage: "url(/assets/korBack.jpg)",
-  color: "white"
-};
+function Landing() {
+  const navigate = useNavigate();
 
-export const Wave1 = () => (
-  <div style={landingAnimation}>
-    <Wave text="누리는 프로그래밍 학습을" effect="verticalFadeIn" effectChange={1.0} delay={5.0} />
-    <Wave text="이해하기 쉽고, 다가가기 쉬운" effect="verticalFadeIn" effectChange={1.0} delay={5.0} />
-    <Wave text="'한글'로 할 수 있습니다" effect="verticalFadeIn" effectChange={0.5} delay={5.0} />
+  function pathLogin() {
+    navigate("/user/login")
+  };
+
+  setTimeout(pathLogin, 5000);
+
+  return (
+  <div className="landingBackground">
+    <div className="landingAnimation">
+      <Wave text="누리는 프로그래밍 학습을" effect="verticalFadeIn" effectChange={1.0} delay={7.0} />
+      <br />
+      <Wave text="이해하기 쉽고, 다가가기 쉬운" effect="verticalFadeIn" effectChange={1.0} delay={7.0} />
+      <br />
+      <Wave text="'한글'로 할 수 있습니다" effect="verticalFadeIn" effectChange={0.5} delay={7.0} />
+      {/* <Wave text="누리" effect="verticalFadeIn" effectChange={5.5} delay={7.0} /> */}
+    </div>
   </div>
-);
+  )
+}
 
-export default Wave1
+export default Landing;
