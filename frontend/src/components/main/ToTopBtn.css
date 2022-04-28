@@ -1,0 +1,8 @@
+.ToTop-Container .Top-Btn {
+  position: absolute;
+  right: 0;
+}
+
+.ToTop-Container .Top-Btn > img {
+  height: 1.5rem;
+}

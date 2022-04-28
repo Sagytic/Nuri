@@ -33,7 +33,7 @@ function Nav() {
 
   return (
     <div className="Nav">
-      <NavLink className="Nav-logo" to="/" >누리</NavLink>
+      <NavLink className="Nav-logo" to="/main" >누리</NavLink>
       <div className="Nav-content">
         {menuIconShow
         ? 
