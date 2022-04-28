@@ -4,7 +4,7 @@ import './Input.css';
 function Input({ type, title, value, setInput, placeholder, message }) {
   function changeValue(event) {
     event.preventDefault();
-    setInput(event.target.value)
+    setInput(event.target.value.replace(" ", ""))
   }
 
   return (

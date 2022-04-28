@@ -3,13 +3,19 @@ import { NavLink, useNavigate } from 'react-router-dom';
 import { FiMenu } from 'react-icons/fi';
 import "./Nav.css"
 
-function Nav() {
+function Nav({ userData, setUserData }) {
   const navigate = useNavigate();
   const [menuIconShow, setMenuIconShow] = useState(window.innerWidth <= 760 ? true : false);
   const [menuShow, setMenuShow] = useState(false);
 
   function moveLogin() {
     navigate("/user/login")
+  }
+
+  function moveMypage() {
+    navigate("/mypage/0");
+    // localStorage.removeItem("jwt");
+    // navigate(0);
   }
 
   function resizeHandler() {
@@ -33,7 +39,7 @@ function Nav() {
 
   return (
     <div className="Nav">
-      <NavLink className="Nav-logo" to="/" >누리</NavLink>
+      <NavLink className="Nav-logo" to="/main" >누리</NavLink>
       <div className="Nav-content">
         {menuIconShow
         ? 
@@ -53,7 +59,9 @@ function Nav() {
           <NavLink className="Nav-item" to="/game" >게임하기</NavLink>
           <NavLink className="Nav-item" to="/math" >문제풀기</NavLink>
         </div>}
-        <button className="Nav-item-button" onClick={() => moveLogin()}>로그인</button>
+        {userData
+        ? <button className="Nav-item-button" onClick={() => moveMypage()}>{userData.userNickname}</button>
+        : <button className="Nav-item-button" onClick={() => moveLogin()}>로그인</button>}
       </div>
     </div>
   )
