@@ -2,11 +2,12 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Input from "../../components/user/Input";
 import Button from "../../components/user/Button";
+import { UserLogin } from "../../components/user/UserAxios";
 import "./User.css";
 
 function Login() {
 
-  const [email, setEmail] = useState("");
+  const [id, setId] = useState("");
   const [password, setPassword] = useState("");
   const [loginMessage, setLoginMessage] = useState("");
   const navigate = useNavigate();
@@ -18,8 +19,20 @@ function Login() {
   
   function login(event) {
     event.preventDefault();
-    setLoginMessage("로그인로그인");
-    console.log("로그인 버튼");
+    const userData = {
+      userId: id,
+      userPassword: password,
+    }
+    UserLogin(userData)
+    .then((response) => {
+      console.log("로그인 성공");
+      localStorage.setItem("jwt", response.data.accessToken);
+      window.location.replace("/main");
+    })
+    .catch(() => {
+      console.log("로그인 실패")
+      setLoginMessage("올바른 아이디와 비밀번호를 입력하세요");
+    })
   }
 
   return (
@@ -27,12 +40,12 @@ function Login() {
       <div style={{ fontSize: "30px", fontWeight: "500" }}>로그인</div>
       <form>
         <Input 
-          type="email" 
-          title="이메일 입력" 
-          setInput={setEmail} 
-          value={email} 
+          type="text" 
+          title="아이디 입력" 
+          setInput={setId} 
+          value={id} 
           message={loginMessage}
-          placeholder="이메일을 입력해 주세요" 
+          placeholder="아이디를 입력해 주세요" 
         />
         <Input 
           type="password" 

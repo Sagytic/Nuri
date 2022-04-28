@@ -1,9 +1,11 @@
 import React, { useState } from "react";
 import axios from 'axios';
-import { API_BASE_URL, API_Judge_URL } from '../../config/index'
+import server from "../../API/server";
 import "./Ide.css"
 
 function Ide() {
+    const API_BASE_URL = server.BASE_URL;
+    const API_Judge_URL = server.Judge_URL;
     const [result, setResult] = useState(null);
     const [javaCode, setJavaCode] = useState(null);
     var nuriCode;
