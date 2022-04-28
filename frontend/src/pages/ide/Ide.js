@@ -1,9 +1,14 @@
 import React, { useState } from "react";
 import axios from 'axios';
+import server from "../../API/server";
+import "./Ide.css"
 
-const Ide = () => {
-    var apiUrl = "https://ce.judge0.com";
+function Ide() {
+    const API_BASE_URL = server.BASE_URL;
+    const API_Judge_URL = server.Judge_URL;
     const [result, setResult] = useState(null);
+    const [javaCode, setJavaCode] = useState(null);
+    var nuriCode;
 
     const encode = (str) => {
         return btoa(unescape(encodeURIComponent(str)));
@@ -18,31 +23,19 @@ const Ide = () => {
         }
     }
 
-    var source_code = 
-        `public class Main {
-            public static void main(String[] args) {
-                int a = 3;
-                int b = 5;
-                System.out.println("Hello 누리");
-                System.out.println(1+2);
-                System.out.println(a+b);
-            }
-        }
-        `;
-
     function run() {
-        var source_code_encode = encode(source_code);
+        var encodeNuriCode = encode(javaCode);
         var data = {
-            source_code: source_code_encode,
+            source_code: encodeNuriCode,
             language_id: 62,
             stdin: "",
             compiler_options: "",
             command_line_arguments: "",
             redirect_stderr_to_stdout: true
         }
-
+        console.log(javaCode);
         axios
-            .post(apiUrl + '/submissions?base64_encoded=true&wait=true',
+            .post(API_Judge_URL + '/submissions?base64_encoded=true&wait=true',
                 data,
                 {
                     Headers: {
@@ -50,28 +43,47 @@ const Ide = () => {
                     }
                 })
             .then((res) => {
-                console.log(source_code);
+                console.log(javaCode);
                 console.log(decode(res.data.stdout));
                 setResult(decode(res.data.stdout));
             })
     }
 
-
-
+    function nuriCodeHandler(e) {
+        var data = {
+            id:"",
+            mathGameId:"",
+            userCode:e.target.value
+        }
+        axios
+        .post(API_BASE_URL + "/api/v1/console/convert",
+        data,{
+            Headers:{
+                contentType: "application/json"
+            }
+        })
+        .then((res)=>{
+            setJavaCode(res.data);
+        })
+    }
+    
     return (
-        <div> 
-        <h4>
-            소스코드 : {source_code}
-        </h4>
-            <button onClick={run()}>RUN</button>
-        <h4>
-            결과값 : {result}
-        </h4>   
+        <div>
+            <br>
+            </br>
+            <br>
+            </br>
+            <br>
+            </br>
+            <br>
+            </br>
+            <textarea onChange={nuriCodeHandler} value={nuriCode}/>
+            <textarea value={javaCode}/>
+            <div><button onClick={run}>RUN</button></div>
+            
+            <textarea value={result}/>
         </div>
-
-
-    )
-
+    );
 }
 
 export default Ide;

@@ -52,7 +52,6 @@ public class UserServiceImpl implements UserService {
 	public boolean checkUser(String userId) {
 		try{
 			User user = userRepository.findUserByUserId(userId);
-
 		}catch (Exception e){
 			return false;
 		}
