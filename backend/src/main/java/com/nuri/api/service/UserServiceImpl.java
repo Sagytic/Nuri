@@ -15,6 +15,8 @@ import java.io.*;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.HashMap;
+import java.util.List;
+import java.util.Optional;
 
 /**
  *	유저 관련 비즈니스 로직 처리를 위한 서비스 구현 정의.
@@ -52,6 +54,9 @@ public class UserServiceImpl implements UserService {
 	public boolean checkUser(String userId) {
 		try{
 			User user = userRepository.findUserByUserId(userId);
+			if(user==null){
+				throw new NullPointerException();
+			}
 		}catch (Exception e){
 			return false;
 		}
