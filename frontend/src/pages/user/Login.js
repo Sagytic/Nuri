@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Input from "../../components/user/Input";
 import Button from "../../components/user/Button";
+import { UserLogin } from "../../components/user/UserAxios";
 import "./User.css";
 
 function Login() {
@@ -18,8 +19,20 @@ function Login() {
   
   function login(event) {
     event.preventDefault();
-    setLoginMessage("로그인로그인");
-    console.log("로그인 버튼");
+    const userData = {
+      userId: id,
+      userPassword: password,
+    }
+    UserLogin(userData)
+    .then((response) => {
+      console.log("로그인 성공");
+      localStorage.setItem("jwt", response.data.accessToken);
+      window.location.replace("/main");
+    })
+    .catch(() => {
+      console.log("로그인 실패")
+      setLoginMessage("올바른 아이디와 비밀번호를 입력하세요");
+    })
   }
 
   return (

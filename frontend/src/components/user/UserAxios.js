@@ -1,10 +1,11 @@
 import axios from "axios";
 import server from "../../API/server";
 
-// const signupUrl = server.BASE_URL + server.ROUTES.signup;
 const checkIdUrl = server.BASE_URL + server.ROUTES.checkId;
 const checkNickNameUrl = server.BASE_URL + server.ROUTES.checkNickName;
-// const loginUrl = server.BASE_URL + server.ROUTES.login;
+const signupUrl = server.BASE_URL + server.ROUTES.signup;
+const loginUrl = server.BASE_URL + server.ROUTES.login;
+const userInfoUrl = server.BASE_URL + server.ROUTES.userData;
 
 function CheckId(id) {
   const params = { userId: id };
@@ -16,4 +17,20 @@ function CheckNickName(nickName) {
   return axios.get(checkNickNameUrl, { params });
 }
 
-export { CheckId, CheckNickName };
+function UserSignup(data) {
+  return axios.post(signupUrl, data);
+}
+
+function UserLogin(data) {
+  return axios.post(loginUrl, data);
+}
+
+function UserInfo() {
+  return axios.get(userInfoUrl, {
+    headers: {
+      Authorization: `Bearer ${localStorage.getItem("jwt")}`,
+    }
+  })
+}
+
+export { CheckId, CheckNickName, UserSignup, UserLogin, UserInfo };

@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import Input from '../../components/user/Input';
 import Button from '../../components/user/Button';
-import { CheckId, CheckNickName } from '../../components/user/UserAxios';
+import { CheckId, CheckNickName, UserSignup } from '../../components/user/UserAxios';
 import './User.css';
 
 function SignUp() {
@@ -14,11 +15,12 @@ function SignUp() {
   const [nickNameMessage, setNickNameMessage] = useState("");
   const [passwordMessage, setPasswordMessage] = useState("");
   const [passwordConfirmMessage, setPasswordConfirmMessage] = useState("");
+  const navigate = useNavigate();
 
-  async function emailValidation() {
+  async function idValidation() {
     const idCheck = /^(?=.*[a-zA-Z])(?=.*[0-9]).{5,20}$/;
     const check = /^([a-zA-Z0-9]){5,20}$/
-
+    let result = false
     if (id === "") {
       setIdMessage("아이디를 입력해 주세요")
       return
@@ -36,23 +38,28 @@ function SignUp() {
 
     await CheckId(id)
     .then((response) => {
-      console.log("아이디 중복 여부 확인 성공")
 
       if (response.data === true) {
         setIdMessage("")
-        return true
+        result = true
+      } else {
+        setIdMessage("이미 존재하는 아이디 입니다")
       }
 
-      setIdMessage("이미 존재하는 아이디 입니다")
     })
     .catch(() => {
       console.log("아이디 중복 여부 확인 실패")
     })
+
+    if (result) {
+      return true
+    }
   }
   
   async function nickNameValidation() {
     const nickNameCheck = /^([a-zA-Z0-9ㄱ-ㅎ|ㅏ-ㅣ|가-힣]){2,20}$/;
-    
+    let result = false
+
     if (nickName === "") {
       setNickNameMessage("닉네임을 입력해 주세요")
       return
@@ -65,18 +72,21 @@ function SignUp() {
 
     await CheckNickName(nickName)
     .then((response) => {
-      console.log("닉네임 중복 여부 확인 성공")
 
       if (response.data === true) {
         setNickNameMessage("")
-        return true
+        result = true
+      } else {
+        setNickNameMessage("이미 존재하는 닉네임 입니다")
       }
-
-      setNickNameMessage("이미 존재하는 닉네임 입니다")
     })
     .catch(() => {
       console.log("닉네임 중복 여부 확인 실패")
     })
+
+    if (result) {
+      return true
+    }
   }
   
   async function passwordValidation() {
@@ -129,14 +139,26 @@ function SignUp() {
   
   async function checkAll(event) {
     event.preventDefault();
-    const emailCheck = await emailValidation();
+    const idCheck = await idValidation();
     const nickNameCheck = await nickNameValidation();
     const passwordCheck = await passwordValidation();
     const passwordConfirmCheck = await passwordConfrimValidation();
-    if (emailCheck && nickNameCheck && passwordCheck && passwordConfirmCheck) {
-      console.log("회원가입 완료")
-    } else {
-      console.log("회원가입 실패")
+
+    if (idCheck && nickNameCheck && passwordCheck && passwordConfirmCheck) {
+      const userData = {
+        isAdmin: 0,
+        userId: id,
+        userNickname: nickName,
+        userPassword: password,
+      }
+      UserSignup(userData)
+      .then(() => {
+        console.log("회원가입 완료")
+        navigate("/user/login")
+      })
+      .catch(() => {
+        console.log("회원가입 실패")
+      })
     }
   }
   
