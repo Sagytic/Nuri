@@ -73,6 +73,7 @@ public class AuthController {
 		//임의로 리턴된 User 인스턴스. 현재 코드는 회원 가입 성공 여부만 판단하기 때문에 굳이 Insert 된 유저 정보를 응답하지 않음.
 
 		if(userService.checkUser(registerInfo.getUserId())){
+			System.out.println(userService.checkUser(registerInfo.getUserId()));
 			return ResponseEntity.status(404).body(BaseResponseBody.of(404, "Fail"));
 		}else{
 			Date now = new Date();

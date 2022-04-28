@@ -3,21 +3,18 @@ package com.nuri.api.service;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
+import com.nuri.api.request.UserRegisterPostReq;
 import com.nuri.api.request.UserUpdatePostReq;
-import com.nuri.db.repository.*;
+import com.nuri.db.entity.User;
+import com.nuri.db.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import com.nuri.api.request.UserRegisterPostReq;
-import com.nuri.db.entity.User;
-
 import java.io.*;
 import java.net.HttpURLConnection;
 import java.net.URL;
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 
 /**
  *	유저 관련 비즈니스 로직 처리를 위한 서비스 구현 정의.
@@ -55,6 +52,7 @@ public class UserServiceImpl implements UserService {
 	public boolean checkUser(String userId) {
 		try{
 			User user = userRepository.findUserByUserId(userId);
+
 		}catch (Exception e){
 			return false;
 		}
