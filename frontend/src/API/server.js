@@ -1,5 +1,6 @@
 const server = {
   BASE_URL: "http://localhost:8081",
+  Judge_URL: "https://ce.judge0.com",
   // BASE_URL: "배포된 서버로!"
 
   ROUTES: {
