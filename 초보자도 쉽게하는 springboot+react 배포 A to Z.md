@@ -1,6 +1,4 @@
-# 초보자도 쉽게하는 SpringBoot + React 배포 A to Z
-
-## 이거 하나만 따라하면 당신도 SSAFY 수동배포 마스터!
+# SpringBoot + React 배포 A to Z
 
 > 목차
 > 
@@ -157,7 +155,7 @@ sudo apt-get isntall nginx -y
 8. 만약 ubuntu 터미널을 꺼도 계속 실행되게 하고싶다면
    
    ```
-   nohup java -jar '{jar 파일이름}'.jar
+   nohup java -jar '{jar 파일이름}'.jar & 
    ```
    
    을 입력하여 실행하면 터미널을 꺼도 계속 유지된다.(위의 코드에선 터미널을 끄면 백엔드는 함께 꺼진다.)
@@ -229,3 +227,22 @@ sudo apt-get isntall nginx -y
    ```
 
 8. [React를 Nginx웹 서버에 배포하기 | Hanumoka, IT Blog](https://www.hanumoka.net/2019/12/29/react-20191229-react-nginx-deploy/) 위 링크를 참조하여 작성함.
+
+### 6. http to https(프론트)
+
+1. ubuntu에서 아래의 코드를 입력하여 certbot을 설치한다. certbot은 ssl 인증서를 무료로 사용할 수 있게 해준다.
+   
+   ```
+   sudo apt-get update -y & sudo apt-get install letsencrypt -y
+   ```
+
+2. nginx 서버를 종료한 다음 letsencrypt를 통해 도메인을 인증받는다.
+   
+   ```
+   sudo systemctl stop nginx
+   # 이미 엔진엑스가 종료되어있다면 또 입력할 필요는 없
+   
+   sudo letsencrypt certonly --standalone -d [도메인 네임]
+   ```
+
+3. 발급받은
