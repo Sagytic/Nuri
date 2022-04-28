@@ -21,9 +21,9 @@ public class problem2 {
  * (원주율) = (원주)/(지름)
  *
  * 한글 코드 모범 답안
- * 소수 circumference = 7.0;
- * 소수 diameter = 9.0;
- * 출력(circumference/diameter+"m");
+ * 소수 원주 = 7.0;
+ * 소수 지름 = 9.0;
+ * 출력(원주/지름+"m");
  **/
 
 

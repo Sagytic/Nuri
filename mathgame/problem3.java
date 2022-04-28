@@ -19,6 +19,6 @@ public class problem3 {
  * 원주의 길이는 2*원주율*반지름길이로 구할 수 있습니다.
  *
  * 한글 코드 모범 답안
- * 소수 circumference = 2*3.14*9;
- * 출력(circumference + "cm");
+ * 소수 원주 = 2*3.14*9;
+ * 출력(원주 + "cm");
  **/
