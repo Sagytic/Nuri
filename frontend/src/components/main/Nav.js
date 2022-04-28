@@ -3,7 +3,7 @@ import { NavLink, useNavigate } from 'react-router-dom';
 import { FiMenu } from 'react-icons/fi';
 import "./Nav.css"
 
-function Nav({ userData, setUserData }) {
+function Nav({ userData }) {
   const navigate = useNavigate();
   const [menuIconShow, setMenuIconShow] = useState(window.innerWidth <= 760 ? true : false);
   const [menuShow, setMenuShow] = useState(false);

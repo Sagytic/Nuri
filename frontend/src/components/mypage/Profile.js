@@ -2,7 +2,7 @@ import React from "react";
 import { RiPencilFill, RiSettings5Fill } from "react-icons/ri";
 import "./Profile.css";
 
-function Profile({ profileImgSrc, userData }) {
+function Profile({ profileImgSrc, userData, changeInfoOn }) {
   return (
     <div className="Profile">
       <div className="Profile-content">
@@ -18,7 +18,7 @@ function Profile({ profileImgSrc, userData }) {
       </div>
       <div className="Profile-text">
         회원 정보 변경
-        <RiSettings5Fill className="Profile-info-icon" size="30px" color="#FFD644" />
+        <RiSettings5Fill className="Profile-info-icon" size="30px" color="#FFD644" onClick={() => changeInfoOn()}/>
       </div>
     </div>
   )

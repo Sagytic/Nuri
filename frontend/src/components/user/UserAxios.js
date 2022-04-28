@@ -33,4 +33,12 @@ function UserInfo() {
   })
 }
 
-export { CheckId, CheckNickName, UserSignup, UserLogin, UserInfo };
+function ChangeUserNickname(data) {
+  return axios.patch(userInfoUrl, data, {
+    headers: {
+      Authorization: `Bearer ${localStorage.getItem("jwt")}`,
+    },
+  })
+}
+
+export { CheckId, CheckNickName, UserSignup, UserLogin, UserInfo, ChangeUserNickname };
