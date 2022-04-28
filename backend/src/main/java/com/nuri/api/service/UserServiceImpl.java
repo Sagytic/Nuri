@@ -26,8 +26,8 @@ import java.util.List;
 public class UserServiceImpl implements UserService {
 	@Autowired
 	UserRepository userRepository;
-	@Autowired
-	UserRepositorySupport userRepositorySupport;
+	//@Autowired
+	//UserRepositorySupport userRepositorySupport;
 	@Autowired
 	PasswordEncoder passwordEncoder;
 
@@ -47,14 +47,14 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public User getUserByUserId(String userId) {
 		// 디비에 유저 정보 조회
-		User user = userRepositorySupport.findUserByUserId(userId).get();
+		User user = userRepository.findUserByUserId(userId);
 		return user;
 	}
 
 	@Override
 	public boolean checkUser(String userId) {
 		try{
-			User user = userRepositorySupport.findUserByUserId(userId).get();
+			User user = userRepository.findUserByUserId(userId);
 		}catch (Exception e){
 			return false;
 		}
@@ -174,7 +174,7 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public boolean checkUserNickname(String userNickname) {
 		try{
-			User user = userRepositorySupport.findUserByUserNickname(userNickname).get();
+			User user = userRepository.findUserByUserNickname(userNickname);
 		}catch (Exception e){
 			return false;
 		}
@@ -183,7 +183,7 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public User getUserByUserNickname(String userNickname) {
-		return userRepositorySupport.findUserByUserNickname(userNickname).get();
+		return userRepository.findUserByUserNickname(userNickname);
 	}
 
 

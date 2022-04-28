@@ -12,6 +12,9 @@ public class Convert {
         StringTokenizer tokens = new StringTokenizer(userCode, " (){};+-*/\n", true);
         convertCode = new ArrayList<>();
 
+        convertCode.add("public class Main {\n");
+        convertCode.add("   public static void main(String[] args) {\n");
+        convertCode.add("       ");
         while(tokens.hasMoreTokens()) {
             String token = tokens.nextToken();
             switch (token) {
@@ -89,9 +92,15 @@ public class Convert {
                     break;
                 default:
                     convertCode.add(token);
+                    if(token.equals("\n") || token.equals("\r") || token.equals("\r\n")){
+                        convertCode.add("       ");
+                    }
                     break;
             }
         }
+
+        convertCode.add("\n   }\n");
+        convertCode.add("}");
 
         return convertCode;
     }

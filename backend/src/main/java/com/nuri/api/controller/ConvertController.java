@@ -1,12 +1,10 @@
 package com.nuri.api.controller;
 
+import com.nuri.api.request.ConvertPostReq;
 import com.nuri.api.service.ConvertService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.io.BufferedReader;
 import java.lang.reflect.Array;
@@ -21,8 +19,8 @@ public class ConvertController {
     ConvertService convertService;
 
     @PostMapping("/convert")
-    public ResponseEntity<String> convert(Long id, String userCode, Long mathGameId){
-        String convertCode = convertService.convert(id, userCode, mathGameId);
+    public ResponseEntity<String> convert(@RequestBody ConvertPostReq convertPostReq){
+        String convertCode = convertService.convert(convertPostReq);
         if(convertCode!=null){
             return ResponseEntity.status(200).body(convertCode);
         }else{
