@@ -3,15 +3,14 @@ package com.nuri.convert;
 import org.apache.commons.lang3.StringUtils;
 
 import java.lang.reflect.Array;
-import java.util.ArrayList;
-import java.util.StringTokenizer;
+import java.util.*;
 
 public class Convert {
     static ArrayList<String> convertCode;
     static public ArrayList<String> lexical(String userCode){
-        StringTokenizer tokens = new StringTokenizer(userCode, " (){};+-*/\n", true);
+        StringTokenizer tokens = new StringTokenizer(userCode, " .<>(){};+-*/\n", true);
         convertCode = new ArrayList<>();
-
+        convertCode.add("import java.util.*;\n\n");
         convertCode.add("public class Main {\n");
         convertCode.add("   public static void main(String[] args) {\n");
         convertCode.add("       ");
@@ -28,25 +27,25 @@ public class Convert {
                     convertCode.add("String");
                     break;
                 case "정수들":
-                    convertCode.add("int[]");
+                    convertArrays(tokens, "int");
                     break;
                 case "문자들":
-                    convertCode.add("String[]");
+                    convertArrays(tokens, "String");
                     break;
                 case "소수들":
-                    convertCode.add("double[]");
+                    convertArrays(tokens, "double");
                     break;
                 case "참거짓":
                     convertCode.add("boolean");
                     break;
                 case "참거짓들":
-                    convertCode.add("boolean[]");
+                    convertArrays(tokens, "boolean");
                     break;
                 case "쌓기":
-                    convertCode.add("Stack");
+                    convertUtils(tokens, "Stack");
                     break;
                 case "줄세우기":
-                    convertCode.add("Queue");
+                    convertUtils(tokens, "Queue");
                     break;
                 case "묶음":
                     convertCode.add("List");
@@ -90,6 +89,30 @@ public class Convert {
                 case "입력":
                     convertCode.add("scanner.nextInt()");
                     break;
+                case "참":
+                    convertCode.add("true");
+                    break;
+                case "쌓아넣기":
+                    convertCode.add("add");
+                    break;
+                case "빼기":
+                    convertCode.add("pop");
+                    break;
+                case "세우기":
+                    convertCode.add("offer");
+                    break;
+                case "줄빼기":
+                    convertCode.add("poll");
+                    break;
+                case "거짓":
+                    convertCode.add("false");
+                    break;
+                case "넣기":
+                    convertCode.add("add");
+                    break;
+                case "가져오기":
+                    convertCode.add("get");
+                    break;
                 default:
                     convertCode.add(token);
                     if(token.equals("\n") || token.equals("\r") || token.equals("\r\n")){
@@ -103,6 +126,63 @@ public class Convert {
         convertCode.add("}");
 
         return convertCode;
+    }
+
+    private static void convertUtils(StringTokenizer tokens, String structure) {
+        convertCode.add(structure);
+        convertCode.add(tokens.nextToken());
+        String type = "";
+        switch (tokens.nextToken()) {
+            case "정수":
+                type = "Integer";
+                break;
+            case "소수":
+                type = "Double";
+                break;
+            case "문자":
+                type = "String";
+                break;
+        }
+        convertCode.add(type);
+        convertCode.add(tokens.nextToken());
+        convertCode.add(tokens.nextToken());
+        convertCode.add(tokens.nextToken());
+        convertCode.add(" ");
+        convertCode.add("=");
+        convertCode.add(" ");
+        convertCode.add("new");
+        convertCode.add(" ");
+        if(structure.equals("Stack")){
+            convertCode.add(structure);
+        }else{
+            convertCode.add("LinkedList");
+        }
+
+        convertCode.add("<");
+        convertCode.add(">");
+        convertCode.add("(");
+        convertCode.add(")");
+    }
+
+    private static void convertArrays(StringTokenizer tokens, String type) {
+        convertCode.add(type+"[]");
+        convertCode.add(tokens.nextToken());
+        String token = tokens.nextToken();
+        int start = token.indexOf('[');
+        int end = token.indexOf(']');
+        String val = token.substring(0,start);
+        String size = token.substring(start+1, end);
+
+        convertCode.add(val);
+        convertCode.add(" ");
+        convertCode.add("=");
+        convertCode.add(" ");
+        convertCode.add("new");
+        convertCode.add(" ");
+        convertCode.add(type);
+        convertCode.add("[");
+        convertCode.add(size);
+        convertCode.add("]");
     }
 
     private static void convertFor(StringTokenizer tokens) {
