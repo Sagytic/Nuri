@@ -1,5 +1,3 @@
-// import { dividerClasses } from "@mui/material";
-// import React, {useEffect}  from "react";
 import { Wave } from "react-animated-text";
 import { useNavigate } from "react-router-dom";
 import "./Landing.css"
