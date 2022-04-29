@@ -2,17 +2,17 @@ import React from "react";
 import { RiPencilFill, RiSettings5Fill } from "react-icons/ri";
 import "./Profile.css";
 
-function Profile({ profileImgSrc, userData, changeInfoOn }) {
+function Profile({ profileImgSrc, userNickname, changeInfoOn }) {
   return (
     <div className="Profile">
       <div className="Profile-content">
         <img 
           className="Profile-img"
-          src={process.env.PUBLIC_URL + profileImgSrc} 
-          alt="프로필 이미지" 
+          src={profileImgSrc} 
+          alt="" 
         />
         <div className="Profile-text">
-          {userData.userNickname}
+          {userNickname}
           <RiPencilFill className="Profile-nickname-icon" size="30px" color="white"/>
         </div>
       </div>

@@ -1,12 +1,17 @@
 import React, { useRef } from "react";
-import server from "../../API/server";
 import "./ChangeInfo.css";
 
-function ChangeInfo({ userData, changeInfoShow, nickname, setNickname, changeInfoDone, changeInfoOff }) {
-  const defaultProfileImgSrc = process.env.PUBLIC_URL + "/img/신난가지.PNG";
-  const profileImgSrc = userData.userPhoto ? server.BASE_URL + userData.userPhoto : defaultProfileImgSrc;
+function ChangeInfo({ 
+  changeInfoShow, 
+  nickname,
+  profileImgSrc,
+  setNickname,
+  setProfileImgSrc,
+  setTempImg,
+  changeInfoDone, 
+  changeInfoOff 
+}) {
   const profileImgRef = useRef();
-  
 
   function selectProfileImg() {
     profileImgRef.current.click();
@@ -14,7 +19,10 @@ function ChangeInfo({ userData, changeInfoShow, nickname, setNickname, changeInf
 
   function changeProfileImg(event) {
     event.preventDefault();
-    console.log(event.target.files[0].name);
+    if (event.target.files[0]) {
+      setProfileImgSrc(URL.createObjectURL(event.target.files[0]));
+      setTempImg(event.target.files[0])
+    }
   }
 
   function changeNickname(event) {
