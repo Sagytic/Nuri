@@ -1,8 +1,6 @@
-# 초보자도 쉽게하는 SpringBoot + React 배포 A to Z
+# 초보자도 쉽게하는 SpringBoot + React 수동 배포 A to Z
 
-## 이거 하나만 따라하면 당신도 SSAFY 수동배포 마스터!
-
-> 목차
+> ### 목차
 > 
 > 1. pem 키 사용방법 
 > 
@@ -14,7 +12,9 @@
 > 
 > 5. 프론트엔드 연동 및 실행 방법
 > 
-> 6. http to https 바꾸기(작성중)
+> 6. http to https(프론트엔드)
+> 
+> 7. http to https(백엔드)
 
 ### 1. pem 키 사용방법
 
@@ -157,7 +157,7 @@ sudo apt-get isntall nginx -y
 8. 만약 ubuntu 터미널을 꺼도 계속 실행되게 하고싶다면
    
    ```
-   nohup java -jar '{jar 파일이름}'.jar
+   nohup java -jar '{jar 파일이름}'.jar & 
    ```
    
    을 입력하여 실행하면 터미널을 꺼도 계속 유지된다.(위의 코드에선 터미널을 끄면 백엔드는 함께 꺼진다.)
@@ -229,3 +229,115 @@ sudo apt-get isntall nginx -y
    ```
 
 8. [React를 Nginx웹 서버에 배포하기 | Hanumoka, IT Blog](https://www.hanumoka.net/2019/12/29/react-20191229-react-nginx-deploy/) 위 링크를 참조하여 작성함.
+
+### 6. http to https(프론트엔드)
+
+1. ubuntu에서 아래의 코드를 입력하여 certbot을 설치한다. certbot은 ssl 인증서를 무료로 사용할 수 있게 해준다.
+   
+   ```
+   sudo apt-get update -y & sudo apt-get install letsencrypt -y
+   ```
+
+2. nginx 서버를 종료한 다음 letsencrypt를 통해 도메인을 인증받는다.
+   
+   ```
+   sudo systemctl stop nginx
+   # 이미 엔진엑스가 종료되어있다면 또 입력할 필요는 없다
+   
+   sudo letsencrypt certonly --standalone -d nurihangeul.com
+   # nurihangeul.com 은 도메인 주소
+   ```
+
+3. 발급이 완료될 경우 /etc/letsencrypt/live/nurihangeul.com/ 폴더에 cert.pem, chain.pem, fullchain.pem과 privkey.pem 파일이 설치된다.(프론트 사용시엔 fullchain.pem과 privkey.pem 두종류만 사용된다.)
+
+4. sites-available/default 파일로 접속하여 코드를 추가한다.
+
+```
+ sudo vi /etc/nginx/sites-available/default
+ #vim을 통해 default 파일 수정
+```
+
+```
+server {
+    listen 443 ssl;
+    listen [::]:443 ssl;
+
+    server_name k6s202.p.ssafy.io;
+
+    ssl on;
+    ssl_prefer_server_ciphers on;
+    ssl_protocols TLSv1 TLSv1.1 TLSv1.2;
+    ssl_certificate /etc/letsencrypt/live/k6s202.p.ssafy.io/fullchain.pem;
+    ssl_certificate_key /etc/letsencrypt/live/k6s202.p.ssafy.io/privkey.pem;
+    ssl_ciphers ECDHE-RSA-AES256-GCM-SHA384:ECDHE-RSA-AES128-GCM-SHA256:DHE-RSA-AES256-GCM-SHA384:DHE-RSA-AES128-GCM-SHA256:ECDHE-RSA-AES256-SHA384:ECDHE-RSA-AES128-SHA256:ECDHE-RSA-AES256-SHA:ECDHE-RSA-AES128-SHA:DHE-RSA-AES256-SHA256:DHE-RSA-AES128-SHA256:DHE-RSA-AES256-SHA:DHE-RSA-AES128-SHA:ECDHE-RSA-DES-CBC3-SHA:EDH-RSA-DES-CBC3-SHA:AES256-GCM-SHA384:AES128-GCM-SHA256:AES256-SHA256:AES128-SHA256:AES256-SHA:AES128-SHA:DES-CBC3-SHA:HIGH:!aNULL:!eNULL:!EXPORT:!DES:!MD5:!PSK:!RC4;    
+
+    root /home/ubuntu/build;
+    index index.html;
+    location / {
+        try_files $uri $uri/ /index.html;
+    }
+    location /api {
+        proxy_pass http://k6s202.p.ssafy.io:8081/api;
+        proxy_redirect off;
+        charset utf-8;
+
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Proto $scheme;
+        proxy_set_header X-NginX-Proxy true;
+
+    }
+```
+
+5. 프론트 ssl 설정 완료!
+
+### 7. http to https(백엔드)
+
+1. 아까 프론트쪽에서 letsencrypt로 발급받은 pem키 4개(cert.pem, chain.pem, fullchain.pem과 privkey.pem) 중 privkey.pem과 cert.pem이 필요하다.
+
+2. 그러나 해당 파일이 들어있는 /etc/letsencrypt/live/ 폴더는 root 권한으로만 접속이 가능하기 때문에 ssafy에서 제공해준 pem 키로 접속하는 경우, MobaXterm의 탐색기로는 접근이 불가능하다.
+
+3. 그렇기 때문에 콘솔에서 root 계정으로 접속하여 파일을 일일이 폴더 밖으로 뽑아내야 한다. (live 폴더의 권한을 바꿀 수도 있긴 하지만 안정성 문제가 발생할 수 있으니 해당 폴더는 건드리지 않는걸 추천한다.)
+
+```
+sudo -i
+# root 계정으로 변경
+
+cd /etc/letsencrypt/live/nurihangeul.com/
+
+ls
+# readme 파일과 pem키 4개가 보일것이다.
+
+
+openssl pkcs12 -export -inkey privkey.pem -in cert.pem -out keystore.p12
+# certbot을 이용하여 p12키를 생성한다.
+# 만약 certbot이 설치되어있지 않다면 설치 후 다시 진행한다.
+# p12 생성시 비밀번호를 입력해야 하는데 p12 파일을 사용하기 위한 비밀번호이니
+# 반드시 기억해두자
+
+mv keystore.p12 /home/ubuntu/
+# 생성한 p12 파일을 우선 root 권한 폴더 밖으로 이동시킨다.
+
+cd /home/ubuntu/
+
+chmod a=r keystore.p12
+# p12 파일을 로컬에 저장하여 백엔드에서 사용해야 하는데 
+# 해당 파일은 관리자 권한으로 다운로드가 불가능하기에 권한을 변경한다.
+```
+
+4. 다운로드한 keystore.p12 파일을 백엔드 폴더의 resources 폴더에 넣는다.
+
+5. application.properties 파일에 아래의 코드를 추가한다.
+
+```
+server.ssl.port=443
+server.ssl.enabled=true
+server.ssl.key-store=classpath:keystore.p12
+server.ssl.key-store-type=PKCS12
+server.ssl.key-store-password=비밀번호
+server.ssl.protocol=TLS
+server.ssl.ciphers=ECDHE-RSA-AES128-GCM-SHA256:ECDHE-RSA-AES256-GCM-SHA384:ECDHERSA-AES128-SHA:ECDHE-RSA-AES256-SHA:ECDHE-RSA-AES128-SHA256:ECDHE-RSA-AES256-SHA384
+server.ssl.enabled-protocols=TLSv1.2
+```
+
+6. gradle로 다시 빌드한 후 빌드한 폴더를 ubuntu에 넣은 후 실행하면 백엔드도 정상적으로 ssl이 적용된다.

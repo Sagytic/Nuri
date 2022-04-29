@@ -1,0 +1,9 @@
+.Middle-Contents {
+  background-color: #FFD644;
+  margin-top: 5vh;
+}
+
+.Middle-Contents img {
+  display: inline-block;
+  padding: 5vh;
+}
