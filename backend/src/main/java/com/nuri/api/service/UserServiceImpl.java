@@ -53,16 +53,17 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public boolean checkUser(String userId) {
+	public User checkUser(String userId) {
+		User user;
 		try{
-			User user = userRepository.findUserByUserId(userId);
+			user = userRepository.findUserByUserId(userId);
 			if(user==null){
 				throw new NullPointerException();
 			}
+			return user;
 		}catch (Exception e){
-			return false;
+			return null;
 		}
-		return true;
 	}
 
 	@Override
