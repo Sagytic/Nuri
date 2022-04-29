@@ -139,7 +139,7 @@ public class UserController {
 			@ApiResponse(code = 500, message = "서버 오류")
 	})
 	public ResponseEntity<Boolean> checkUserNickname(String userNickname){
-		if(userService.checkUserNickname(userNickname)){
+		if(userService.checkUserNickname(userNickname)!=null){
 			return ResponseEntity.status(200).body(false);
 		}
 		return ResponseEntity.status(200).body(true);

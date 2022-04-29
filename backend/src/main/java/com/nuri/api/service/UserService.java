@@ -21,7 +21,7 @@ public interface UserService {
 
 	HashMap<String, Object> kakaoUserInfo(String accessToken);
 
-	boolean checkUserNickname(String userNickname);
+	User checkUserNickname(String userNickname);
 
 	User getUserByUserNickname(String userNickname);
 }
