@@ -51,16 +51,17 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public boolean checkUser(String userId) {
+	public User checkUser(String userId) {
+		User user;
 		try{
-			User user = userRepository.findUserByUserId(userId);
+			user = userRepository.findUserByUserId(userId);
 			if(user==null){
 				throw new NullPointerException();
 			}
+			return user;
 		}catch (Exception e){
-			return false;
+			return null;
 		}
-		return true;
 	}
 
 	@Override
@@ -174,13 +175,17 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public boolean checkUserNickname(String userNickname) {
+	public User checkUserNickname(String userNickname) {
+		User user;
 		try{
-			User user = userRepository.findUserByUserNickname(userNickname);
+			user = userRepository.findUserByUserNickname(userNickname);
+			if(user==null){
+				throw new NullPointerException();
+			}
+			return user;
 		}catch (Exception e){
-			return false;
+			return null;
 		}
-		return true;
 	}
 
 	@Override
