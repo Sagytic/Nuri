@@ -12,7 +12,7 @@ import java.util.List;
 public interface UserService {
 	User createUser(UserRegisterPostReq userRegisterInfo);
 	User getUserByUserId(String userId);
-	boolean checkUser(String userId);
+	User checkUser(String userId);
 	void updateUser(User user, UserUpdatePostReq userUpdatePostReq);
 	void deleteUser(User user);
 	void updateUserPhoto(User user, String userPhoto);
@@ -21,7 +21,7 @@ public interface UserService {
 
 	HashMap<String, Object> kakaoUserInfo(String accessToken);
 
-	boolean checkUserNickname(String userNickname);
+	User checkUserNickname(String userNickname);
 
 	User getUserByUserNickname(String userNickname);
 }
