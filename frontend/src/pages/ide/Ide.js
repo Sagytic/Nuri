@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import axios from 'axios';
 import server from "../../API/server";
 import "./Ide.css"
+import Editor from "@monaco-editor/react";
 
 function Ide() {
     const API_BASE_URL = server.BASE_URL;
@@ -53,7 +54,7 @@ function Ide() {
         var data = {
             id:"",
             mathGameId:"",
-            userCode:e.target.value
+            userCode:e
         }
         axios
         .post(API_BASE_URL + "/api/v1/console/convert",
@@ -77,11 +78,32 @@ function Ide() {
             </br>
             <br>
             </br>
-            <textarea onChange={nuriCodeHandler} value={nuriCode}/>
-            <textarea value={javaCode}/>
+            {/* <textarea onChange={nuriCodeHandler} value={nuriCode}/> */}
+            <Editor
+                height="30vh"
+                defaultLanguage="java"
+                defaultValue=""
+                value={nuriCode}
+                onChange={nuriCodeHandler}
+            />
+
+            <Editor
+                height="30vh"
+                defaultLanguage="java"
+                defaultValue=""
+                value={javaCode}
+            />
+
+
             <div><button onClick={run}>RUN</button></div>
-            
-            <textarea value={result}/>
+
+            <Editor
+                height="30vh"
+                defaultLanguage="vs-Light"
+                defaultValue=""
+                value={result}
+            />
+
         </div>
     );
 }
