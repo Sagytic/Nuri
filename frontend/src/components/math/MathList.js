@@ -9,15 +9,17 @@ import { AiFillEye, AiOutlineForward } from 'react-icons/ai';
 import "./MathList.css"
 
 export default function ImgMediaCard() {
+  const testImg = process.env.PUBLIC_URL + "/logo192.png"
+
   return (
     <div className="GameList-Container">
       <div className="Card-Contents">
         <Card sx={{ maxWidth: 345 }}>
           <CardMedia
             component="img"
-            alt="green iguana"
+            alt="testImg"
             height="140"
-            image="./logo192.png"
+            image= {testImg}
           />
           <CardActions>
             <Button size="small">평균 구하기 <AiOutlineForward /></Button>
@@ -26,12 +28,12 @@ export default function ImgMediaCard() {
         </Card>
       </div>
       <div className="Card-Contents">
-        <Card sx={{ maxWidth: 345 }}>
-          <CardMedia
+      <Card sx={{ maxWidth: 345 }}>
+      <CardMedia
             component="img"
-            alt="green iguana"
+            alt="testImg"
             height="140"
-            image="./logo192.png"
+            image= {testImg}
           />
           <CardActions>
             <Button size="small">통나무 길이 구하기 <AiOutlineForward /></Button>
@@ -41,11 +43,11 @@ export default function ImgMediaCard() {
       </div>
       <div className="Card-Contents">
         <Card sx={{ maxWidth: 345 }}>
-          <CardMedia
+        <CardMedia
             component="img"
-            alt="green iguana"
+            alt="testImg"
             height="140"
-            image="./logo192.png"
+            image= {testImg}
           />
           <div className="Card-Footer">
           <CardActions>
