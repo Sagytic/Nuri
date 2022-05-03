@@ -1,8 +1,6 @@
 package com.nuri.api.service;
 
-import com.nuri.db.entity.Code;
 import com.nuri.db.entity.MathGame;
-import com.nuri.db.repository.CodeRepository;
 import com.nuri.db.repository.MathGameRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

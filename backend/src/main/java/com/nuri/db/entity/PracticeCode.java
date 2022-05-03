@@ -21,9 +21,9 @@ public class PracticeCode {
     @ManyToOne
     @JoinColumn(name="user_id")
     User user;
-    @Column(name="title", nullable = false)
+    @Column(name="title", nullable = false, length = 1000)
     String title;
-    @Column(name="code", nullable = false)
+    @Column(name="code", nullable = false, length = 5000)
     String code;
     @Column(name="status", nullable = false)
     int status;

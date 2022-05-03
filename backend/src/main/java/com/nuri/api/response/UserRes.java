@@ -20,13 +20,13 @@ import java.util.Date;
 public class UserRes{
 	@ApiModelProperty(name="User ID", example = "nuri@naver.com")
 	String userNickname;
-	String userId;
+	String userEmail;
 	String userPhoto;
 	Integer isAdmin;
 	Date createdAt;
 
-	public UserRes(String userId, Integer isAdmin, String userPhoto, String userNickname, Date createdAt) {
-		this.userId = userId;
+	public UserRes(String userEmail, Integer isAdmin, String userPhoto, String userNickname, Date createdAt) {
+		this.userEmail = userEmail;
 		this.isAdmin = isAdmin;
 		this.userPhoto = userPhoto;
 		this.userNickname = userNickname;
@@ -34,7 +34,7 @@ public class UserRes{
 	}
 
 	public static UserRes of(User user) {
-		UserRes res = new UserRes(user.getUserId(),user.getIsAdmin(), user.getUserPhoto(), user.getUserNickname(), user.getCreatedAt());
+		UserRes res = new UserRes(user.getUserEmail(),user.getIsAdmin(), user.getUserPhoto(), user.getUserNickname(), user.getCreatedAt());
 		return res;
 	}
 }

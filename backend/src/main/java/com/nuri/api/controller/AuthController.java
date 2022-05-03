@@ -72,7 +72,7 @@ public class AuthController {
 			@RequestBody @ApiParam(value="회원가입 정보", required = true) UserRegisterPostReq registerInfo) throws ParseException {
 		//임의로 리턴된 User 인스턴스. 현재 코드는 회원 가입 성공 여부만 판단하기 때문에 굳이 Insert 된 유저 정보를 응답하지 않음.
 
-		if(userService.checkUser(registerInfo.getUserId())!=null){
+		if(userService.checkUser(registerInfo.getUserEmail())!=null){
 			return ResponseEntity.status(404).body(BaseResponseBody.of(404, "Fail"));
 		}else{
 			Date now = new Date();
@@ -98,7 +98,7 @@ public class AuthController {
 		Object userId = userInfo.get("email");
 		Object nickname = userInfo.get("nickname");
 		UserRegisterPostReq registerInfo = new UserRegisterPostReq();
-		registerInfo.setUserId(userId.toString());
+		registerInfo.setUserEmail(userId.toString());
 		Random rnd = new Random();
 		String randomStr = "";
 		for(int i=0; i<3; i++){

@@ -21,7 +21,7 @@ public class MathGame {
     Long mathgameId;
 
     @JsonManagedReference
-    @OneToMany(mappedBy = "math_game")
+    @OneToMany(mappedBy = "mathgame")
     List<MathGameCode> codes = new ArrayList<>();
 
     @Column(name="content", nullable = false, length = 5000)

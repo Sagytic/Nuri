@@ -24,7 +24,7 @@ public class MathGameCode {
     @JsonBackReference
     User user;
     @ManyToOne
-    @JoinColumn(name="math_game_id", nullable = false)
+    @JoinColumn(name="mathgame_id", nullable = false)
     @JsonBackReference
     MathGame mathgame;
     @Column(name="code", nullable = false, length = 5000)
