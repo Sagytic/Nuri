@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Input from "../../components/user/Input";
 import Button from "../../components/user/Button";
@@ -34,6 +34,12 @@ function Login() {
       setLoginMessage("올바른 아이디와 비밀번호를 입력하세요");
     })
   }
+
+  useEffect(() => {
+    if (localStorage.getItem("jwt")) {
+      navigate("/main")
+    }
+  }, [navigate])
 
   return (
     <div className="User">

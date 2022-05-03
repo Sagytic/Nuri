@@ -33,4 +33,21 @@ function UserInfo() {
   })
 }
 
-export { CheckId, CheckNickName, UserSignup, UserLogin, UserInfo };
+function ChangeUserNickname(data) {
+  return axios.patch(userInfoUrl, data, {
+    headers: {
+      Authorization: `Bearer ${localStorage.getItem("jwt")}`,
+    },
+  })
+}
+
+function ChangeUserPhoto(data) {
+  console.log("전달한 데이터", data);
+  return axios.patch(userInfoUrl + '/user_photo', data, {
+    headers: {
+      Authorization: `Bearer ${localStorage.getItem("jwt")}`,
+    },
+  })
+}
+
+export { CheckId, CheckNickName, UserSignup, UserLogin, UserInfo, ChangeUserNickname, ChangeUserPhoto };

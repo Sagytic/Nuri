@@ -3,7 +3,7 @@ import { NavLink, useNavigate } from 'react-router-dom';
 import { FiMenu } from 'react-icons/fi';
 import "./Nav.css"
 
-function Nav({ userData, setUserData }) {
+function Nav({ userNickname }) {
   const navigate = useNavigate();
   const [menuIconShow, setMenuIconShow] = useState(window.innerWidth <= 760 ? true : false);
   const [menuShow, setMenuShow] = useState(false);
@@ -59,8 +59,8 @@ function Nav({ userData, setUserData }) {
           <NavLink className="Nav-item" to="/game" >게임하기</NavLink>
           <NavLink className="Nav-item" to="/math" >문제풀기</NavLink>
         </div>}
-        {userData
-        ? <button className="Nav-item-button" onClick={() => moveMypage()}>{userData.userNickname}</button>
+        {userNickname !== ""
+        ? <button className="Nav-item-button" onClick={() => moveMypage()}>{userNickname}</button>
         : <button className="Nav-item-button" onClick={() => moveLogin()}>로그인</button>}
       </div>
     </div>
