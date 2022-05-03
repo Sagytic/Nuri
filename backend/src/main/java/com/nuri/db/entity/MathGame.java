@@ -17,12 +17,12 @@ import java.util.List;
 public class MathGame {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name="id", nullable = false)
-    Long id;
+    @Column(name="mathgame_id", nullable = false)
+    Long mathgameId;
 
     @JsonManagedReference
     @OneToMany(mappedBy = "math_game")
-    List<Code> codes = new ArrayList<>();
+    List<MathGameCode> codes = new ArrayList<>();
 
     @Column(name="content", nullable = false, length = 5000)
     String content;
@@ -30,20 +30,27 @@ public class MathGame {
     int type;
     @Column(name="title", nullable = false)
     String title;
-    @Column(name="image", nullable = false)
+    @Column(name="thumbnail", nullable = false)
+    String thumbnail;
+    @Column(name="image")
     String image;
     @Column(name="views", nullable = false)
     int views;
+    @Column(name="help")
+    String help;
 
     @Override
     public String toString() {
         return "MathGame{" +
-                "id=" + id +
+                "mathgameId=" + mathgameId +
+                ", codes=" + codes +
                 ", content='" + content + '\'' +
                 ", type=" + type +
                 ", title='" + title + '\'' +
+                ", thumbnail='" + thumbnail + '\'' +
                 ", image='" + image + '\'' +
                 ", views=" + views +
+                ", help='" + help + '\'' +
                 '}';
     }
 }

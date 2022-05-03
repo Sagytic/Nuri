@@ -1,11 +1,9 @@
 package com.nuri.api.controller;
 
-import com.nuri.api.response.AnswerCodeRes;
 import com.nuri.api.service.CodeService;
 import com.nuri.api.service.MathGameService;
-import com.nuri.common.model.response.BaseResponseBody;
-import com.nuri.db.entity.Code;
 import com.nuri.db.entity.MathGame;
+import com.nuri.db.entity.MathGameCode;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
@@ -63,8 +61,8 @@ public class MathGameController {
             @ApiResponse(code = 404, message = "사용자 없음"),
             @ApiResponse(code = 500, message = "서버 오류")
     })
-    public ResponseEntity<Code> getAnswer(@PathVariable("mathgame_id") Long mathgameId){
-         Code answercode = codeService.getAnswer(mathgameId);
+    public ResponseEntity<MathGameCode> getAnswer(@PathVariable("mathgame_id") Long mathgameId){
+        MathGameCode answercode = codeService.getAnswer(mathgameId);
          if(answercode!=null) {
              return ResponseEntity.status(200).body(answercode);
          }else return ResponseEntity.status(500).body(null);

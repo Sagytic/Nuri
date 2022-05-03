@@ -1,6 +1,6 @@
 package com.nuri.api.service;
 
-import com.nuri.db.entity.Code;
+import com.nuri.db.entity.MathGameCode;
 import com.nuri.db.repository.CodeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -11,8 +11,8 @@ public class CodeServiceImpl implements CodeService{
     CodeRepository codeRepository;
 
     @Override
-    public Code getAnswer(Long mathgameId) {
-        Code answercode = codeRepository.getAnswer(mathgameId);
+    public MathGameCode getAnswer(Long mathgameId) {
+        MathGameCode answercode = codeRepository.getAnswer(mathgameId);
         return answercode;
     }
 }
