@@ -8,6 +8,6 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface CodeRepository extends JpaRepository<MathGameCode, Long> {
-    @Query(value = "SELECT * from code where user_id = 1 and math_game_id = :id", nativeQuery = true)
+    @Query(value = "SELECT * from mathgamecode where user_id = 1 and mathgame_id = :id", nativeQuery = true)
     MathGameCode getAnswer(@Param("id") Long id);
 }

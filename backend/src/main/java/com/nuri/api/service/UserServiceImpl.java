@@ -25,8 +25,6 @@ import java.util.Optional;
 public class UserServiceImpl implements UserService {
 	@Autowired
 	UserRepository userRepository;
-	//@Autowired
-	//UserRepositorySupport userRepositorySupport;
 	@Autowired
 	PasswordEncoder passwordEncoder;
 
@@ -44,17 +42,17 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public User getUserByUserId(String userId) {
+	public User getUserByUserId(String userEmail) {
 		// 디비에 유저 정보 조회
-		User user = userRepository.findUserByUserId(userId);
+		User user = userRepository.findUserByUserEmail(userEmail);
 		return user;
 	}
 
 	@Override
-	public User checkUser(String userId) {
+	public User checkUser(String userEmail) {
 		User user;
 		try{
-			user = userRepository.findUserByUserId(userId);
+			user = userRepository.findUserByUserEmail(userEmail);
 			if(user==null){
 				throw new NullPointerException();
 			}
