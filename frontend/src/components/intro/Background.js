@@ -13,7 +13,7 @@ function Background() {
   const BackGroup = styled.div`
     position: absolute;
     right: 10%;
-    top: 120px;
+    top: 40px;
   `
 
   const BackItem = styled.div`
