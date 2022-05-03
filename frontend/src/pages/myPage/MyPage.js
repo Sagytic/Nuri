@@ -5,12 +5,11 @@ import ChangeInfo from "../../components/mypage/ChangeInfo";
 import { useOutletContext } from "react-router-dom";
 import { ChangeUserNickname, ChangeUserPhoto } from "../../components/user/UserAxios";
 import "./MyPage.css";
-import server from "../../API/server";
 
 function MyPage() {
   const { userNickname, userPhoto, setUserNickname, setUserPhoto } = useOutletContext();
   const defaultBackImgSrc = "/img/dogs.jpg"
-  const defaultProfileImgSrc = userPhoto !== null ? server.BASE_URL + userPhoto : process.env.PUBLIC_URL + "/img/신난가지.PNG"
+  const defaultProfileImgSrc = userPhoto !== null ? 'data:image/png;base64,' + userPhoto : process.env.PUBLIC_URL + "/img/신난가지.PNG"
   const [changeInfoShow, setChangeInfoShow] = useState(false);
   const [nickname, setNickname] = useState(userNickname);
   const [profileImgSrc, setProfileImgSrc] = useState(defaultProfileImgSrc);
@@ -22,7 +21,7 @@ function MyPage() {
 
   function changeInfoDone() {
     const formData = new FormData();
-    formData.append("file", tempImg);
+    formData.append("userPhoto", tempImg);
     ChangeUserNickname({ userNickname: nickname })
     .then(() => {
       console.log("닉네임 변경 성공")
@@ -50,7 +49,7 @@ function MyPage() {
   }
   
   useEffect(() => {
-    console.log("회원 정보", userNickname, userPhoto)
+    console.log("회원 정보", userNickname)
   }, [userNickname, userPhoto])
 
   return (

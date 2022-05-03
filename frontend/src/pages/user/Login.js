@@ -7,7 +7,7 @@ import "./User.css";
 
 function Login() {
 
-  const [id, setId] = useState("");
+  const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [loginMessage, setLoginMessage] = useState("");
   const navigate = useNavigate();
@@ -20,7 +20,7 @@ function Login() {
   function login(event) {
     event.preventDefault();
     const userData = {
-      userId: id,
+      userEmail: email,
       userPassword: password,
     }
     UserLogin(userData)
@@ -31,7 +31,7 @@ function Login() {
     })
     .catch(() => {
       console.log("로그인 실패")
-      setLoginMessage("올바른 아이디와 비밀번호를 입력하세요");
+      setLoginMessage("올바른 이메일과 비밀번호를 입력하세요");
     })
   }
 
@@ -41,11 +41,11 @@ function Login() {
       <form>
         <Input 
           type="text" 
-          title="아이디 입력" 
-          setInput={setId} 
-          value={id} 
+          title="이메일 입력" 
+          setInput={setEmail} 
+          value={email} 
           message={loginMessage}
-          placeholder="아이디를 입력해 주세요" 
+          placeholder="이메일을 입력해 주세요" 
         />
         <Input 
           type="password" 
