@@ -38,8 +38,10 @@
 
 @media (max-width: 760px) {
   .Nav-items {
+    z-index: 1;
     position: absolute;
     top: 60px;
+    background-color: white;
     border-radius: 15px;
     padding: 5px;
     border-style: solid;

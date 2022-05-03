@@ -4,9 +4,8 @@ import "./ChangeInfo.css";
 function ChangeInfo({ 
   changeInfoShow, 
   nickname,
-  profileImgSrc,
+  tempImg,
   setNickname,
-  setProfileImgSrc,
   setTempImg,
   changeInfoDone, 
   changeInfoOff 
@@ -20,7 +19,6 @@ function ChangeInfo({
   function changeProfileImg(event) {
     event.preventDefault();
     if (event.target.files[0]) {
-      setProfileImgSrc(URL.createObjectURL(event.target.files[0]));
       setTempImg(event.target.files[0])
     }
   }
@@ -46,7 +44,7 @@ function ChangeInfo({
           <li className="ChangeInfo-content">
             <img 
               className="ChangeInfo-content-profile-img"
-              src={profileImgSrc}
+              src={typeof(tempImg) === "string" ? tempImg : URL.createObjectURL(tempImg)}
               alt="프로필 이미지" 
             />
             <div style={{ display: "flex", flexDirection: "column" }}>

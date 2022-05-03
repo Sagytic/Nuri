@@ -8,7 +8,7 @@ import java.util.*;
 public class Convert {
     static ArrayList<String> convertCode;
     static public ArrayList<String> lexical(String userCode){
-        StringTokenizer tokens = new StringTokenizer(userCode, " .<>(){};+-*/\n", true);
+        StringTokenizer tokens = new StringTokenizer(userCode, " :.<>(){};+-*/\n", true);
         convertCode = new ArrayList<>();
         convertCode.add("import java.util.*;\n\n");
         convertCode.add("public class Main {\n");
@@ -48,10 +48,9 @@ public class Convert {
                     convertUtils(tokens, "Queue");
                     break;
                 case "묶음":
-                    convertCode.add("List");
+                    convertUtils(tokens, "List");
                     break;
                 case "구간반복":
-                    convertCode.add("for");
                     convertFor(tokens);
                     break;
                 case "조건반복":
@@ -64,7 +63,7 @@ public class Convert {
                     convertCode.add("else");
                     break;
                 case "무작위":
-                    convertCode.add("Math.random");
+                    convertRandom(tokens);
                     break;
                 case "최대":
                     convertCode.add("Math.max");
@@ -80,6 +79,7 @@ public class Convert {
                     break;
                 case "선택":
                     convertCode.add("case");
+                    break;
                 case "멈춤":
                     convertCode.add("break");
                     break;
@@ -128,6 +128,25 @@ public class Convert {
         return convertCode;
     }
 
+    private static void convertRandom(StringTokenizer tokens) {
+        convertCode.add("(");
+        convertCode.add("int");
+        convertCode.add(")");
+        convertCode.add("(");
+        convertCode.add("Math");
+        convertCode.add(".");
+        convertCode.add("random");
+
+        for(int i=0; i<4; i++){
+            convertCode.add(tokens.nextToken());
+        }
+        convertCode.add(")");
+        for(int i=0; i<4; i++){
+            convertCode.add(tokens.nextToken());
+        }
+
+    }
+
     private static void convertUtils(StringTokenizer tokens, String structure) {
         convertCode.add(structure);
         convertCode.add(tokens.nextToken());
@@ -154,8 +173,10 @@ public class Convert {
         convertCode.add(" ");
         if(structure.equals("Stack")){
             convertCode.add(structure);
-        }else{
+        }else if(structure.equals("Queue")){
             convertCode.add("LinkedList");
+        }else if(structure.equals("List")){
+            convertCode.add("ArrayList");
         }
 
         convertCode.add("<");
@@ -186,6 +207,7 @@ public class Convert {
     }
 
     private static void convertFor(StringTokenizer tokens) {
+        convertCode.add("for");
         while(tokens.hasMoreTokens()){
             String token = tokens.nextToken();
 
