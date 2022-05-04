@@ -7,48 +7,42 @@ import './User.css';
 
 function SignUp() {
 
-  const [id, setId] = useState("");
+  const [email, setEmail] = useState("");
   const [nickName, setNickName] = useState("");
   const [password, setPassword] = useState("");
   const [passwordConfirm, setPasswordConfirm] = useState("");
-  const [idMessage, setIdMessage] = useState("");
+  const [emailMessage, setEmailMessage] = useState("");
   const [nickNameMessage, setNickNameMessage] = useState("");
   const [passwordMessage, setPasswordMessage] = useState("");
   const [passwordConfirmMessage, setPasswordConfirmMessage] = useState("");
   const navigate = useNavigate();
 
-  async function idValidation() {
-    const idCheck = /^(?=.*[a-zA-Z])(?=.*[0-9]).{5,20}$/;
-    const check = /^([a-zA-Z0-9]){5,20}$/
+  async function emailValidation() {
+    const emailCheck = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*\.{1}[a-zA-Z]{2,3}$/
     let result = false
-    if (id === "") {
-      setIdMessage("아이디를 입력해 주세요")
+    if (email === "") {
+      setEmailMessage("이메일을 입력해 주세요")
       return
     } 
 
-    if (!idCheck.test(id)) {
-      setIdMessage("아이디는 5~20자 사이의 영문/숫자를 조합해 주세요")
+    if (!emailCheck.test(email)) {
+      setEmailMessage("이메일 양식에 맞게 입력해주세요")
       return
     }
 
-    if (!check.test(id)) {
-      setIdMessage("아이디에는 영문 혹은 숫자만 입력해 주세요")
-      return
-    }
-
-    await CheckId(id)
+    await CheckId(email)
     .then((response) => {
 
       if (response.data === true) {
-        setIdMessage("")
+        setEmailMessage("")
         result = true
       } else {
-        setIdMessage("이미 존재하는 아이디 입니다")
+        setEmailMessage("이미 존재하는 이메일 입니다")
       }
 
     })
     .catch(() => {
-      console.log("아이디 중복 여부 확인 실패")
+      console.log("이메일 중복 여부 확인 실패")
     })
 
     if (result) {
@@ -127,11 +121,11 @@ function SignUp() {
   function deleteAll(event) {
     event.preventDefault();
     console.log("모두 지우기")
-    setId("");
+    setEmail("");
     setNickName("");
     setPassword("");
     setPasswordConfirm("");
-    setIdMessage("");
+    setEmailMessage("");
     setNickNameMessage("");
     setPasswordMessage("");
     setPasswordConfirmMessage("");
@@ -139,15 +133,15 @@ function SignUp() {
   
   async function checkAll(event) {
     event.preventDefault();
-    const idCheck = await idValidation();
+    const emailCheck = await emailValidation();
     const nickNameCheck = await nickNameValidation();
     const passwordCheck = await passwordValidation();
     const passwordConfirmCheck = await passwordConfrimValidation();
 
-    if (idCheck && nickNameCheck && passwordCheck && passwordConfirmCheck) {
+    if (emailCheck && nickNameCheck && passwordCheck && passwordConfirmCheck) {
       const userData = {
         isAdmin: 0,
-        userId: id,
+        userEmail: email,
         userNickname: nickName,
         userPassword: password,
       }
@@ -168,11 +162,11 @@ function SignUp() {
       <form>
         <Input 
           type="text" 
-          title="아이디(필수)" 
-          setInput={setId} 
-          value={id} 
-          message={idMessage}
-          placeholder="아이디를 입력해 주세요" 
+          title="이메일(필수)" 
+          setInput={setEmail} 
+          value={email} 
+          message={emailMessage}
+          placeholder="이메일을 입력해 주세요" 
         />
         <Input 
           type="text" 

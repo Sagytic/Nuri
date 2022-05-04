@@ -1,11 +1,3 @@
-.body{
-  overflow-y: scroll;
-}
-
-.CarouselContainer {
-  padding-top: 80px;
-}
-
 .CarouselContainer .slides{
   padding-top: 80px;
   background-color: #e8f1ff;

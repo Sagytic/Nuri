@@ -1,3 +1,7 @@
+.ToTop-Container {
+  position: relative;
+}
+
 .ToTop-Container .Top-Btn {
   position: absolute;
   right: 0;

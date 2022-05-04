@@ -42,7 +42,6 @@ function ChangeUserNickname(data) {
 }
 
 function ChangeUserPhoto(data) {
-  console.log("전달한 데이터", data);
   return axios.patch(userInfoUrl + '/user_photo', data, {
     headers: {
       Authorization: `Bearer ${localStorage.getItem("jwt")}`,
