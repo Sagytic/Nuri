@@ -5,7 +5,7 @@ const checkIdUrl = server.BASE_URL + server.ROUTES.checkId;
 const checkNickNameUrl = server.BASE_URL + server.ROUTES.checkNickName;
 const signupUrl = server.BASE_URL + server.ROUTES.signup;
 const loginUrl = server.BASE_URL + server.ROUTES.login;
-const userInfoUrl = server.BASE_URL_PHOTO + server.ROUTES.userData;
+const userInfoUrl = server.BASE_URL + server.ROUTES.userData;
 
 function CheckId(id) {
   const params = { userId: id };
