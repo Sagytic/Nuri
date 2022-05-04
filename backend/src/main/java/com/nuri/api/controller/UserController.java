@@ -124,7 +124,7 @@ public class UserController {
 			@ApiResponse(code = 500, message = "서버 오류")
 	})
 	public ResponseEntity<Boolean> checkUserId(String userId){
-		if(userService.checkUser(userId)!=null){
+		if(userService.getUserByUserEmail(userId)!=null){
 			return ResponseEntity.status(200).body(false);
 		}
 		return ResponseEntity.status(200).body(true);
