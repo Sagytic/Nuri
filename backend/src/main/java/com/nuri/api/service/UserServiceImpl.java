@@ -43,13 +43,6 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public User getUserByUserEmail(String userEmail) {
-		// 디비에 유저 정보 조회
-		User user = userRepository.findUserByUserEmail(userEmail);
-		return user;
-	}
-
-	@Override
-	public User checkUser(String userEmail) {
 		User user;
 		try{
 			user = userRepository.findUserByUserEmail(userEmail);
