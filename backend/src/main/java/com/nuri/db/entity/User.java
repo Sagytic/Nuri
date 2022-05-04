@@ -24,18 +24,17 @@ public class User{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    Long id;
+    Long userId;
 
     @JsonManagedReference
     @OneToMany(mappedBy="user")
-    List<Code> codes = new ArrayList<>();
-
+    List<MathGameCode> codes = new ArrayList<>();
     String userNickname;
-
-    String userId;
+    String userEmail;
     String userPhoto;
     Integer isAdmin;
     Date createdAt;
+    String backgroundImage;
 
     @JsonIgnore
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
@@ -44,13 +43,15 @@ public class User{
     @Override
     public String toString() {
         return "User{" +
+                "userId=" + userId +
+                ", codes=" + codes +
                 ", userNickname='" + userNickname + '\'' +
-                ", userId='" + userId + '\'' +
+                ", userEmail='" + userEmail + '\'' +
                 ", userPhoto='" + userPhoto + '\'' +
-                ", isAdmin='" + isAdmin + '\'' +
+                ", isAdmin=" + isAdmin +
+                ", createdAt=" + createdAt +
+                ", backgroundImage='" + backgroundImage + '\'' +
                 ", userPassword='" + userPassword + '\'' +
-                ", createdAt='" + createdAt + '\'' +
                 '}';
     }
-
 }

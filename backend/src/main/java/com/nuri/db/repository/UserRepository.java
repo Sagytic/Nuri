@@ -15,17 +15,8 @@ import java.util.Optional;
  */
 @Repository
 public interface UserRepository extends JpaRepository<User, Long> {
-
-    @Query(value = "SELECT * from user where user_kind = 2 and user_active = 1",nativeQuery = true)
-    List<User> findActiveUser();
-
-    @Transactional
-    @Modifying
-    @Query(value = "update user set user_active = if(user_active = 1,0,1) where user_id = :id",nativeQuery = true)
-    void updateUserActive(@Param("id") Long id);
-
-    @Query(value = "SELECT * from user where user_id = :user_id", nativeQuery = true)
-    User findUserByUserId(@Param("user_id") String user_id);
+    @Query(value = "SELECT * from user where user_email = :user_email", nativeQuery = true)
+    User findUserByUserEmail(@Param("user_email") String userEmail);
 
     @Query(value = "SELECT * from user where user_nickname = :user_nickname", nativeQuery = true)
     User findUserByUserNickname(@Param("user_nickname") String user_nickname);

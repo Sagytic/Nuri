@@ -11,7 +11,7 @@ import java.util.List;
  */
 public interface UserService {
 	User createUser(UserRegisterPostReq userRegisterInfo);
-	User getUserByUserId(String userId);
+	User getUserByUserEmail(String userId);
 	User checkUser(String userId);
 	void updateUser(User user, UserUpdatePostReq userUpdatePostReq);
 	void deleteUser(User user);
