@@ -9,7 +9,7 @@ import "./MyPage.css";
 function MyPage() {
   const { userNickname, userPhoto, setUserNickname, setUserPhoto } = useOutletContext();
   const defaultBackImgSrc = "/img/dogs.jpg"
-  const defaultProfileImgSrc = userPhoto ? 'data:image/png;base64,' + userPhoto : process.env.PUBLIC_URL + "/img/신난가지.PNG"
+  const defaultProfileImgSrc = userPhoto ? 'data:image/png;base64,' + userPhoto : process.env.PUBLIC_URL + "/img/yahoogaji.PNG"
   const [changeInfoShow, setChangeInfoShow] = useState(false);
   const [nickname, setNickname] = useState(userNickname);
   const [profileImgSrc, setProfileImgSrc] = useState(defaultProfileImgSrc);
