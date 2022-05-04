@@ -36,7 +36,7 @@ public class NuriUserDetails implements UserDetails {
 	}
 	@Override
 	public String getUsername() {
-		return this.user.getUserId();
+		return this.user.getUserEmail();
 	}
 	@Override
 	public boolean isAccountNonExpired() {

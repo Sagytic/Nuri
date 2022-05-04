@@ -23,7 +23,7 @@ public class NuriUserDetailService implements UserDetailsService{
 
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-		User user = userService.getUserByUserId(username);
+		User user = userService.getUserByUserEmail(username);
 		if(user != null) {
 			NuriUserDetails userDetails = new NuriUserDetails(user);
 			return userDetails;

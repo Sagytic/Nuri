@@ -9,29 +9,29 @@ import javax.persistence.*;
 import java.time.OffsetDateTime;
 
 @Entity
-@Table(name = "code")
+@Table(name = "mathgamecode")
 @NoArgsConstructor
 @Getter
 @Setter
-public class Code {
+public class MathGameCode {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name="code_id", nullable = false)
-    Long id;
+    @Column(name="mathgamecode_id", nullable = false)
+    Long mathgamecodeId;
 
     @ManyToOne
     @JoinColumn(name="user_id", nullable = false)
     @JsonBackReference
     User user;
     @ManyToOne
-    @JoinColumn(name="math_game_id", nullable = false)
+    @JoinColumn(name="mathgame_id", nullable = false)
     @JsonBackReference
-    MathGame math_game;
+    MathGame mathgame;
     @Column(name="code", nullable = false, length = 5000)
     String code;
     @Column(name="status", nullable = false)
     int status;
     @Column(name="created_at", nullable = false)
-    OffsetDateTime created_at = OffsetDateTime.now();
+    OffsetDateTime createdAt = OffsetDateTime.now();
 
 }

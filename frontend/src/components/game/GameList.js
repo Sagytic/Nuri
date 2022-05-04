@@ -9,15 +9,16 @@ import { AiFillEye, AiOutlineForward } from 'react-icons/ai';
 import "./GameList.css"
 
 export default function ImgMediaCard() {
+  const testImg = process.env.PUBLIC_URL + "/logo192.png"
   return (
     <div className="GameList-Container">
       <div className="Card-Contents">
         <Card sx={{ maxWidth: 345 }}>
           <CardMedia
             component="img"
-            alt="green iguana"
+            alt="testImg"
             height="140"
-            image="./logo192.png"
+            image={testImg}
           />
           {/* <CardContent>
             <Typography gutterBottom variant="h5" component="div">
@@ -34,9 +35,9 @@ export default function ImgMediaCard() {
         <Card sx={{ maxWidth: 345 }}>
           <CardMedia
             component="img"
-            alt="green iguana"
+            alt="testImg"
             height="140"
-            image="./logo192.png"
+            image={testImg}
           />
           <CardActions>
             <Button size="small">연결 게임 <AiOutlineForward /></Button>
@@ -48,9 +49,9 @@ export default function ImgMediaCard() {
         <Card sx={{ maxWidth: 345 }}>
           <CardMedia
             component="img"
-            alt="green iguana"
+            alt="testImg"
             height="140"
-            image="./logo192.png"
+            image={testImg}
           />
           <div className="Card-Footer">
           <CardActions>

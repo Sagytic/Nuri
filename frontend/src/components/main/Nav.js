@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { NavLink, useNavigate } from 'react-router-dom';
+import { NavLink, useNavigate, Link } from 'react-router-dom';
 import { FiMenu } from 'react-icons/fi';
 import "./Nav.css"
 
@@ -47,7 +47,7 @@ function Nav({ userNickname }) {
           <FiMenu size="2rem" onClick={() => toggleMenu()} style={{cursor: "pointer"}} />
           <div className="Nav-items" style={{ visibility: menuShow ? "visible" : "hidden" }}>
             <NavLink className="Nav-item" to="/intro" >누리소개</NavLink>
-            <NavLink className="Nav-item" to="/reference" >살펴보기</NavLink>
+            <NavLink className="Nav-item" to="/reference"  state={{ PathStep: 0 }}>살펴보기</NavLink>
             <NavLink className="Nav-item" to="/game" >게임하기</NavLink>
             <NavLink className="Nav-item" to="/math" >문제풀기</NavLink>
           </div>
@@ -55,7 +55,7 @@ function Nav({ userNickname }) {
         : 
         <div className="Nav-items">
           <NavLink className="Nav-item" to="/intro" >누리소개</NavLink>
-          <NavLink className="Nav-item" to="/reference" >살펴보기</NavLink>
+          <NavLink className="Nav-item" to="/reference" state={{ PathStep: 0}} >살펴보기</NavLink>
           <NavLink className="Nav-item" to="/game" >게임하기</NavLink>
           <NavLink className="Nav-item" to="/math" >문제풀기</NavLink>
         </div>}

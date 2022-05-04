@@ -1,7 +1,7 @@
 package com.nuri.api.service;
 
-import com.nuri.db.entity.Code;
+import com.nuri.db.entity.MathGameCode;
 
 public interface CodeService {
-    Code getAnswer(Long mathgameId);
+    MathGameCode getAnswer(Long mathgameId);
 }

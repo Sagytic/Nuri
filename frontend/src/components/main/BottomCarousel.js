@@ -16,6 +16,7 @@ export default class SimpleSlider extends Component {
       slidesToShow: 1,
       slidesToScroll: 1
     };
+    const testImg = process.env.PUBLIC_URL + "/logo192.png"
     return (
       <div className="Bottom-CarouselContainer">
         <Slider {...settings}>
@@ -26,7 +27,7 @@ export default class SimpleSlider extends Component {
               <p> 자랑스러운 언어인 한글로</p>
               <p>코드를 작성할 수 있어요!</p>
               <button className="carousel-btn">실행해보기</button>
-              <image src={"/public/logo512.png"} />
+              <image src={testImg} />
             </div>
           </div>
           <div className="slides">

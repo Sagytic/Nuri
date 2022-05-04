@@ -5,6 +5,7 @@ import "slick-carousel/slick/slick-theme.css";
 import "./TopCarousel.css"
 
 export default class SimpleSlider extends Component {
+  
   render() {
     // carousel settings
     const settings = {
@@ -16,6 +17,9 @@ export default class SimpleSlider extends Component {
       slidesToShow: 1,
       slidesToScroll: 1
     };
+
+    const testImg = process.env.PUBLIC_URL + "/logo192.png"
+
     return (
       <div className="CarouselContainer">
         <Slider {...settings}>
@@ -26,7 +30,7 @@ export default class SimpleSlider extends Component {
               <p>예시 코드로 이해하기 쉽게</p>
               <p>누리 문법을 공부해 보세요</p>
               <button className="carousel-btn">살펴보기</button>
-              <image src={"/public/logo512.png"} />
+              <image src={testImg} />
             </div>
           </div>
           <div className="slides">

@@ -25,15 +25,13 @@ import java.util.Optional;
 public class UserServiceImpl implements UserService {
 	@Autowired
 	UserRepository userRepository;
-	//@Autowired
-	//UserRepositorySupport userRepositorySupport;
 	@Autowired
 	PasswordEncoder passwordEncoder;
 
 	@Override
 	public User createUser(UserRegisterPostReq userRegisterInfo) {
 		User user = new User();
-		user.setUserId(userRegisterInfo.getUserId());
+		user.setUserEmail(userRegisterInfo.getUserEmail());
 		// 보안을 위해서 유저 패스워드 암호화 하여 디비에 저장.
 		user.setUserPassword(passwordEncoder.encode(userRegisterInfo.getUserPassword()));
 		user.setUserNickname(userRegisterInfo.getUserNickname());
@@ -44,17 +42,17 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public User getUserByUserId(String userId) {
+	public User getUserByUserEmail(String userEmail) {
 		// 디비에 유저 정보 조회
-		User user = userRepository.findUserByUserId(userId);
+		User user = userRepository.findUserByUserEmail(userEmail);
 		return user;
 	}
 
 	@Override
-	public User checkUser(String userId) {
+	public User checkUser(String userEmail) {
 		User user;
 		try{
-			user = userRepository.findUserByUserId(userId);
+			user = userRepository.findUserByUserEmail(userEmail);
 			if(user==null){
 				throw new NullPointerException();
 			}

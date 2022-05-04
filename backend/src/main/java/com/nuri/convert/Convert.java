@@ -14,6 +14,8 @@ public class Convert {
         convertCode.add("public class Main {\n");
         convertCode.add("   public static void main(String[] args) {\n");
         convertCode.add("       ");
+        convertCode.add("Scanner 입력해요 = new Scanner(System.in); // 입력이 필요할때 사용\n");
+        convertCode.add("       ");
         while(tokens.hasMoreTokens()) {
             String token = tokens.nextToken();
             switch (token) {
@@ -86,8 +88,8 @@ public class Convert {
                 case "기본":
                     convertCode.add("default");
                     break;
-                case "입력":
-                    convertCode.add("scanner.nextInt()");
+                case "정수입력":
+                    convertCode.add("nextInt()");
                     break;
                 case "참":
                     convertCode.add("true");
@@ -114,9 +116,13 @@ public class Convert {
                     convertCode.add("get");
                     break;
                 default:
-                    convertCode.add(token);
-                    if(token.equals("\n") || token.equals("\r") || token.equals("\r\n")){
+                    if(token.equals("\r")){
+                        break;
+                    }else if(token.equals("\n") || token.equals("\r\n")){
+                        convertCode.add(token);
                         convertCode.add("       ");
+                    }else{
+                        convertCode.add(token);
                     }
                     break;
             }
