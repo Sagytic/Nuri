@@ -92,3 +92,15 @@
   color: #FFD644;
   border-color: #FFD644;
 }
+
+.ChangeInfo-content-input {
+  width: 100%;
+  height: 150px;
+  border-style: none none solid;
+  border-width: 1px;
+  border-color: rgb(219, 219, 219);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+}
