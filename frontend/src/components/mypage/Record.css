@@ -23,6 +23,28 @@
   cursor: pointer;
 }
 
+.Record-tag-on {
+  position: relative;
+  width: 120px;
+  height: 40px;
+  text-align: left;
+  font-weight: bold;
+}
+
+.Record-tag-on:hover {
+  cursor: pointer;
+}
+
+.Record-tag-on::after {
+  position: absolute;
+  bottom: 1px;
+  left: 0px;
+  width: 100px;
+  height: 10px;
+  background-color: #FFD644;
+  content: '';
+}
+
 .Record-tag::after {
   position: absolute;
   bottom: 1px;
@@ -49,6 +71,17 @@
   }
 
   .Record-tag:hover::after {
+    width: 70px;
+  }
+
+  .Record-tag-on {
+    font-size: 12px;
+    height: 30px;
+    font-weight: bold;
+  }
+  
+  .Record-tag-on::after {
+    height: 5px;
     width: 70px;
   }
 }

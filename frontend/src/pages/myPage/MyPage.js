@@ -18,6 +18,92 @@ function MyPage() {
   const [profileImgSrc, setProfileImgSrc] = useState(defaultProfileImgSrc);
   const [tempImg, setTempImg] = useState(defaultProfileImgSrc);
   const [nicknameMessage, setNickNameMessage] = useState("")
+  // const [allCodeData, setAllCodeData] = useState([]);
+
+  const allCodeData = [
+    {
+      "title" : "도전한 문제 1",
+      "type" : 1,
+      "code" : "저장된 코드",
+      "status" : 0,
+      "CreatedAt" : "날짜",
+      "image" : "/img/mascot.PNG",
+      "views" : "10"
+    },
+    {
+      "title" : "해결한 문제 1",
+      "type" : 1,
+      "code" : "저장된 코드",
+      "status" : 1,
+      "CreatedAt" : "날짜",
+      "image" : "/img/mascot.PNG",
+      "views" : "10"
+    },
+    {
+      "title" : "해결한 게임 1",
+      "type" : 0,
+      "code" : "저장된 코드",
+      "status" : 1,
+      "CreatedAt" : "날짜",
+      "image" : "/img/mascot.PNG",
+      "views" : "10"
+    },
+    {
+      "title" : "해결한 게임 2",
+      "type" : 0,
+      "code" : "저장된 코드",
+      "status" : 1,
+      "CreatedAt" : "날짜",
+      "image" : "/img/mascot.PNG",
+      "views" : "10"
+    },
+    {
+      "title" : "도전한 게임 2",
+      "type" : 0,
+      "code" : "저장된 코드",
+      "status" : 0,
+      "CreatedAt" : "날짜",
+      "image" : "/img/mascot.PNG",
+      "views" : "10"
+    },
+    {
+      "title" : "해결한 문제 2",
+      "type" : 1,
+      "code" : "저장된 코드",
+      "status" : 1,
+      "CreatedAt" : "날짜",
+      "image" : "/img/mascot.PNG",
+      "views" : "10"
+    },
+    {
+      "title" : "도전한 문제 2",
+      "type" : 1,
+      "code" : "저장된 코드",
+      "status" : 0,
+      "CreatedAt" : "날짜",
+      "image" : "/img/mascot.PNG",
+      "views" : "10"
+    },
+    {
+      "title" : "도전한 문제 3",
+      "type" : 1,
+      "code" : "저장된 코드",
+      "status" : 0,
+      "CreatedAt" : "날짜",
+      "image" : "/img/mascot.PNG",
+      "views" : "10"
+    },
+    {
+      "title" : "도전한 문제 4",
+      "type" : 1,
+      "code" : "저장된 코드",
+      "status" : 0,
+      "CreatedAt" : "날짜",
+      "image" : "/img/mascot.PNG",
+      "views" : "10"
+    },
+  ]
+
 
   async function nickNameValidation() {
     const nickNameCheck = /^([a-zA-Z0-9ㄱ-ㅎ|ㅏ-ㅣ|가-힣]){2,20}$/;
@@ -140,7 +226,7 @@ function MyPage() {
           changeInfoDone={changeInfoDone} 
           changeInfoOff={changeInfoOff} 
         />
-        <Record />
+        <Record allCodeData={allCodeData} />
       </>}
     </div>
   )

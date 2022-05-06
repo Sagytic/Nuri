@@ -21,6 +21,7 @@ function ChangeInfo({
   function changeProfileImg(event) {
     event.preventDefault();
     if (event.target.files[0]) {
+      console.log(event.target.files[0])
       setTempImg(event.target.files[0])
     }
   }
