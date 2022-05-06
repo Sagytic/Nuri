@@ -1,7 +1,13 @@
 import React from "react";
+import LinkGame from "../../components/game/LinkGame";
 
 function Game() {
-  return <div>Game 페이지</div>
+
+  return (
+    <div>
+      <LinkGame />
+    </div>
+  )
 }
 
 export default Game
