@@ -89,16 +89,7 @@ function Ide() {
     }
     
     return (
-        <div>
-            <br>
-            </br>
-            <br>
-            </br>
-            <br>
-            </br>
-            <br>
-            </br>
-            
+        <div className="ide-contents">
 
             <div>테마 설정</div>
             <ToggleButton onClick={toggleClick} toggle={toggle}>
@@ -115,8 +106,6 @@ function Ide() {
                 value={nuriCode}
                 onChange={nuriCodeHandler}
             />
-
-            <br></br>
 
             <div>자바 코드</div>
             <Editor
