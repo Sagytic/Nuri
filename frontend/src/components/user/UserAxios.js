@@ -42,10 +42,13 @@ function ChangeUserNickname(data) {
 }
 
 function ChangeUserPhoto(data) {
-  return axios.patch(userInfoUrl + '/user_photo', data, {
+  console.log(data)
+  return fetch(userInfoUrl + '/user_photo', {
+    method: "PATCH",
     headers: {
       Authorization: `Bearer ${localStorage.getItem("jwt")}`,
     },
+    body: data,
   })
 }
 

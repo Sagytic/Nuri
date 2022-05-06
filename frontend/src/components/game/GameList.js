@@ -8,7 +8,7 @@ import Button from '@mui/material/Button';
 import { AiFillEye, AiOutlineForward } from 'react-icons/ai';
 import "./GameList.css"
 
-export default function ImgMediaCard() {
+export default function GameListCard() {
   const testImg = process.env.PUBLIC_URL + "/logo192.png"
   return (
     <div className="GameList-Container">
