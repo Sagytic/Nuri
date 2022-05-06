@@ -1,9 +1,9 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import CodeList from "./CodeList";
 import "./Record.css";
 
-function Record({ allCodeData }) {
-  const [codeIdx, setCodeIdx] = useState(0);
+function Record({ allCodeData, codeIdx, setCodeIdx }) {
+  
   const challengedMathList = allCodeData.filter((code) => {
     return code.type === 1 && code.status === 0;
   })
@@ -35,10 +35,6 @@ function Record({ allCodeData }) {
   function changeCodeData(idx) {
     setCodeIdx(idx);
   }
-
-  useEffect(() => {
-    console.log("코드 목록 리렌더링")
-  }, [codeIdx])
 
   return (
     <div className="Record">

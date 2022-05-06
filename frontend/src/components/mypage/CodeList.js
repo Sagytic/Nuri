@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "@emotion/styled";
-import { AiFillEye, AiOutlineForward } from 'react-icons/ai';
+import { AiFillEye } from 'react-icons/ai';
 
 function CodeList({ codeData }) {
 
@@ -22,6 +22,14 @@ function CodeList({ codeData }) {
     border-style: solid;
     list-style: none;
     padding-left: 0px;
+    transition: all 0.1s;
+    &:hover {
+      cursor: pointer;
+      transform: translate(0%, -10px);
+    }
+    @media (max-width: 500px) {
+      width: 100%
+    }
   `
   
   const CodeImg = styled.img`
@@ -45,6 +53,10 @@ function CodeList({ codeData }) {
 
   const CodeButton = styled.div`
     height: 25px;
+    display: flex;
+    align-items: center;
+    column-gap: 10px;
+    font-weight: bold;
   `
 
   return (
@@ -54,8 +66,8 @@ function CodeList({ codeData }) {
           <CodeItem key={code.title}>
             <CodeImg alt="게임/문제 썸네일 이미지" src={process.env.PUBLIC_URL + code.image}/>
             <CodeContent>
-              <CodeButton>{code.title} <AiOutlineForward /></CodeButton>
-              <AiFillEye />
+              <CodeButton>{code.title}</CodeButton>
+              <CodeButton><AiFillEye size="25px" />{code.views}</CodeButton>
             </CodeContent>
           </CodeItem>
         )

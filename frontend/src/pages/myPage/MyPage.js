@@ -18,6 +18,7 @@ function MyPage() {
   const [profileImgSrc, setProfileImgSrc] = useState(defaultProfileImgSrc);
   const [tempImg, setTempImg] = useState(defaultProfileImgSrc);
   const [nicknameMessage, setNickNameMessage] = useState("")
+  const [codeIdx, setCodeIdx] = useState(0);
   // const [allCodeData, setAllCodeData] = useState([]);
 
   const allCodeData = [
@@ -200,7 +201,7 @@ function MyPage() {
   
   useEffect(() => {
     console.log("회원 정보", userNickname);
-  }, [userNickname, userPhoto])
+  }, [userNickname, userPhoto, codeIdx])
   
   return (
     <div className="MyPage">
@@ -228,7 +229,7 @@ function MyPage() {
           changeInfoDone={changeInfoDone} 
           changeInfoOff={changeInfoOff} 
         />
-        <Record allCodeData={allCodeData} />
+        <Record allCodeData={allCodeData} codeIdx={codeIdx} setCodeIdx={setCodeIdx} />
       </>}
     </div>
   )
