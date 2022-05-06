@@ -11,7 +11,11 @@ import "./MyPage.css";
 function MyPage() {
   const { userNickname, userPhoto, setUserNickname, setUserPhoto } = useOutletContext();
   const defaultBackImgSrc = "/img/dogs.jpg"
+<<<<<<< HEAD
+  const defaultProfileImgSrc = userPhoto ? 'data:image/png;base64,' + userPhoto : process.env.PUBLIC_URL + "/img/yahoogaji.PNG"
+=======
   const defaultProfileImgSrc = userPhoto ? 'data:image/png;base64,' + userPhoto : process.env.PUBLIC_URL + "/img/mascot.PNG"
+>>>>>>> df106cd2a7363088e872c68c0ac55854bf6b0089
   const [changeInfoShow, setChangeInfoShow] = useState(false);
   const [changeNicknameShow, setChangeNicknameShow] = useState(false);
   const [nickname, setNickname] = useState(userNickname);
@@ -86,6 +90,8 @@ function MyPage() {
     if (tempImg !== profileImgSrc) {
       const formData = new FormData();
       formData.append("userPhoto", tempImg);
+      console.log(typeof tempImg);
+      console.log("어디까지 들어가는지");
       ChangeUserPhoto(formData)
       .then(() => {
         console.log("프로필 사진 변경 성공")
