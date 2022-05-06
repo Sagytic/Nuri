@@ -1,5 +1,5 @@
 const server = {
-  // BASE_URL: "https://localhost:8081",
+  // BASE_URL: "http://localhost:8081",
   BASE_URL: "https://nurihangeul.com:8081",
   Judge_URL: "https://ce.judge0.com",
 
