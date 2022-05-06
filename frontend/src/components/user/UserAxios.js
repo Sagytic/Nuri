@@ -52,4 +52,12 @@ function ChangeUserPhoto(data) {
   })
 }
 
-export { CheckId, CheckNickName, UserSignup, UserLogin, UserInfo, ChangeUserNickname, ChangeUserPhoto };
+function GetUserCode() {
+  return axios.get(userInfoUrl + '/code', {
+    headers: {
+      Authorization: `Bearer ${localStorage.getItem("jwt")}`,
+    },
+  })
+}
+
+export { CheckId, CheckNickName, UserSignup, UserLogin, UserInfo, ChangeUserNickname, ChangeUserPhoto, GetUserCode };

@@ -22,6 +22,7 @@ function ChangeInfo({
     //event.preventDefault();
     console.log(event.target.files);
     if (event.target.files[0]) {
+      console.log(event.target.files[0])
       setTempImg(event.target.files[0])
     }
   }
