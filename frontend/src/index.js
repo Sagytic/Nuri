@@ -28,8 +28,12 @@ root.render(
       <Route path="/"  element={<App />}>
         <Route path="main" element={<Main />}></Route>
         <Route path="intro" element={<Intro />}></Route>
-        <Route path="math/:id" element={<Math />}></Route>
-        <Route path="game/:id" element={<Game />}></Route>
+        <Route path="math" element={<Math />}>
+          {/* <Route path="/:id" element={<Math />} /> */}
+        </Route>
+        <Route path="game" element={<Game />}>
+          {/* <Route path="/:id" element={<Game />} /> */}
+        </Route>
         <Route path="reference" element={<Reference />}></Route>
         <Route path="mypage/:id" element={<MyPage />}></Route>
         <Route path="user/signup" element={<SignUp />}></Route>

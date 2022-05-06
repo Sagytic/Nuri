@@ -1,7 +1,6 @@
 import React from "react";
 import TopCarousel from "../../components/main/TopCarousel";
 import MiddleIntro from "../../components/main/MiddleIntro";
-import ToTopBtn from "../../components/main/ToTopBtn";
 import GameList from "../../components/game/GameList";
 import MathList from "../../components/math/MathList";
 import NuriRefButtons from "../../components/main/NuriRefButtons";
@@ -34,7 +33,6 @@ function Main() {
       <h2>한글 프로그래밍</h2>
     </div>
     <BottomCarousel />
-    <ToTopBtn />
     </div>
   )
 }

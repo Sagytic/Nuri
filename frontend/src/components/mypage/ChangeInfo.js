@@ -1,4 +1,5 @@
 import React, { useRef } from "react";
+import InputNickname from "./InputNickname";
 import "./ChangeInfo.css";
 
 function ChangeInfo({ 
@@ -8,7 +9,8 @@ function ChangeInfo({
   setNickname,
   setTempImg,
   changeInfoDone, 
-  changeInfoOff 
+  changeInfoOff,
+  nicknameMessage,
 }) {
   const profileImgRef = useRef();
 
@@ -17,15 +19,12 @@ function ChangeInfo({
   }
 
   function changeProfileImg(event) {
-    event.preventDefault();
+    //event.preventDefault();
+    console.log(event.target.files);
     if (event.target.files[0]) {
+      console.log(event.target.files[0])
       setTempImg(event.target.files[0])
     }
-  }
-
-  function changeNickname(event) {
-    event.preventDefault();
-    setNickname(event.target.value.replace(" ", ""))
   }
 
   return (
@@ -63,9 +62,14 @@ function ChangeInfo({
               />
             </div>
           </li>
-          <li className="ChangeInfo-content">
-            <div>닉네임</div>
-            <input value={nickname} onChange={(event) => changeNickname(event)} />
+          <li className="ChangeInfo-content-input">
+            <p>닉네임</p>
+            <InputNickname 
+              nickname={nickname} 
+              setNickname={setNickname} 
+              nicknameMessage={nicknameMessage}
+            />
+            <div style={{ fontSize: "12px" }}>한글, 영어, 숫자로 이루어진 2 ~ 20자를 입력해 주세요</div>
           </li>
         </ul>
       </div>

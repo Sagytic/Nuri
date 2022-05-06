@@ -1,12 +1,35 @@
-.ToTop-Container {
+/* .ToTop-Container {
   position: relative;
-}
+} */
 
 .ToTop-Container .Top-Btn {
-  position: absolute;
-  right: 0;
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  cursor: pointer;
 }
 
 .ToTop-Container .Top-Btn > img {
   height: 1.5rem;
+}
+
+/*  */
+
+
+
+.back-to-top {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  font-size: 20px;
+  background: orange;
+  color: white;
+  cursor: pointer;
+  border-radius: 100px;
+  border: none;
+  box-shadow: 0 5px 10px #ccc;
+}
+
+.back-to-top:hover {
+  background: red;
 }

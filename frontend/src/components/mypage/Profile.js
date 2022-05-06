@@ -2,7 +2,7 @@ import React from "react";
 import { RiPencilFill, RiSettings5Fill } from "react-icons/ri";
 import "./Profile.css";
 
-function Profile({ profileImgSrc, userNickname, changeInfoOn }) {
+function Profile({ profileImgSrc, userNickname, changeInfoOn, changeNicknameOn }) {
   return (
     <div className="Profile">
       <div className="Profile-content">
@@ -13,7 +13,7 @@ function Profile({ profileImgSrc, userNickname, changeInfoOn }) {
         />
         <div className="Profile-text">
           {userNickname}
-          <RiPencilFill className="Profile-nickname-icon" size="30px" color="white"/>
+          <RiPencilFill className="Profile-nickname-icon" size="30px" color="white" onClick={() => changeNicknameOn()}/>
         </div>
       </div>
       <div className="Profile-text">

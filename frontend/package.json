@@ -16,6 +16,8 @@
     "@types/react": "18.0.6",
     "@types/react-dom": "18.0.2",
     "axios": "0.27.0",
+    "form-data": "^4.0.0",
+    "fs": "^0.0.1-security",
     "react": "18.0.0",
     "react-animated-text": "0.1.4",
     "react-dom": "18.0.0",

@@ -262,13 +262,13 @@ server {
     listen 443 ssl;
     listen [::]:443 ssl;
 
-    server_name k6s202.p.ssafy.io;
+    server_name nurihangeul.com;
 
     ssl on;
     ssl_prefer_server_ciphers on;
     ssl_protocols TLSv1 TLSv1.1 TLSv1.2;
-    ssl_certificate /etc/letsencrypt/live/k6s202.p.ssafy.io/fullchain.pem;
-    ssl_certificate_key /etc/letsencrypt/live/k6s202.p.ssafy.io/privkey.pem;
+    ssl_certificate /etc/letsencrypt/live/nurihangeul.com/fullchain.pem;
+    ssl_certificate_key /etc/letsencrypt/live/nurihangeul.com/privkey.pem;
     ssl_ciphers ECDHE-RSA-AES256-GCM-SHA384:ECDHE-RSA-AES128-GCM-SHA256:DHE-RSA-AES256-GCM-SHA384:DHE-RSA-AES128-GCM-SHA256:ECDHE-RSA-AES256-SHA384:ECDHE-RSA-AES128-SHA256:ECDHE-RSA-AES256-SHA:ECDHE-RSA-AES128-SHA:DHE-RSA-AES256-SHA256:DHE-RSA-AES128-SHA256:DHE-RSA-AES256-SHA:DHE-RSA-AES128-SHA:ECDHE-RSA-DES-CBC3-SHA:EDH-RSA-DES-CBC3-SHA:AES256-GCM-SHA384:AES128-GCM-SHA256:AES256-SHA256:AES128-SHA256:AES256-SHA:AES128-SHA:DES-CBC3-SHA:HIGH:!aNULL:!eNULL:!EXPORT:!DES:!MD5:!PSK:!RC4;    
 
     root /home/ubuntu/build;
@@ -289,7 +289,7 @@ server {
     }
 ```
 
-5. 프론트 ssl 설정 완료!
+5. 프론트 ssl 설정 완료! ( k6s202.p.ssafy.io 부분과 nurihangeul.com 부분은 반드시 자신의 주소에 맞게 변경해야 한다.)
 
 ### 7. http to https(백엔드)
 
