@@ -81,14 +81,11 @@ public class UserController {
 		NuriUserDetails userDetails = (NuriUserDetails) authentication.getDetails();
 		String getUserEmail = userDetails.getUsername();
 		User user = userService.getUserByUserEmail(getUserEmail);
-		System.out.println("유저 확인함");
 		System.out.println(userPhoto.getContentType());
 
 		Base64.Encoder encoder = Base64.getEncoder();
 		byte[] photoEncode = encoder.encode(userPhoto.getBytes());
 		String photoImg = new String(photoEncode, "UTF8");
-		System.out.println("파일 변환함");
-		System.out.println(photoImg);
 
 		userService.updateUserPhoto(user, photoImg);
 		return ResponseEntity.status(200).body(BaseResponseBody.of(200, "Success"));

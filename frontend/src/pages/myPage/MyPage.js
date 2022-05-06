@@ -6,6 +6,7 @@ import ChangeNickname from "../../components/mypage/ChangeNickname";
 import { useOutletContext } from "react-router-dom";
 import { ChangeUserNickname, ChangeUserPhoto } from "../../components/user/UserAxios";
 import { CheckNickName } from "../../components/user/UserAxios";
+import { UserInfo } from "../../components/user/UserAxios";
 import "./MyPage.css";
 
 function MyPage() {
@@ -86,12 +87,21 @@ function MyPage() {
     if (tempImg !== profileImgSrc) {
       const formData = new FormData();
       formData.append("userPhoto", tempImg);
-      console.log(typeof tempImg);
-      console.log("어디까지 들어가는지");
       ChangeUserPhoto(formData)
       .then(() => {
         console.log("프로필 사진 변경 성공")
-        setUserPhoto(profileImgSrc);
+        let reader = new FileReader();
+        reader.readAsDataURL(tempImg)
+        reader.addEventListener("load", () => {
+          setProfileImgSrc(reader.result)
+          UserInfo()
+          .then((response) => {
+            setUserPhoto(response.data.userPhoto);
+          })
+        })
+        // reader.onload = (event) => {
+        //   setProfileImgSrc(event.target.result)
+        // }
       })
       .catch(() => {
         console.log("프로필 사진 변경 실패");
