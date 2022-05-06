@@ -1,32 +1,24 @@
 package com.nuri.api.controller;
 
 import com.nuri.api.request.UserUpdatePostReq;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.web.bind.annotation.*;
-
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import com.nuri.api.response.UserRes;
 import com.nuri.api.service.UserService;
 import com.nuri.common.auth.NuriUserDetails;
 import com.nuri.common.model.response.BaseResponseBody;
 import com.nuri.db.entity.User;
-
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiOperation;
-import io.swagger.annotations.ApiParam;
-import io.swagger.annotations.ApiResponse;
-import io.swagger.annotations.ApiResponses;
+import io.swagger.annotations.*;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import springfox.documentation.annotations.ApiIgnore;
 
 import java.io.IOException;
 import java.util.Base64;
-import java.util.List;
 
 /**
  * 유저 관련 API 요청 처리를 위한 컨트롤러 정의.
@@ -89,10 +81,14 @@ public class UserController {
 		NuriUserDetails userDetails = (NuriUserDetails) authentication.getDetails();
 		String getUserEmail = userDetails.getUsername();
 		User user = userService.getUserByUserEmail(getUserEmail);
+		System.out.println("유저 확인함");
+		System.out.println(userPhoto.getContentType());
 
 		Base64.Encoder encoder = Base64.getEncoder();
 		byte[] photoEncode = encoder.encode(userPhoto.getBytes());
 		String photoImg = new String(photoEncode, "UTF8");
+		System.out.println("파일 변환함");
+		System.out.println(photoImg);
 
 		userService.updateUserPhoto(user, photoImg);
 		return ResponseEntity.status(200).body(BaseResponseBody.of(200, "Success"));

@@ -172,6 +172,8 @@ function MyPage() {
     if (tempImg !== profileImgSrc) {
       const formData = new FormData();
       formData.append("userPhoto", tempImg);
+      console.log(typeof tempImg);
+      console.log("어디까지 들어가는지");
       ChangeUserPhoto(formData)
       .then(() => {
         console.log("프로필 사진 변경 성공")
