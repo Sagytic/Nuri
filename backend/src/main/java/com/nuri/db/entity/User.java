@@ -29,6 +29,9 @@ public class User{
     @JsonManagedReference
     @OneToMany(mappedBy="user")
     List<MathGameCode> codes = new ArrayList<>();
+    @JsonManagedReference
+    @OneToMany(mappedBy="user")
+    List<GameRank> gameranks = new ArrayList<>();
     String userNickname;
     String userEmail;
     String userPhoto;
