@@ -3,6 +3,8 @@ import './App.css';
 import Nav from './components/main/Nav';
 import { Outlet } from 'react-router-dom';
 import { UserInfo } from "../src/components/user/UserAxios";
+import ToTopBtn from "./components/main/ToTopBtn";
+
 
 function App() {
   const [userNickname, setUserNickname] = useState("");
@@ -27,6 +29,7 @@ function App() {
     <div className="App">
       <Nav userNickname={userNickname} />
       <Outlet context={{ userNickname, userPhoto, setUserNickname, setUserPhoto }} />
+      <ToTopBtn />
     </div>
   );
 }
