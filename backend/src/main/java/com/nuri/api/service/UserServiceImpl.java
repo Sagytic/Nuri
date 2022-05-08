@@ -69,6 +69,12 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
+	public void updateBackgroundImage(User user, String backgroundImage) {
+		user.setBackgroundImage(backgroundImage);
+		userRepository.save(user);
+	}
+
+	@Override
 	public void deleteUser(User user) {
 		userRepository.delete(user);
 	}
