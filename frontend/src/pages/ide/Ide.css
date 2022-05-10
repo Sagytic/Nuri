@@ -3,3 +3,7 @@ textarea{width:500px; height:100px;
     /*   resize: horizontal; */
      resize: vertical;
 }
+
+.ide-contents {
+    padding-top: 40px;
+  }
