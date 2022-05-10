@@ -14,7 +14,8 @@ export default class SimpleSlider extends Component {
       autoplaySpeed: 5000,
       speed: 500,
       slidesToShow: 1,
-      slidesToScroll: 1
+      slidesToScroll: 1,
+      arrows: false,
     };
     const testImg = process.env.PUBLIC_URL + "/logo192.png"
     return (
@@ -32,7 +33,7 @@ export default class SimpleSlider extends Component {
           </div>
           <div className="slides">
             <div className="contents-text">
-              <h2>코딩을 게임으로 배울 수 있다고?</h2>
+              <h2>JAVA와 친해질 수 있는 기회!</h2>
               <p>내가 작성한 한글 코드를</p>
               <p>JAVA 언어 코드로</p>
               <p>볼 수 있어요!</p>
@@ -41,7 +42,7 @@ export default class SimpleSlider extends Component {
           </div>
           <div className="slides">
             <div className="contents-text">
-              <h2>귀찮게 손으로 풀 필요가 없다고?</h2>
+              <h2>이제, 누리에서 간단하게 코드를 실행해보세요!</h2>
               <p>코드의 출력 결과를</p>
               <p>하단에서 바로</p>
               <p>확인할 수 있어요!</p>
