@@ -91,6 +91,27 @@ public class UserController {
 		return ResponseEntity.status(200).body(BaseResponseBody.of(200, "Success"));
 	}
 
+	// background image Update(갱신)
+	@PatchMapping("/background_image")
+	@ApiOperation(value = "프로필 배경화면 수정", notes = "해당 아이디 회원의 프로필 배경화면을 수정한다.")
+	@ApiResponses({
+			@ApiResponse(code = 200, message = "성공"),
+			@ApiResponse(code = 500, message = "서버 오류")
+	})
+	public ResponseEntity<? extends BaseResponseBody> updateBackgroundImage(@RequestPart("backgroundImage") MultipartFile backgroundImage, @ApiIgnore Authentication authentication) throws IOException {
+		NuriUserDetails userDetails = (NuriUserDetails) authentication.getDetails();
+		String getUserEmail = userDetails.getUsername();
+		User user = userService.getUserByUserEmail(getUserEmail);
+		System.out.println(backgroundImage.getContentType());
+
+		Base64.Encoder encoder = Base64.getEncoder();
+		byte[] photoEncode = encoder.encode(backgroundImage.getBytes());
+		String photoImg = new String(photoEncode, "UTF8");
+
+		userService.updateBackgroundImage(user, photoImg);
+		return ResponseEntity.status(200).body(BaseResponseBody.of(200, "Success"));
+	}
+
 	// 삭제
 	@DeleteMapping()
 	@ApiOperation(value = "유저 정보 삭제", notes = "유저 정보 삭제")
