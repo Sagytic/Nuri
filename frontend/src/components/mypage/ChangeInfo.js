@@ -1,6 +1,7 @@
 import React, { useRef } from "react";
 import InputNickname from "./InputNickname";
 import "./ChangeInfo.css";
+import SelectImg from "./SelectImg";
 
 function ChangeInfo({ 
   changeInfoShow, 
@@ -71,6 +72,16 @@ function ChangeInfo({
             />
             <div style={{ fontSize: "12px" }}>한글, 영어, 숫자로 이루어진 2 ~ 20자를 입력해 주세요</div>
           </li>
+          <SelectImg 
+            tempImg={tempImg} 
+            selectProfileImg={selectProfileImg} 
+            profileImgRef={profileImgRef}
+            changeProfileImg={changeProfileImg}
+            imgWidth="100%"
+            imgHeight="120px"
+            imgBorderRadius="15px"
+            buttonFlexDirection="row"
+          />
         </ul>
       </div>
     </div>
