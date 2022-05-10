@@ -37,12 +37,12 @@ function RefSidebar() {
         <ul>
           <ListSubheader>누리 문법</ListSubheader>
           <Link to='/reference' state={{PathStep:2}}><ListItem>1. 기본타입</ListItem></Link>
-          <Link to='/reference' state={{PathStep:3}}><ListItem>2. 배열</ListItem></Link>
+          <Link to='/reference' state={{PathStep:3}}><ListItem>2. 배열, 묶음</ListItem></Link>
           <Link to='/reference' state={{PathStep:4}}><ListItem>3. 자료구조</ListItem></Link>
           <Link to='/reference' state={{PathStep:5}}><ListItem>4. 조건문</ListItem></Link>
           <Link to='/reference' state={{PathStep:6}}><ListItem>5. 반복문</ListItem></Link>
           <Link to='/reference' state={{PathStep:7}}><ListItem>6. 수학식</ListItem></Link>
-          <Link to='/reference' state={{PathStep:8}}><ListItem>7. 출력</ListItem></Link>
+          <Link to='/reference' state={{PathStep:8}}><ListItem>7. 입력, 출력</ListItem></Link>
         </ul>
         <ul>
           <ListSubheader>코드 작성 방법</ListSubheader>

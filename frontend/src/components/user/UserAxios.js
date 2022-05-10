@@ -42,11 +42,22 @@ function ChangeUserNickname(data) {
 }
 
 function ChangeUserPhoto(data) {
-  return axios.patch(userInfoUrl + '/user_photo', data, {
+  console.log(data)
+  return fetch(userInfoUrl + '/user_photo', {
+    method: "PATCH",
+    headers: {
+      Authorization: `Bearer ${localStorage.getItem("jwt")}`,
+    },
+    body: data,
+  })
+}
+
+function GetUserCode() {
+  return axios.get(userInfoUrl + '/code', {
     headers: {
       Authorization: `Bearer ${localStorage.getItem("jwt")}`,
     },
   })
 }
 
-export { CheckId, CheckNickName, UserSignup, UserLogin, UserInfo, ChangeUserNickname, ChangeUserPhoto };
+export { CheckId, CheckNickName, UserSignup, UserLogin, UserInfo, ChangeUserNickname, ChangeUserPhoto, GetUserCode };

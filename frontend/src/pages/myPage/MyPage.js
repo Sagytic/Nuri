@@ -6,6 +6,7 @@ import ChangeNickname from "../../components/mypage/ChangeNickname";
 import { useOutletContext } from "react-router-dom";
 import { ChangeUserNickname, ChangeUserPhoto } from "../../components/user/UserAxios";
 import { CheckNickName } from "../../components/user/UserAxios";
+import { UserInfo } from "../../components/user/UserAxios";
 import "./MyPage.css";
 
 function MyPage() {
@@ -18,6 +19,93 @@ function MyPage() {
   const [profileImgSrc, setProfileImgSrc] = useState(defaultProfileImgSrc);
   const [tempImg, setTempImg] = useState(defaultProfileImgSrc);
   const [nicknameMessage, setNickNameMessage] = useState("")
+  const [codeIdx, setCodeIdx] = useState(0);
+  // const [allCodeData, setAllCodeData] = useState([]);
+
+  const allCodeData = [
+    {
+      "title" : "도전한 문제 1",
+      "type" : 1,
+      "code" : "저장된 코드",
+      "status" : 0,
+      "CreatedAt" : "날짜",
+      "image" : "/img/mascot.PNG",
+      "views" : "10"
+    },
+    {
+      "title" : "해결한 문제 1",
+      "type" : 1,
+      "code" : "저장된 코드",
+      "status" : 1,
+      "CreatedAt" : "날짜",
+      "image" : "/img/mascot.PNG",
+      "views" : "10"
+    },
+    {
+      "title" : "해결한 게임 1",
+      "type" : 0,
+      "code" : "저장된 코드",
+      "status" : 1,
+      "CreatedAt" : "날짜",
+      "image" : "/img/mascot.PNG",
+      "views" : "10"
+    },
+    {
+      "title" : "해결한 게임 2",
+      "type" : 0,
+      "code" : "저장된 코드",
+      "status" : 1,
+      "CreatedAt" : "날짜",
+      "image" : "/img/mascot.PNG",
+      "views" : "10"
+    },
+    {
+      "title" : "도전한 게임 2",
+      "type" : 0,
+      "code" : "저장된 코드",
+      "status" : 0,
+      "CreatedAt" : "날짜",
+      "image" : "/img/mascot.PNG",
+      "views" : "10"
+    },
+    {
+      "title" : "해결한 문제 2",
+      "type" : 1,
+      "code" : "저장된 코드",
+      "status" : 1,
+      "CreatedAt" : "날짜",
+      "image" : "/img/mascot.PNG",
+      "views" : "10"
+    },
+    {
+      "title" : "도전한 문제 2",
+      "type" : 1,
+      "code" : "저장된 코드",
+      "status" : 0,
+      "CreatedAt" : "날짜",
+      "image" : "/img/mascot.PNG",
+      "views" : "10"
+    },
+    {
+      "title" : "도전한 문제 3",
+      "type" : 1,
+      "code" : "저장된 코드",
+      "status" : 0,
+      "CreatedAt" : "날짜",
+      "image" : "/img/mascot.PNG",
+      "views" : "10"
+    },
+    {
+      "title" : "도전한 문제 4",
+      "type" : 1,
+      "code" : "저장된 코드",
+      "status" : 0,
+      "CreatedAt" : "날짜",
+      "image" : "/img/mascot.PNG",
+      "views" : "10"
+    },
+  ]
+
 
   async function nickNameValidation() {
     const nickNameCheck = /^([a-zA-Z0-9ㄱ-ㅎ|ㅏ-ㅣ|가-힣]){2,20}$/;
@@ -89,7 +177,18 @@ function MyPage() {
       ChangeUserPhoto(formData)
       .then(() => {
         console.log("프로필 사진 변경 성공")
-        setUserPhoto(profileImgSrc);
+        let reader = new FileReader();
+        reader.readAsDataURL(tempImg)
+        reader.addEventListener("load", () => {
+          setProfileImgSrc(reader.result)
+          UserInfo()
+          .then((response) => {
+            setUserPhoto(response.data.userPhoto);
+          })
+        })
+        // reader.onload = (event) => {
+        //   setProfileImgSrc(event.target.result)
+        // }
       })
       .catch(() => {
         console.log("프로필 사진 변경 실패");
@@ -112,7 +211,7 @@ function MyPage() {
   
   useEffect(() => {
     console.log("회원 정보", userNickname);
-  }, [userNickname, userPhoto])
+  }, [userNickname, userPhoto, codeIdx])
   
   return (
     <div className="MyPage">
@@ -140,7 +239,7 @@ function MyPage() {
           changeInfoDone={changeInfoDone} 
           changeInfoOff={changeInfoOff} 
         />
-        <Record />
+        <Record allCodeData={allCodeData} codeIdx={codeIdx} setCodeIdx={setCodeIdx} />
       </>}
     </div>
   )
