@@ -1,28 +1,34 @@
 import React from "react";
 import styled from "@emotion/styled";
 
-function SelectImg({ 
+function SelectImg({
+  type,
   tempImg, 
-  selectProfileImg, 
-  profileImgRef, 
-  changeProfileImg,
+  selectImg, 
+  imgRef, 
+  changeImg,
   imgWidth,
   imgHeight,
   imgBorderRadius,
-  buttonFlexDirection,
 }) {
 
   const SelectImg = styled.li`
     width: 100%;
-    height: 200px;
+    height: 250px;
+    padding-bottom: 10px;
     border-style: none none solid;
     border-width: 1px;
     border-color: rgb(219, 219, 219);
     display: flex;
-    justify-content: flex-start;
-    align-items: center;
-    flex-wrap: wrap;
-    column-gap: 20px;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-start;
+    row-gap: 10px;
+  `
+
+  const Title = styled.p`
+    margin: 10px 0px;
+    font-weight: 500;
   `
 
   const Img = styled.img`
@@ -34,17 +40,23 @@ function SelectImg({
     border-color: rgb(219, 219, 219);
   `
 
-  const ButtonGroup = styled.div`
-    display: flex;
-    flex-direction: ${buttonFlexDirection};
-    column-gap: 20px;
-    row-gap: 5px;
+  const BackImg = styled.div`
+    width: ${imgWidth};
+    height: ${imgHeight};
+    border-radius: ${imgBorderRadius};
+    border-style: solid;
+    border-width: 2px;
+    border-color: rgb(219, 219, 219);
+    background-image: url(${typeof(tempImg) === "string" ? tempImg : URL.createObjectURL(tempImg)});
+    background-size: 100%;
+    background-position: 50% 50%;
+    text-align: center;
   `
 
   const Button = styled.button`
     font-weight: 500;
     width: 200px;
-    height: 40px;
+    height: 30px;
     border-radius: 10px;
     background-color: white;
     border-style: solid;
@@ -60,25 +72,24 @@ function SelectImg({
 
   return (
     <SelectImg>
-      <Img 
-        src={typeof(tempImg) === "string" ? tempImg : URL.createObjectURL(tempImg)}
-        alt="프로필 이미지" 
+      <Title>{type} 이미지</Title>
+      {type === "프로필" ?
+        <Img 
+          src={typeof(tempImg) === "string" ? tempImg : URL.createObjectURL(tempImg)}
+          alt="프로필 이미지" 
+        /> :
+        <BackImg/>
+      }
+      <Button onClick={() => selectImg()}>
+        {type} 이미지 고르기
+      </Button>
+      <input 
+        ref={imgRef}
+        onChange={(event) => changeImg(event)}
+        type="file" 
+        accept="image/*" 
+        style={{ display: "none" }}
       />
-      <ButtonGroup>
-        <Button>
-          기본 이미지에서 고르기
-        </Button>
-        <Button onClick={() => selectProfileImg()}>
-          내 컴퓨터에서 고르기
-        </Button>
-        <input 
-          ref={profileImgRef}
-          onChange={(event) => changeProfileImg(event)}
-          type="file" 
-          accept="image/*" 
-          style={{ display: "none" }}
-        />
-      </ButtonGroup>
     </SelectImg>
   )
 }
