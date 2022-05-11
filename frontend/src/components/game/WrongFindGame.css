@@ -1,3 +1,45 @@
 .javaCode {
-  margin-left: 400px;
+  float: right;
+  margin-right: 400px;
+  position: relative;
   }
+
+.findCheck1{
+  position: absolute;
+  top:4%;
+  left:45%;
+  font-size: xxx-large;
+  color: red;
+}
+
+.findCheck2{
+  position: absolute;
+  top:7%;
+  left:27%;
+  font-size: xxx-large;
+  color: red;
+}
+
+.findCheck3{
+  position: absolute;
+  top:18%;
+  left:40%;
+  font-size: xxx-large;
+  color: red;
+}
+
+.findCheck4{
+  position: absolute;
+  top:66%;
+  left:18%;
+  font-size: xxx-large;
+  color: red;
+}
+
+.findCheck5{
+  position: absolute;
+  top:70%;
+  left:46%;
+  font-size: xxx-large;
+  color: red;
+}
