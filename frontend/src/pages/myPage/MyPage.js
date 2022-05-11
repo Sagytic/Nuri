@@ -12,7 +12,7 @@ import "./MyPage.css";
 function MyPage() {
   const { userNickname, userPhoto, userBackImg, setUserNickname, setUserPhoto, setUserBackImg } = useOutletContext();
   const defaultBackImgSrc = userBackImg ? "data:image/png;base64," + userBackImg : process.env.PUBLIC_URL + "/img/dogs.jpg"
-  const defaultProfileImgSrc = userPhoto ? 'data:image/png;base64,' + userPhoto : process.env.PUBLIC_URL + "/img/mascot.PNG"
+  const defaultProfileImgSrc = userPhoto ? 'data:image/png;base64,' + userPhoto : process.env.PUBLIC_URL + "/img/yahoogaji.PNG"
   const [changeInfoShow, setChangeInfoShow] = useState(false);
   const [changeNicknameShow, setChangeNicknameShow] = useState(false);
   const [nickname, setNickname] = useState(userNickname);
@@ -31,7 +31,7 @@ function MyPage() {
       "code" : "저장된 코드",
       "status" : 0,
       "CreatedAt" : "날짜",
-      "image" : "/img/mascot.PNG",
+      "image" : "/img/yahoogaji.PNG",
       "views" : "10"
     },
     {
@@ -40,7 +40,7 @@ function MyPage() {
       "code" : "저장된 코드",
       "status" : 1,
       "CreatedAt" : "날짜",
-      "image" : "/img/mascot.PNG",
+      "image" : "/img/yahoogaji.PNG",
       "views" : "10"
     },
     {
@@ -49,7 +49,7 @@ function MyPage() {
       "code" : "저장된 코드",
       "status" : 1,
       "CreatedAt" : "날짜",
-      "image" : "/img/mascot.PNG",
+      "image" : "/img/yahoogaji.PNG",
       "views" : "10"
     },
     {
@@ -58,7 +58,7 @@ function MyPage() {
       "code" : "저장된 코드",
       "status" : 1,
       "CreatedAt" : "날짜",
-      "image" : "/img/mascot.PNG",
+      "image" : "/img/yahoogaji.PNG",
       "views" : "10"
     },
     {
@@ -67,7 +67,7 @@ function MyPage() {
       "code" : "저장된 코드",
       "status" : 0,
       "CreatedAt" : "날짜",
-      "image" : "/img/mascot.PNG",
+      "image" : "/img/yahoogaji.PNG",
       "views" : "10"
     },
     {
@@ -76,7 +76,7 @@ function MyPage() {
       "code" : "저장된 코드",
       "status" : 1,
       "CreatedAt" : "날짜",
-      "image" : "/img/mascot.PNG",
+      "image" : "/img/yahoogaji.PNG",
       "views" : "10"
     },
     {
@@ -85,7 +85,7 @@ function MyPage() {
       "code" : "저장된 코드",
       "status" : 0,
       "CreatedAt" : "날짜",
-      "image" : "/img/mascot.PNG",
+      "image" : "/img/yahoogaji.PNG",
       "views" : "10"
     },
     {
@@ -94,7 +94,7 @@ function MyPage() {
       "code" : "저장된 코드",
       "status" : 0,
       "CreatedAt" : "날짜",
-      "image" : "/img/mascot.PNG",
+      "image" : "/img/yahoogaji.PNG",
       "views" : "10"
     },
     {
@@ -103,7 +103,7 @@ function MyPage() {
       "code" : "저장된 코드",
       "status" : 0,
       "CreatedAt" : "날짜",
-      "image" : "/img/mascot.PNG",
+      "image" : "/img/yahoogaji.PNG",
       "views" : "10"
     },
   ]
@@ -181,7 +181,7 @@ function MyPage() {
         let reader = new FileReader();
         reader.readAsDataURL(tempImg)
         reader.addEventListener("load", () => {
-          setUserPhoto(reader.result);
+          setUserPhoto(reader.result.split(",")[1]);
         })
         reader.onload = (event) => {
           setProfileImgSrc(event.target.result)
@@ -201,7 +201,7 @@ function MyPage() {
         let reader = new FileReader();
         reader.readAsDataURL(tempBackImg)
         reader.addEventListener("load", () => {
-          setUserBackImg(reader.result);
+          setUserBackImg(reader.result.split(",")[1]);
         })
         reader.onload = (event) => {
           setBackImgSrc(event.target.result)
