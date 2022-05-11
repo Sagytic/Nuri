@@ -4,20 +4,22 @@ import Record from "../../components/mypage/Record";
 import ChangeInfo from "../../components/mypage/ChangeInfo";
 import ChangeNickname from "../../components/mypage/ChangeNickname";
 import { useOutletContext } from "react-router-dom";
-import { ChangeUserNickname, ChangeUserPhoto } from "../../components/user/UserAxios";
+import { ChangeUserNickname, ChangeUserPhoto, ChangeUserBackgroundImg } from "../../components/user/UserAxios";
 import { CheckNickName } from "../../components/user/UserAxios";
-import { UserInfo } from "../../components/user/UserAxios";
+// import { UserInfo } from "../../components/user/UserAxios";
 import "./MyPage.css";
 
 function MyPage() {
-  const { userNickname, userPhoto, setUserNickname, setUserPhoto } = useOutletContext();
-  const defaultBackImgSrc = "/img/dogs.jpg"
+  const { userNickname, userPhoto, userBackImg, setUserNickname, setUserPhoto, setUserBackImg } = useOutletContext();
+  const defaultBackImgSrc = userBackImg ? "data:image/png;base64," + userBackImg : process.env.PUBLIC_URL + "/img/dogs.jpg"
   const defaultProfileImgSrc = userPhoto ? 'data:image/png;base64,' + userPhoto : process.env.PUBLIC_URL + "/img/mascot.PNG"
   const [changeInfoShow, setChangeInfoShow] = useState(false);
   const [changeNicknameShow, setChangeNicknameShow] = useState(false);
   const [nickname, setNickname] = useState(userNickname);
   const [profileImgSrc, setProfileImgSrc] = useState(defaultProfileImgSrc);
+  const [backImgSrc, setBackImgSrc] = useState(defaultBackImgSrc);
   const [tempImg, setTempImg] = useState(defaultProfileImgSrc);
+  const [tempBackImg, setTempBackImg] = useState(defaultBackImgSrc);
   const [nicknameMessage, setNickNameMessage] = useState("")
   const [codeIdx, setCodeIdx] = useState(0);
   // const [allCodeData, setAllCodeData] = useState([]);
@@ -106,7 +108,6 @@ function MyPage() {
     },
   ]
 
-
   async function nickNameValidation() {
     const nickNameCheck = /^([a-zA-Z0-9ㄱ-ㅎ|ㅏ-ㅣ|가-힣]){2,20}$/;
     let result = false
@@ -180,21 +181,37 @@ function MyPage() {
         let reader = new FileReader();
         reader.readAsDataURL(tempImg)
         reader.addEventListener("load", () => {
-          setProfileImgSrc(reader.result)
-          UserInfo()
-          .then((response) => {
-            setUserPhoto(response.data.userPhoto);
-          })
+          setUserPhoto(reader.result);
         })
-        // reader.onload = (event) => {
-        //   setProfileImgSrc(event.target.result)
-        // }
+        reader.onload = (event) => {
+          setProfileImgSrc(event.target.result)
+        }
       })
       .catch(() => {
         console.log("프로필 사진 변경 실패");
       })
     }
 
+    if (tempBackImg !== backImgSrc) {
+      const formData = new FormData();
+      formData.append("backgroundImage", tempBackImg);
+      ChangeUserBackgroundImg(formData)
+      .then(() => {
+        console.log("배경 이미지 변경 성공")
+        let reader = new FileReader();
+        reader.readAsDataURL(tempBackImg)
+        reader.addEventListener("load", () => {
+          setUserBackImg(reader.result);
+        })
+        reader.onload = (event) => {
+          setBackImgSrc(event.target.result)
+        }
+      })
+      .catch(() => {
+        console.log("프로필 사진 변경 실패");
+      })
+    }
+    
     setChangeInfoShow(false);
     setChangeNicknameShow(false);
     setNickNameMessage("")
@@ -203,7 +220,9 @@ function MyPage() {
   function changeInfoOff() {
     setNickname(userNickname);
     setProfileImgSrc(defaultProfileImgSrc);
+    setBackImgSrc(defaultBackImgSrc)
     setTempImg(defaultProfileImgSrc)
+    setTempBackImg(defaultBackImgSrc)
     setChangeInfoShow(false);
     setChangeNicknameShow(false);
     setNickNameMessage("")
@@ -218,16 +237,18 @@ function MyPage() {
       {userNickname && <>
         <div
           className="MyPage-backImg"
-          style={{ backgroundImage: `url(${process.env.PUBLIC_URL + defaultBackImgSrc})`, backgroundSize: "80%" }}  
+          style={{ backgroundImage: `url(${backImgSrc})`, backgroundSize: "80%" }}  
         />
         <Profile profileImgSrc={profileImgSrc} userNickname={userNickname} changeInfoOn={changeInfoOn} changeNicknameOn={changeNicknameOn}/>
         <ChangeInfo 
           nickname={nickname}
           changeInfoShow={changeInfoShow}  
           tempImg={tempImg}
+          tempBackImg={tempBackImg}
           nicknameMessage={nicknameMessage}
           setNickname={setNickname}
           setTempImg={setTempImg}
+          setTempBackImg={setTempBackImg}
           changeInfoDone={changeInfoDone}
           changeInfoOff={changeInfoOff} 
         />

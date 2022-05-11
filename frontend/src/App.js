@@ -5,10 +5,14 @@ import { Outlet } from 'react-router-dom';
 import { UserInfo } from "../src/components/user/UserAxios";
 import ToTopBtn from "./components/main/ToTopBtn";
 
+// import Scrollbar from "./components/main/Scrollbar";
+
+
 
 function App() {
   const [userNickname, setUserNickname] = useState("");
   const [userPhoto, setUserPhoto] = useState("");
+  const [userBackImg, setUserBackImg] = useState("");
 
   useEffect(() => {
     const isLogin = localStorage.getItem("jwt") ? true : false;
@@ -18,6 +22,7 @@ function App() {
         console.log("회원 정보 받아오기 성공", response.data);
         setUserNickname(response.data.userNickname);
         setUserPhoto(response.data.userPhoto);
+        setUserBackImg(response.data.userBackgroundImage);
       })
       .catch(() => {
         console.log("회원 정보 받아오기 실패")
@@ -28,7 +33,10 @@ function App() {
   return (
     <div className="App">
       <Nav userNickname={userNickname} />
-      <Outlet context={{ userNickname, userPhoto, setUserNickname, setUserPhoto }} />
+      <Outlet context={{ userNickname, userPhoto, userBackImg, setUserNickname, setUserPhoto, setUserBackImg }} />
+
+      {/* <Scrollbar /> */}
+      
       <ToTopBtn />
     </div>
   );

@@ -4,7 +4,7 @@ import server from "../../API/server";
 import "./Ide.css"
 import Editor from "@monaco-editor/react";
 import { ToggleButton } from "@mui/material";
-import { width } from "@mui/system";
+import {  } from "@mui/system";
 
 function Ide() {
     const API_BASE_URL = server.BASE_URL;
