@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { NavLink, useNavigate,  } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 import { FiMenu } from 'react-icons/fi';
 import "./Nav.css"
 

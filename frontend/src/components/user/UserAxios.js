@@ -42,8 +42,17 @@ function ChangeUserNickname(data) {
 }
 
 function ChangeUserPhoto(data) {
-  console.log(data)
   return fetch(userInfoUrl + '/user_photo', {
+    method: "PATCH",
+    headers: {
+      Authorization: `Bearer ${localStorage.getItem("jwt")}`,
+    },
+    body: data,
+  })
+}
+
+function ChangeUserBackgroundImg(data) {
+  return fetch(userInfoUrl + '/background_image', {
     method: "PATCH",
     headers: {
       Authorization: `Bearer ${localStorage.getItem("jwt")}`,
@@ -60,4 +69,4 @@ function GetUserCode() {
   })
 }
 
-export { CheckId, CheckNickName, UserSignup, UserLogin, UserInfo, ChangeUserNickname, ChangeUserPhoto, GetUserCode };
+export { CheckId, CheckNickName, UserSignup, UserLogin, UserInfo, ChangeUserNickname, ChangeUserPhoto, ChangeUserBackgroundImg, GetUserCode };
