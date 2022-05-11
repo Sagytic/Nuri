@@ -17,7 +17,9 @@ import MyPage from './pages/myPage/MyPage'
 import SignUp from './pages/user/SignUp'
 import Login from './pages/user/Login'
 import Ide from './pages/ide/Ide'
-// 
+//import LinkGame from './components/game/LinkGame';
+import UpDown from './components/game/UpDown';
+import Wrong from './components/game/WrongFindGame';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root')
@@ -39,6 +41,8 @@ root.render(
         <Route path="user/signup" element={<SignUp />}></Route>
         <Route path="user/login" element={<Login />}></Route>
         <Route path="ide" element={<Ide />}></Route>
+        <Route path="updown" element={<UpDown />}></Route>
+        <Route path="wrong" element={<Wrong />}></Route>
       </Route>
     </Routes>
   </BrowserRouter>
