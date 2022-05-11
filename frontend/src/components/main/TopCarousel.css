@@ -2,11 +2,21 @@
   padding-top: 80px;
   background-color: #e8f1ff;
   padding-bottom: 80px;
+  display: flex;
+}
+
+.CarouselContainer .slides > img {
+  width: 23%;
+  float: right;
+  margin-right: 10%;
+  vertical-align: middle;
 }
 
 .CarouselContainer .slides .contents-text{
   margin-left: 20vh;
   text-align: left;
+  display: inline-block;
+  float: left;
 }
 
 .CarouselContainer .slides .contents-text2 {
@@ -53,4 +63,8 @@
   border: none;
   z-index: 3;
   border-radius: 20px;
+}
+
+* {
+  
 }

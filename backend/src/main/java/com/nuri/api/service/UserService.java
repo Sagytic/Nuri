@@ -13,8 +13,10 @@ public interface UserService {
 	User createUser(UserRegisterPostReq userRegisterInfo);
 	User getUserByUserEmail(String userId);
 	void updateUser(User user, UserUpdatePostReq userUpdatePostReq);
+
 	void deleteUser(User user);
 	void updateUserPhoto(User user, String userPhoto);
+	void updateBackgroundImage(User user, String backgroundImage);
 
     String kakaoToken(String code);
 

@@ -15,10 +15,11 @@ export default class SimpleSlider extends Component {
       autoplaySpeed: 5000,
       speed: 500,
       slidesToShow: 1,
-      slidesToScroll: 1
+      slidesToScroll: 1,
+      arrows: false,
     };
 
-    const testImg = process.env.PUBLIC_URL + "/logo192.png"
+    const Img = process.env.PUBLIC_URL
 
     return (
       <div className="CarouselContainer">
@@ -30,26 +31,28 @@ export default class SimpleSlider extends Component {
               <p>예시 코드로 이해하기 쉽게</p>
               <p>누리 문법을 공부해 보세요</p>
               <button className="carousel-btn">살펴보기</button>
-              <image src={testImg} />
             </div>
+              <img src={Img + 'img/nurirang_carousel1.png'} alt="carousel1" />
           </div>
           <div className="slides">
             <div className="contents-text">
               <h2>코딩을 게임으로 배울 수 있다고?</h2>
-              <p>게임을 통해 학습하고</p>
-              <p>배우는 시간을 가져보세요!</p>
-              <p>멘트 준비중</p>
+              <p>다양한 게임을 통해 </p>
+              <p>학습하고, 즐기며 </p>
+              <p>친해지는 시간을 가져보세요!</p>
               <button className="carousel-btn">살펴보기</button>
             </div>
+              <img src={Img + 'img/nurirang_carousel1.png'} alt="carousel1" />
           </div>
           <div className="slides">
             <div className="contents-text">
               <h2>귀찮게 손으로 풀 필요가 없다고?</h2>
-              <p>멘트 준비중</p>
-              <p>멘트 준비중</p>
-              <p>멘트 준비중</p>
+              <p>x = -b +-(b^2-4ac)/2 .....?</p>
+              <p>이제 코딩을 통해</p>
+              <p>컴퓨터로 풀어보세요!</p>
               <button className="carousel-btn">살펴보기</button>
             </div>
+              <img src={Img + 'img/nurirang_carousel1.png'} alt="carousel1" />
           </div>
         </Slider>
       </div>
