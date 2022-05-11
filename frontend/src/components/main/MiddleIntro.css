@@ -1,9 +1,47 @@
+@font-face {
+  font-family: 'GowunBatang-Regular';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2108@1.1/GowunBatang-Regular.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
 .Middle-Contents {
-  background-color: #FFD644;
+  /* background-color: #FFD644; */
   margin-top: 5vh;
+  margin-bottom: 5%;
+  font-family: "GowunBatang-Regular";
+  margin-top: 5rem;
 }
 
 .Middle-Contents img {
   display: inline-block;
   padding: 5vh;
+  width: 20%;
+}
+
+.Middle-Contents > h1{
+  color: red;
+}
+
+.Middle-Contents .text-animation-container h2, h3{
+  display: inline;
+  justify-content: space-around;
+  font-weight: bold;
+}
+
+.Middle-Contents .text-animation-container p {
+  font-weight: bold;
+  font-size: 50px;
+}
+
+.Middle-Contents .image-container img {
+  width: 25%;
+  height: 370px;
+}
+
+.Middle-Contents .code-alt-container {
+  display: flex;
+  justify-content: space-around;
+  font-weight: bold;
+  font-size: 20px;
 }
