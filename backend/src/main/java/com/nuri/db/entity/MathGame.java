@@ -24,6 +24,10 @@ public class MathGame {
     @OneToMany(mappedBy = "mathgame")
     List<MathGameCode> codes = new ArrayList<>();
 
+    @JsonManagedReference
+    @OneToMany(mappedBy = "mathgame")
+    List<GameRank> gameranks = new ArrayList<>();
+
     @Column(name="content", nullable = false, length = 5000)
     String content;
     @Column(name="type", nullable = false)

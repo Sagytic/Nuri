@@ -1,14 +1,11 @@
 package com.nuri.api.response;
 
 import com.nuri.db.entity.User;
-
-//import com.sun.org.apache.xpath.internal.operations.Bool;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Getter;
 import lombok.Setter;
 
-import java.sql.Blob;
 import java.util.Date;
 
 /**
@@ -22,19 +19,21 @@ public class UserRes{
 	String userNickname;
 	String userEmail;
 	String userPhoto;
+	String userBackgroundImage;
 	Integer isAdmin;
 	Date createdAt;
 
-	public UserRes(String userEmail, Integer isAdmin, String userPhoto, String userNickname, Date createdAt) {
+	public UserRes(String userEmail, Integer isAdmin, String userPhoto, String userBackgroundImage, String userNickname, Date createdAt) {
 		this.userEmail = userEmail;
 		this.isAdmin = isAdmin;
 		this.userPhoto = userPhoto;
+		this.userBackgroundImage = userBackgroundImage;
 		this.userNickname = userNickname;
 		this.createdAt = createdAt;
 	}
 
 	public static UserRes of(User user) {
-		UserRes res = new UserRes(user.getUserEmail(),user.getIsAdmin(), user.getUserPhoto(), user.getUserNickname(), user.getCreatedAt());
+		UserRes res = new UserRes(user.getUserEmail(),user.getIsAdmin(), user.getUserPhoto(), user.getBackgroundImage(), user.getUserNickname(), user.getCreatedAt());
 		return res;
 	}
 }
