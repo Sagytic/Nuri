@@ -4,7 +4,7 @@ import Record from "../../components/mypage/Record";
 import ChangeInfo from "../../components/mypage/ChangeInfo";
 import ChangeNickname from "../../components/mypage/ChangeNickname";
 import { useOutletContext } from "react-router-dom";
-import { ChangeUserNickname, ChangeUserPhoto, ChangeUserBackgroundImg } from "../../components/user/UserAxios";
+import { UserInfo, ChangeUserNickname, ChangeUserPhoto, ChangeUserBackgroundImg } from "../../components/user/UserAxios";
 import { CheckNickName } from "../../components/user/UserAxios";
 // import { UserInfo } from "../../components/user/UserAxios";
 import "./MyPage.css";
@@ -182,6 +182,10 @@ function MyPage() {
         reader.readAsDataURL(tempImg)
         reader.addEventListener("load", () => {
           setUserPhoto(reader.result);
+          UserInfo()
+          .catch(() => {
+            console.log("회원 정보 받아오기 실패")
+          })
         })
         reader.onload = (event) => {
           setProfileImgSrc(event.target.result)
@@ -202,6 +206,10 @@ function MyPage() {
         reader.readAsDataURL(tempBackImg)
         reader.addEventListener("load", () => {
           setUserBackImg(reader.result);
+          UserInfo()
+          .catch(() => {
+            console.log("회원 정보 받아오기 실패")
+          })
         })
         reader.onload = (event) => {
           setBackImgSrc(event.target.result)
