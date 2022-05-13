@@ -1,6 +1,13 @@
+.nuriCode {
+  margin-left: 24%;
+  margin-right: 0%;
+  position: relative;
+  
+  }
+
 .javaCode {
   float: right;
-  margin-right: 400px;
+  margin-right: 20%;
   position: relative;
   }
 
@@ -43,3 +50,28 @@
   font-size: xxx-large;
   color: red;
 }
+
+.progressBar {
+  margin-left: 20%;
+  }
+
+  
+.answerCheck{
+  font-size: xxx-large;
+  color: red;
+}
+
+.timeRes{
+  border: 1px solid black;
+  font-size: xxx-large;
+  float: left;
+  margin-left: 20%;
+}
+
+.res{
+  border: 1px solid black;
+  font-size: xxx-large;
+  float: left;
+  margin-left: 1%;
+}
+
