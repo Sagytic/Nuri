@@ -4,7 +4,7 @@ import Record from "../../components/mypage/Record";
 import ChangeInfo from "../../components/mypage/ChangeInfo";
 import ChangeNickname from "../../components/mypage/ChangeNickname";
 import { useOutletContext } from "react-router-dom";
-import { ChangeUserNickname, ChangeUserPhoto, ChangeUserBackgroundImg } from "../../components/user/UserAxios";
+import { UserInfo, ChangeUserNickname, ChangeUserPhoto, ChangeUserBackgroundImg } from "../../components/user/UserAxios";
 import { CheckNickName } from "../../components/user/UserAxios";
 // import { UserInfo } from "../../components/user/UserAxios";
 import "./MyPage.css";
