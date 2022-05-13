@@ -71,7 +71,7 @@
 }
 
 .Nav-item::after {
-  z-index: -1;
+  z-index: 0;
   opacity: 70%;
   position: absolute;
   left: 0;
