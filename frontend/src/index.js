@@ -17,6 +17,8 @@ import SignUp from './pages/user/SignUp'
 import Login from './pages/user/Login'
 import Ide from './pages/ide/Ide'
 import Wrong from './components/game/WrongFindGame'
+import TGame from './components/game/TGame'
+
 // 
 
 const root = ReactDOM.createRoot(
@@ -41,6 +43,7 @@ root.render(
         <Route path="user/login" element={<Login />}></Route>
         <Route path="ide" element={<Ide />}></Route>
         <Route path="wrong" element={<Wrong />}></Route>
+        <Route path="TGame" element={<TGame />}></Route>
       </Route>
     </Routes>
   </BrowserRouter>
