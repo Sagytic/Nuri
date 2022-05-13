@@ -1,16 +1,12 @@
-.back-to-top {
+.back-to-top img{
   position: fixed;
   bottom: 20px;
   right: 20px;
-  font-size: 20px;
-  background: orange;
-  color: white;
+  width: 70px;
   cursor: pointer;
-  border-radius: 100px;
-  border: none;
-  box-shadow: 0 5px 10px #ccc;
+  transition: all 0.2s linear;
 }
 
-.back-to-top:hover {
-  background: red;
+.back-to-top img:hover {
+  transform: scale(1.3);
 }

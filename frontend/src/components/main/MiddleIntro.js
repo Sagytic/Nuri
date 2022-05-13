@@ -2,7 +2,7 @@ import React from 'react';
 import Fade from 'react-reveal/Fade';
 import Zoom from 'react-reveal/Zoom';
 import Typical from 'react-typical'
-
+import AnimatedNumber from 'react-animated-number';
 
 import "./MiddleIntro.css"
 
@@ -13,32 +13,77 @@ function MiddleIntro() {
 
   return (
   <div className="Middle-Contents">
+    <div className="animated-number">
+      <AnimatedNumber
+        value={2318564}
+        style={{
+          fontSize: 100
+        }}
+        duration={1000}
+        formatValue={(n) => n.toFixed(0)}
+        frameStyle={(percentage) =>
+        percentage > 20 && percentage < 80 ? { opacity: 0.5 } : {}
+        }
+      />
 
-    <div className="text-animation-container">
-      <Typical
-        steps={[
-          '2,672,340', 1500, 
-          '2021 전국 초등학교 학생 수.', 2100
-        ]}
-        loop={Infinity}
-        wrapper="p"
+      <AnimatedNumber
+        value={5163854}
+        style={{
+          fontSize: 100
+        }}
+        duration={1000}
+        formatValue={(n) => n.toFixed(0)}
+        frameStyle={(percentage) =>
+        percentage > 20 && percentage < 80 ? { opacity: 0.5 } : {}
+        }
       />
-      <Typical
-        steps={[
-          '2015, 2024', 1500, 
-          '초등학생 대상 코딩, AI교육 교과과정 도입 시기', 800
-        ]}
-        loop={Infinity}
-        wrapper="p"
+
+      <AnimatedNumber
+        value={3}
+        style={{
+          fontSize: 100
+        }}
+        duration={1000}
+        formatValue={(n) => n.toFixed(0)}
+        frameStyle={(percentage) =>
+        percentage > 20 && percentage < 80 ? { opacity: 0.5 } : {}
+        }
       />
+      
     </div>
+
+    <div className="animated-number-alt">
+      <span>문제/게임</span>
+      <span>문법</span>
+      <span>문법</span>
+    </div>
+
+    <div className="animated-number-alt2">
+      <span>설명설명설명설명설명설명설명설명설명</span>
+      <span>설명설명설명설명설명설명설명설명설명</span>
+      <span>문법설명설명설명설명설명설명설명설명</span>
+    </div>
+
+    {/* <div className="text-animation-container">
+      <h1>안녕하세요, </h1>
+      <Typical
+        steps={[
+          '2,672,340명의 학생을 위한', 1500,
+          '이해하기 쉬운', 1500,
+          '누리입니다.', 5000
+        ]}
+        loop={Infinity}
+        wrapper="p"
+      />
+    </div> */}
+
     <div className="scroll-animation-container">
 
     </div>
 
     <div className="image-container">
       <Fade left>
-        <img src={Img + '/img/nurirang_carousel1.png'} alt="block code"/>
+        <img src={Img + '/img/blockCode.png'} alt="block code"/>
       </Fade>
       <Zoom bottom>
         <img src={Img + '/img/nuriCode.PNG'} alt="korean code"/>
