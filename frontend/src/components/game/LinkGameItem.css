@@ -1,6 +1,6 @@
 .LinkGameItem {
   width: 18vw;
-  height: 15vw;
+  height: 18vh;
   min-width: 60px;
   min-height: 40px;
   border-radius: 15px;
@@ -10,7 +10,7 @@
 
 .LinkGameItem-on {
   width: 18vw;
-  height: 15vw;
+  height: 18vh;
   min-width: 60px;
   min-height: 40px;
   border-radius: 15px;
@@ -29,6 +29,7 @@
   align-items: center;
   border-radius: 15px;
   border-style: solid;
+  border-color: #FFD644;
 }
 
 .front {

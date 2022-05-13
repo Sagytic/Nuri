@@ -38,8 +38,8 @@ function Timer({ data, timerStart, timerEnd }) {
 
   return (
     <div className="Timer">
-      <h1 className="Timer-header">{data.title}</h1>
-      <h1 className="Timer-header">{minute} 분 {sec} 초 {milliSec}</h1>
+      <div className="Timer-header">{data.title}</div>
+      <div className="Timer-header">{minute} 분 {sec} 초 {milliSec}</div>
     </div>
   )
 };

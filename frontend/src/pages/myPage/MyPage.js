@@ -229,8 +229,12 @@ function MyPage() {
   }
   
   useEffect(() => {
-    console.log("회원 정보", userNickname);
-  }, [userNickname, userPhoto, codeIdx])
+    setNickname(userNickname);
+    setBackImgSrc(defaultBackImgSrc);
+    setProfileImgSrc(defaultProfileImgSrc);
+    setTempImg(defaultProfileImgSrc);
+    setTempBackImg(defaultBackImgSrc);
+  }, [userNickname, codeIdx, defaultBackImgSrc, defaultProfileImgSrc])
   
   return (
     <div className="MyPage">
