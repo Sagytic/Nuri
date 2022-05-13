@@ -23,6 +23,25 @@
   color: red;
 }
 
+.animated-number{
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.animated-number-alt{
+  display: flex;
+  justify-content: space-evenly;
+  font-weight: bold;
+  font-size: 2rem;
+}
+
+.animated-number-alt2{
+  display: flex;
+  justify-content: space-evenly;
+  font-weight: bold;
+  font-size: 1rem;
+}
+
 .Middle-Contents .text-animation-container h2, h3{
   display: inline;
   justify-content: space-around;
@@ -34,14 +53,23 @@
   font-size: 50px;
 }
 
+.Middle-Contents .image-container{
+  margin-top: 5%;
+}
+
 .Middle-Contents .image-container img {
-  width: 25%;
+  width: 20%;
   height: 370px;
+  box-shadow: 2px 2px 4px grey;
+  border-radius: 20px;
+  
 }
 
 .Middle-Contents .code-alt-container {
   display: flex;
-  justify-content: space-around;
+  justify-content: space-evenly;
+  left: 45%;
+  text-align: center;
   font-weight: bold;
   font-size: 20px;
 }

@@ -4,6 +4,7 @@ import "./ToTopBtn.css"
 
 const ToTop = () => {
   const [showButton, setShowButton] = useState(false);
+  const Img = process.env.PUBLIC_URL
 
   useEffect(() => {
     window.addEventListener("scroll", () => {
@@ -26,7 +27,7 @@ const ToTop = () => {
     <>
       {showButton && (
         <button onClick={scrollToTop} className="back-to-top">
-          임시TOP
+          <img src={Img + '/img/rocket.png'} alt="toTop rocket"/>
         </button>
       )}
     </>

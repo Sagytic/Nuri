@@ -16,7 +16,8 @@ function Reference() {
   const location = useLocation();
   let PathStep = 0;
   PathStep = location.state ? location.state.PathStep : 0
-  console.log(location.state);
+  
+
   return (
   <div className="Reference-Container">
     <RefSidebar />

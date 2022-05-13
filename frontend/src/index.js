@@ -17,7 +17,8 @@ import MyPage from './pages/myPage/MyPage'
 import SignUp from './pages/user/SignUp'
 import Login from './pages/user/Login'
 import Ide from './pages/ide/Ide'
-//import LinkGame from './components/game/LinkGame';
+import Wrong from './components/game/WrongFindGame'
+import LogProblem from './components/problem/logProblem';
 import UpDown from './components/game/UpDown';
 import Wrong from './components/game/WrongFindGame'
 import TGame from './components/game/TGame'
@@ -45,6 +46,7 @@ root.render(
         <Route path="updown" element={<UpDown />}></Route>
         <Route path="wrong" element={<Wrong />}></Route>
         <Route path="TGame" element={<TGame />}></Route>
+        <Route path="log-problem" element={<LogProblem />}></Route>
       </Route>
     </Routes>
   </BrowserRouter>
