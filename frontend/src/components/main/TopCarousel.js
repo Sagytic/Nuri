@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Link } from "react-router-dom"
 import Slider from "react-slick"
 import "slick-carousel/slick/slick.css"; 
 import "slick-carousel/slick/slick-theme.css";
@@ -30,7 +31,9 @@ export default class SimpleSlider extends Component {
               <p>문법을 각 카테고리 별로 보기 쉽게,</p>
               <p>예시 코드로 이해하기 쉽게</p>
               <p>누리 문법을 공부해 보세요</p>
-              <button className="carousel-btn">살펴보기</button>
+              <button className="carousel-btn">
+                <Link to='/reference' state={{PathStep:0}}>살펴보기</Link>
+              </button>
             </div>
               <img src={Img + 'img/nurirang_carousel1.png'} alt="carousel1" />
           </div>
@@ -40,7 +43,9 @@ export default class SimpleSlider extends Component {
               <p>다양한 게임을 통해 </p>
               <p>학습하고, 즐기며 </p>
               <p>친해지는 시간을 가져보세요!</p>
-              <button className="carousel-btn">살펴보기</button>
+              <button className="carousel-btn">
+                <Link to='/game'>살펴보기</Link>
+              </button>
             </div>
               <img src={Img + 'img/nurirang_carousel1.png'} alt="carousel1" />
           </div>
@@ -50,7 +55,9 @@ export default class SimpleSlider extends Component {
               <p>x = -b +-(b^2-4ac)/2 .....?</p>
               <p>이제 코딩을 통해</p>
               <p>컴퓨터로 풀어보세요!</p>
-              <button className="carousel-btn">살펴보기</button>
+              <button className="carousel-btn">
+                <Link to='/math'>살펴보기</Link>
+              </button>
             </div>
               <img src={Img + 'img/nurirang_carousel1.png'} alt="carousel1" />
           </div>

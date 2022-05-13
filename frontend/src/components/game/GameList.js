@@ -9,7 +9,7 @@ import { AiFillEye, AiOutlineForward } from 'react-icons/ai';
 import "./GameList.css"
 
 export default function GameListCard() {
-  const testImg = process.env.PUBLIC_URL + "/logo192.png"
+  const testImg = process.env.PUBLIC_URL + "img/nurirang_carousel1.jpg"
   return (
     <div className="GameList-Container">
       <div className="Card-Contents">
