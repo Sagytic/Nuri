@@ -33,6 +33,7 @@ function Record({ allCodeData, codeIdx, setCodeIdx }) {
   ]
 
   function changeCodeData(idx) {
+    window.scrollTo({top: 0})
     setCodeIdx(idx);
   }
 
