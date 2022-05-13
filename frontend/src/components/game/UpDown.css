@@ -1,0 +1,71 @@
+textarea {
+    width: 500px;
+    height: 100px;
+    /*   resize:none; */
+    /*   resize: horizontal; */
+    resize: vertical;
+}
+
+.ide-contents {
+    padding-top: 40px;
+    position: relative;
+}
+
+.Updown-game-image {
+    position: relative;
+    width: 400px;
+}
+
+img{
+    width: 100%;
+    height: auto;
+}
+
+#answer1{
+    position: absolute;
+    width: 18%;
+    top: 15%;
+    left: 25%;
+}
+
+#answer2{
+    position: absolute;
+    width: 12%;
+    top: 19%;
+    left: 73%;
+}
+
+#answer3 {
+    position: absolute;
+    width: 19%;
+    top: 29%;
+    left: 58%;
+}
+
+#answer4 {
+    position: absolute;
+    width: 15%;
+    top: 36%;
+    left: 33%;
+}
+
+#answer5 {
+    position: absolute;
+    width: 4%;
+    top: 43%;
+    left: 60%;
+}
+
+#answer6 {
+    position: absolute;
+    width: 17%;
+    top: 50%;
+    left: 40%;
+}
+
+#answer7 {
+    position: absolute;
+    width: 17%;
+    top: 61%;
+    left: 40%;
+}
