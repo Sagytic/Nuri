@@ -33,19 +33,19 @@ function Intro() {
 
   const content1 = {
     text: '한글 코드와 동시에 Java, Python, C 등의 언어도 학습할 수 있습니다.',
-    img: ["/img/mascot.PNG", "/img/mascot.PNG"],
+    img: ["/img/yahoogaji.PNG", "/img/yahoogaji.PNG"],
     imgW: "48%",
   }
 
   const content2 = {
     text: '누리 문법을 학습하고, 게임과 수학 문제를 통해 쉽게 코딩을 배울 수 있습니다',
-    img: ["/img/mascot.PNG", "/img/mascot.PNG", "/img/mascot.PNG"],
+    img: ["/img/yahoogaji.PNG", "/img/yahoogaji.PNG", "/img/yahoogaji.PNG"],
     imgW: "32%",
   }
 
   const mascot = {
     name: "누리랑",
-    img: "/img/mascot.PNG",
+    img: "/img/yahoogaji.PNG",
   }
 
   return (
