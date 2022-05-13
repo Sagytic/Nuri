@@ -1,6 +1,6 @@
 import java.util.Scanner;
 
-public class MyClass {
+public class test {
     public static void main(String []args){
         int currentNumber = 0;
         int userCount = 0;
