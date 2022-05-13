@@ -6,10 +6,14 @@ import CardMedia from '@mui/material/CardMedia';
 import Button from '@mui/material/Button';
 // import Typography from '@mui/material/Typography';
 import { AiFillEye, AiOutlineForward } from 'react-icons/ai';
+import { useNavigate } from "react-router-dom";
 import "./GameList.css"
 
 export default function GameListCard() {
-  const testImg = process.env.PUBLIC_URL + "/logo192.png"
+
+  const testImg = process.env.PUBLIC_URL + "img/nurirang_carousel1.jpg"
+  const navigate = useNavigate();
+
   return (
     <div className="GameList-Container">
       <div className="Card-Contents">
@@ -26,7 +30,7 @@ export default function GameListCard() {
             </Typography>
           </CardContent> */}
           <CardActions>
-            <Button size="small">업다운 게임 <AiOutlineForward /></Button>
+            <Button size="small" onClick={() => { navigate("/game/2") }}>업다운 게임 <AiOutlineForward /></Button>
             <span><AiFillEye />14</span>
           </CardActions>
         </Card>
@@ -40,7 +44,7 @@ export default function GameListCard() {
             image={testImg}
           />
           <CardActions>
-            <Button size="small">연결 게임 <AiOutlineForward /></Button>
+            <Button size="small" onClick={() => { navigate("/game/0") }}>연결 게임 <AiOutlineForward /></Button>
             <span><AiFillEye />1532</span>
           </CardActions>
         </Card>

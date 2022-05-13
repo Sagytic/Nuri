@@ -48,24 +48,10 @@ function RefSidebar() {
           <ListSubheader>코드 작성 방법</ListSubheader>
         </ul>
         <ul>
-          <ListSubheader>직접 작성하러 가기</ListSubheader>
+        <Link to='/ide'><ListSubheader>직접 작성하러 가기</ListSubheader></Link>
         </ul>
       </li>
-        {/* {headItem.map((sectionId) => (
 
-          <li key={`${sectionId}`}>
-            <ul>
-              <ListSubheader>{`${sectionId}`}</ListSubheader>
-              {
-              subItem.map((item) => (
-                <ListItem key={`item-${subItem[item]}`}>
-                  <ListItemText primary={`${item}, ${sectionId}`} />
-                </ListItem>
-              ))
-              }
-            </ul>
-          </li>
-        ))} */}
       </List>
     </div>
   );

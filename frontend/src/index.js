@@ -11,6 +11,7 @@ import Main from './pages/main/Main'
 import Intro from './pages/intro/Intro'
 import Math from './pages/math/Math'
 import Game from './pages/game/Game'
+import GameItem from './pages/game/GameItem'
 import Reference from './pages/reference/Reference'
 import MyPage from './pages/myPage/MyPage'
 import SignUp from './pages/user/SignUp'
@@ -18,7 +19,8 @@ import Login from './pages/user/Login'
 import Ide from './pages/ide/Ide'
 import Wrong from './components/game/WrongFindGame'
 import LogProblem from './components/problem/logProblem';
-// 
+import UpDown from './components/game/UpDown';
+
 
 const root = ReactDOM.createRoot(
   document.getElementById('root')
@@ -33,14 +35,14 @@ root.render(
         <Route path="math" element={<Math />}>
           {/* <Route path="/:id" element={<Math />} /> */}
         </Route>
-        <Route path="game" element={<Game />}>
-          {/* <Route path="/:id" element={<Game />} /> */}
-        </Route>
+        <Route path="game" element={<Game />}></Route>
+        <Route path="game/:id" element={<GameItem />}></Route>
         <Route path="reference" element={<Reference />}></Route>
-        <Route path="mypage/:id" element={<MyPage />}></Route>
+        <Route path="mypage" element={<MyPage />}></Route>
         <Route path="user/signup" element={<SignUp />}></Route>
         <Route path="user/login" element={<Login />}></Route>
         <Route path="ide" element={<Ide />}></Route>
+        <Route path="updown" element={<UpDown />}></Route>
         <Route path="wrong" element={<Wrong />}></Route>
         <Route path="log-problem" element={<LogProblem />}></Route>
       </Route>
