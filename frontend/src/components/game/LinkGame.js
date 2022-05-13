@@ -1,9 +1,8 @@
-import React, { useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import "./LinkGame.css";
-import styled from "@emotion/styled";
+import LinkGameItem from "./LinkGameItem";
 
-function LinkGame() {
-
+function LinkGame({ start, finishGame }) {
   const pairArray = [
     {id: 0, pair: 0, title: "정수"},
     {id: 1, pair: 0, title: "int"},
@@ -13,69 +12,93 @@ function LinkGame() {
     {id: 5, pair: 2, title: "max"},
     {id: 6, pair: 3, title: "최소"},
     {id: 7, pair: 3, title: "min"},
+    {id: 8, pair: 4, title: "구간반복"},
+    {id: 9, pair: 4, title: "for"},
+    {id: 10, pair: 5, title: "조건반복"},
+    {id: 11, pair: 5, title: "while"},
+    {id: 12, pair: 6, title: "만약 / 아니면"},
+    {id: 13, pair: 6, title: "if / else"},
+    {id: 14, pair: 7, title: "무작위"},
+    {id: 15, pair: 7, title: "random"},
   ]
 
-  const [check, setCheck] = useState([]);
-  const [wordShow, setWordShow] = useState([false, false, false, false, false, false, false, false]);
+  
+  const [selected, setSelected] = useState(new Array(16).fill(false));
+  const [gameArray, setGameArray] = useState(pairArray);
+  const count = useRef(0);
+  const beforeId = useRef(-1);
+  const beforePair = useRef(-1);
 
-  const LinkItem = styled.div`
-    width: 15vw;
-    height: 15vw;
-    border-radius: 15px;
-    border-style: solid;
-    border-color: black;
-    color: ${props => props.show ? "black" : "white"};
-    text-align: center;
-    &:hover {
-      cursor: pointer;
-      border-color: gray;
-    }
-  `
+  function selectCard(card) {
+    count.current += 1
 
-  function checkPair() {
-    const idx1 = check[0]
-    const idx2 = check[1]
-    const checkWordShow = [...wordShow];
-
-    if (pairArray[idx1].pair === pairArray[idx2].pair) {
-      checkWordShow[idx1] = true;
-      checkWordShow[idx2] = true;
-    } else {
-      checkWordShow[idx1] = false;
-      checkWordShow[idx2] = false;
+    if (count.current > 2) {
+      // 빠르게 3개를 연속으로 누르면 setTimeout 함수가 실행되기 전에 뒤집어지는 문제가 발생
+      // 따라서 count.current 가 2보다 크면 동작하지 않게 제어
+      return
     }
 
-    setWordShow(checkWordShow);
-    setCheck([]);
-  }
-
-  function changeShow(id) {
-    if (!wordShow[id]) {
-      const newWordShow = [...wordShow];
-      newWordShow[id] = true;
-      setWordShow(newWordShow);
-      setCheck(check.concat(id));
+    if (count.current === 1) {
+      beforeId.current = card.id
+      beforePair.current = card.pair
     }
+
+    const newSelected = selected.map((ele, idx) => {
+      if (idx === card.id || ele) {
+        return true
+      } else {
+        return false
+      }
+    })
+    setSelected(newSelected);
+
+    if (count.current === 2) {
+      setTimeout(() => {
+        if (beforePair.current !== card.pair) {
+          const newSelected = selected.map((ele, idx) => {
+            if (idx === card.id || idx === beforeId.current) {
+              return false
+            } else {
+              return ele
+            }
+          })
+          setSelected(newSelected);
+        }
+        count.current = 0
+        beforePair.current = -1
+        beforeId.current = -1
+      }, 500)
+    }
+
+    const allSelected = newSelected.every((ele) => { return ele })
+    if (allSelected) {
+      finishGame();
+    }
+  } 
+
+  function newGame() {
+    setGameArray(pairArray.sort(() => 0.5 - Math.random()));
+    setSelected(new Array(16).fill(false));
+    count.current = 0
+    beforePair.current = -1
+    beforeId.current = -1
   }
 
-  if (check.length === 2) {
-    checkPair()
-  }
+  useEffect(() => {
+    newGame();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [start])
 
   return (
     <div className="LinkGame">
-      <h1>연결게임입니다</h1>
       <ul className="LinkGame-card-group">
-        {pairArray.map((pairEle) => {
-          return (
-          <LinkItem 
-            key={pairEle.id} 
-            show={wordShow[pairEle.id]}
-            onClick={() => changeShow(pairEle.id)}
-          >
-              {pairEle.title}
-          </LinkItem>
-          )
+        {gameArray.map((pairEle) => {
+          return <LinkGameItem 
+          key={pairEle.id} 
+          value={pairEle} 
+          selectCard={selectCard}
+          selected={selected}
+          />
         })}
       </ul>
     </div>

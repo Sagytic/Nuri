@@ -13,9 +13,7 @@ function Nav({ userNickname }) {
   }
 
   function moveMypage() {
-    navigate("/mypage/0");
-    // localStorage.removeItem("jwt");
-    // navigate(0);
+    navigate("/mypage");
   }
 
   function resizeHandler() {
