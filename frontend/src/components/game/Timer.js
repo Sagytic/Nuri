@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useRef } from "react";
 import "./Timer.css";
 
-function Timer({ data, timerStart, timerEnd }) {
+function Timer({ setTime, data, timerStart, timerEnd }) {
 
   const [minute, setMinute] = useState(0);
   const [sec, setSec] = useState(0);
@@ -19,15 +19,16 @@ function Timer({ data, timerStart, timerEnd }) {
         setMinute(newMin);
         setSec(newSec);
         setMilliSec(newMilli);
+        setTime(unit.current / 100);
       }, 10);
       return () => clearInterval(timer.current);
     } else {
       unit.current = 0
     }
-  }, [timerStart]);
+  }, [timerStart, setTime]);
 
   useEffect(() => {
-    if (unit.current >= 60000) {
+    if (unit.current >= 30000) {
       clearInterval(timer.current)
     }
   }, [milliSec])
