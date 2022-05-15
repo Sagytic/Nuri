@@ -42,7 +42,7 @@ function TGame() {
         }
         console.log(javaCode);
         axios
-            .post(API_Judge_URL + '/submissions?base64_encoded=true&wait=true',
+            .post(API_Judge_URL + '/submissions?base64_encoded=false&wait=false.',
                 data,
                 {
                     Headers: {
