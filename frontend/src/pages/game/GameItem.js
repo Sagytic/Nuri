@@ -21,7 +21,10 @@ function GameItem() {
       id: 1, 
       title: "틀린 부분 찾기 게임", 
       img: "/img/nurirang_carousel1.JPG", 
-      content: "누리 코드를 보고 자바 코드에서 틀린 부분을 찾아주세요!" 
+      content: `
+      5개 과목에 점수를 입력 받아 평균을 구하고 평균에 따라 우수, 부족을 출력하는 코드 입니다
+      누리 코드를 보고 자바 코드에서 틀린 부분을 찾아주세요!"`
+      
     },
     {
       id: 2, 
@@ -84,7 +87,7 @@ function GameItem() {
       }
       <Timer data={explainData[params]} timerStart={timerStart} timerEnd={timerEnd} />
       {params === "0" && <LinkGame start={start} finishGame={finishGame} />}
-      {params === "1" && <WrongFindGame />}
+      {params === "1" && <WrongFindGame start={start} finishGame={finishGame}/>}
       {params === "2" && <UpDown start={start} finishGame={finishGame} />}
     </div>
   )
