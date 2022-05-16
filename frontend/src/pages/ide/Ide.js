@@ -1,11 +1,10 @@
 import React, { useState } from "react";
 import axios from 'axios';
 import server from "../../API/server";
-import "./Ide.css"
 import Editor from "@monaco-editor/react";
-import { ToggleButton } from "@mui/material";
-import {  } from "@mui/system";
 import { AiOutlineCopy } from "react-icons/ai";
+import { BiSave } from "react-icons/bi";
+import "./Ide.css"
 
 function Ide() {
     const API_BASE_URL = server.BASE_URL;
@@ -30,7 +29,6 @@ function Ide() {
     }
 
     function run() {
-        console.log(input);
         var encodeNuriCode = encode(javaCode);
         var encodeInput = encode(input);
         var data = {
@@ -41,7 +39,6 @@ function Ide() {
             command_line_arguments: "",
             redirect_stderr_to_stdout: true
         }
-        console.log(javaCode);
         axios
             .post(API_Judge_URL + '/submissions?base64_encoded=true&wait=true',
                 data,
@@ -56,8 +53,6 @@ function Ide() {
                 setResult(decode(res.data.stdout));
             })
     }
-
-    const copyToCode = "";
 
     function nuriCodeHandler(e) {
         window.copyToCode = e;
@@ -85,8 +80,7 @@ function Ide() {
     }
 
     function toggleClick(){
-        setToggle((prev) => !prev);
-        console.log(toggle);
+        setToggle(!toggle);
         if(toggle){
             setTheme("vs-dark");
         }else{
@@ -99,59 +93,77 @@ function Ide() {
     }
     
     return (
-        <div className="ide-contents">
-            <div className="CopyBtn">
-                <button onClick={copy}><AiOutlineCopy size="40"/></button>
+        <div className="Ide">
+            <div className="Ide-item">
+                <div className="Ide-item-header">
+                    <div style={{ textDecoration: "underLine 5px"}}>누리 코드</div>
+                    <div className="Ide-item-button-group">
+                        <button 
+                            className={"Ide-theme-button " + (toggle ? "toggle-off" : "")} 
+                            onClick={() => toggleClick()}
+                        >
+                            {toggle ? "다크모드" : "일반모드"}
+                        </button>
+                        <AiOutlineCopy className="Ide-item-icon" size="30" onClick={() => copy()}/>
+                        <BiSave className="Ide-item-icon" size="30" />
+                        <button className="Ide-item-button" onClick={() => run()}>RUN</button>
+                    </div>
+                </div>
+                <div className={"Ide-item-content " + (toggle ? "" : "toggle-off")}>
+                    <Editor
+                        id="nuriCode"
+                        height="30vh"
+                        defaultLanguage="java"
+                        defaultValue=""
+                        theme={theme}
+                        value={nuriCode}
+                        onChange={nuriCodeHandler}
+                    />
+                </div>
             </div>
 
-            <div style={{marginLeft:"5%",}}>테마 설정</div>
-            <ToggleButton onClick={toggleClick} toggle={toggle} style={{marginLeft:"5%",}}>
-            </ToggleButton>
-            <h3>{toggle ? "OFF" : "ON"}</h3>
+            <div className="Ide-item">
+                <div className="Ide-item-header" style={{ textDecoration: "underLine 5px"}}>자바 코드</div>
+                <div className={"Ide-item-content " + (toggle ? "" : "toggle-off")}>
+                    <Editor
+                        id="javaCode"
+                        height="30vh"
+                        defaultLanguage="java"
+                        defaultValue=""
+                        theme={theme}
+                        value={javaCode}
+                    />
+                </div>
+            </div>
 
-            <div>누리 코드</div>
-            <Editor
-                id="nuriCode"
-                height="30vh"
-                defaultLanguage="java"
-                defaultValue=""
-                theme={theme}
-                value={nuriCode}
-                onChange={nuriCodeHandler}
-            />
+            <div className="Ide-item">
+            <div className="Ide-item-header" style={{ textDecoration: "underLine 5px"}}>입력 값</div>
+                <div className={"Ide-item-content " + (toggle ? "" : "toggle-off")}>
+                    <Editor
+                        id="input"
+                        height="30vh"
+                        defaultLanguage="java"
+                        defaultValue=""
+                        theme={theme}
+                        value={input}
+                        onChange={inputValueHandler}
+                    />
+                </div>
+            </div>
 
-            <div>자바 코드</div>
-            <Editor
-                id="javaCode"
-                height="30vh"
-                defaultLanguage="java"
-                defaultValue=""
-                theme={theme}
-                value={javaCode}
-            />
-
-            <div>입력 값</div>
-            <Editor
-                id="input"
-                height="30vh"
-                defaultLanguage="java"
-                defaultValue=""
-                theme={theme}
-                value={input}
-                onChange={inputValueHandler}
-            />
-
-            <div><button onClick={run}>RUN</button></div>
-            <div>결과</div>
-            <Editor
-                id="result"
-                height="30vh"
-                defaultLanguage="java"
-                defaultValue=""
-                theme={theme}
-                value={result}
-            />
-
+            <div className="Ide-item">
+                <div className="Ide-item-header" style={{ textDecoration: "underLine 5px"}}>실행 결과</div>
+                <div className={"Ide-item-content " + (toggle ? "" : "toggle-off")}>
+                    <Editor
+                        id="result"
+                        height="30vh"
+                        defaultLanguage="java"
+                        defaultValue=""
+                        theme={theme}
+                        value={result}
+                    />
+                </div>
+            </div>
         </div>
     );
 }

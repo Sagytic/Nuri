@@ -21,11 +21,6 @@ function AllGameList() {
             height="140"
             image={Img+"updowngamethumbnail.PNG"}
           />
-          {/* <CardContent>
-            <Typography gutterBottom variant="h5" component="div">
-              업다운 게임
-            </Typography>
-          </CardContent> */}
           <CardActions>
             <Button size="small" onClick={() => { navigate("/game/2") }}>업다운 게임 <AiOutlineForward /></Button>
               <div style={{display: "flex", alignItems: "center"}}>

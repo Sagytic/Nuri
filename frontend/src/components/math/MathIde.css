@@ -2,6 +2,7 @@
   box-sizing: border-box;
   width: 48%;
   height: 45vh;
+  min-height: 300px;
 }
 
 .MathIde-item-header {
@@ -10,6 +11,16 @@
   margin: 15px 0px 15px 15px;
   font-size: 20px;
   font-weight: bold;
+}
+
+.MathIde-item-button-group {
+  display: flex;
+  width: 180px;
+  justify-content: space-between;
+}
+
+.MathIde-item-icon {
+  cursor: pointer;
 }
 
 .MathIde-item-content {
