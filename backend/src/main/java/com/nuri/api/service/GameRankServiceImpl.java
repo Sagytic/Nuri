@@ -46,7 +46,7 @@ public class GameRankServiceImpl implements GameRankService{
         gamerank.setMathgame(mathgame);
 
         List<GameRank> gamerankList = gameRankRepository.findByMathGameId(gamerankSavePostReq.getMathgameId());
-        if(gamerankList.size()<10){
+        if(gamerankList.size()<5){
             GameRank existgamerank = gameRankRepository.findByUserId(user.getUserId());
             if(existgamerank!=null){
                 gameRankRepository.delete(existgamerank);
