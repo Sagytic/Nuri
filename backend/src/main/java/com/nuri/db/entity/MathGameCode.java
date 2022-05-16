@@ -27,7 +27,7 @@ public class MathGameCode {
     @JoinColumn(name="mathgame_id", nullable = false)
     @JsonBackReference
     MathGame mathgame;
-    @Column(name="code", nullable = false, length = 5000)
+    @Column(name="code", length = 5000)
     String code;
     @Column(name="status", nullable = false)
     int status;
