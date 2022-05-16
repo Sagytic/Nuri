@@ -20,6 +20,8 @@ import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 import springfox.documentation.annotations.ApiIgnore;
 import java.util.List;
+import java.util.Random;
+import java.util.Scanner;
 
 
 @CrossOrigin(origins = "http://localhost:8081")
@@ -108,5 +110,59 @@ public class MathGameController {
             return ResponseEntity.status(200).body(BaseResponseBody.of(200, "Success"));
         }
         return ResponseEntity.status(500).body(BaseResponseBody.of(500, "Error"));
+    }
+
+    @GetMapping("/Tgame")
+    @ApiOperation(value = "31게임")
+    @ApiResponses({
+            @ApiResponse(code = 200, message = "성공"),
+            @ApiResponse(code = 401, message = "인증 실패"),
+            @ApiResponse(code = 404, message = "사용자 없음"),
+            @ApiResponse(code = 500, message = "서버 오류")
+    })
+    public <dict> String Tgame(int count, int uNum){
+        Scanner sc = new Scanner(System.in);
+        Random r = new Random();
+        System.out.println("<<< Game Start >>>");
+//        int count = 0;
+        String answer = "";
+        System.out.println("<< your Turn >>");
+        System.out.print("Input Number(1~3) : ");
+//          int uNum = 2;
+        for (int i = 0; i < uNum; i++) {
+            count++;
+            if (count == 31) {
+                answer = "패배";
+                System.out.println("패배");
+                return answer;
+            } else {
+                answer = Integer.toString(count);
+                System.out.println((count) + "!");
+            }
+        }
+        if (count >= 31) {
+            answer = "패배";
+            System.out.println("패배");
+            return answer;
+        }
+        System.out.println("<< Computer Turn >>");
+        int cNum = r.nextInt(3) + 1;
+        for (int i = 0; i < cNum; i++) {
+            count++;
+            if (count == 31) {
+                System.out.println("승리");
+                answer = "승리";
+                return answer;
+            } else {
+                System.out.println((count) + "!");
+                answer = Integer.toString(count);
+            }
+        }
+        if (count >= 31) {
+            answer = "패배";
+            System.out.println("패배");
+            return answer;
+        }
+        return answer;
     }
 }

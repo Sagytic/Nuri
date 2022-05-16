@@ -88,6 +88,25 @@
   width: 64px;
 }
 
+.Nav-item-login {
+  width: 100px;
+  height: 40px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.Nav-profile-img {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.Nav-logout-button {
+  cursor: pointer;
+}
+
 .Nav-item-button {
   width: 100px;
   height: 40px;

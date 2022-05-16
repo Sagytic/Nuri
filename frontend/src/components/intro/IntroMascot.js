@@ -19,8 +19,8 @@ function IntroMascot({ content }) {
 
   const Img = styled.img`
     align-self: center;
-    width: 300px;
-    height: 300px;
+    width: 500px;
+    height: 500px;
   `
 
   return (

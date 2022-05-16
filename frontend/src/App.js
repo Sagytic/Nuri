@@ -29,7 +29,7 @@ function App() {
 
   return (
     <div className="App">
-      <Nav userNickname={userNickname} />
+      <Nav userNickname={userNickname} userPhoto={userPhoto} setUserNickname={setUserNickname} />
       <Outlet context={{ userNickname, userPhoto, userBackImg, setUserNickname, setUserPhoto, setUserBackImg }} />
 
       {/* <Scrollbar /> */}

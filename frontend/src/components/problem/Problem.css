@@ -1,10 +1,3 @@
-/* .content{
-    top:50%;
-    left:0;
-    width:100%;
-    height:50%;
-} */
-
 .problem {
     position:absolute;
     top:12%;
@@ -13,7 +6,6 @@
     bottom:50%;
     width: 30%;
     height: 40%;
-    /* background-color:black; */
     border-radius: 40px;
     border: 2px solid;
     color: black;
