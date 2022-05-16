@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import Profile from "../../components/mypage/Profile";
 import Record from "../../components/mypage/Record";
 import ChangeInfo from "../../components/mypage/ChangeInfo";
 import ChangeNickname from "../../components/mypage/ChangeNickname";
 import { useOutletContext } from "react-router-dom";
-import { UserInfo, ChangeUserNickname, ChangeUserPhoto, ChangeUserBackgroundImg } from "../../components/user/UserAxios";
+import { ChangeUserNickname, ChangeUserPhoto, ChangeUserBackgroundImg } from "../../components/user/UserAxios";
 import { CheckNickName } from "../../components/user/UserAxios";
-// import { UserInfo } from "../../components/user/UserAxios";
 import "./MyPage.css";
 
 function MyPage() {
@@ -107,6 +107,8 @@ function MyPage() {
       "views" : "10"
     },
   ]
+
+  const navigate = useNavigate();
 
   async function nickNameValidation() {
     const nickNameCheck = /^([a-zA-Z0-9ㄱ-ㅎ|ㅏ-ㅣ|가-힣]){2,20}$/;
@@ -229,12 +231,17 @@ function MyPage() {
   }
   
   useEffect(() => {
+    
+    if (localStorage.getItem("jwt") === null) {
+      navigate("/user/login");
+    }
+
     setNickname(userNickname);
     setBackImgSrc(defaultBackImgSrc);
     setProfileImgSrc(defaultProfileImgSrc);
     setTempImg(defaultProfileImgSrc);
     setTempBackImg(defaultBackImgSrc);
-  }, [userNickname, codeIdx, defaultBackImgSrc, defaultProfileImgSrc])
+  }, [navigate, userNickname, codeIdx, defaultBackImgSrc, defaultProfileImgSrc])
   
   return (
     <div className="MyPage">

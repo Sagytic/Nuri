@@ -9,6 +9,8 @@ const server = {
     checkNickName: "/api/v1/user/checkname",
     login: "/api/v1/user/login",
     userData: "/api/v1/user",
+    rank: "/api/v1/mathgame/rank",
+    tGameSetUp: "/api/v1/mathgame/Tgame",
   }
 
 }

@@ -49,7 +49,7 @@ export default function GameListCard() {
           </CardContent> */}
           <CardActions>
             {/* <Button size="small" onClick={[() => { navigate("/game/2") }, viewUPdate(1)]}>업다운 게임 <AiOutlineForward /></Button> */}
-            <Button size="small" onClick={() => { navigate("/game/2") }}>업다운 게임 <AiOutlineForward /></Button>
+            <Button size="small" onClick={() => { navigate("/game/3") }}>업다운 게임 <AiOutlineForward /></Button>
               <div style={{display: "flex", alignItems: "center"}}>
                 <AiFillEye size="15"/>
                 14
@@ -66,7 +66,7 @@ export default function GameListCard() {
             image={GameImg+"cardconnectgamethumbnail.PNG"}
           />
           <CardActions>
-            <Button size="small" onClick={() => { navigate("/game/0") }}>연결 게임 <AiOutlineForward /></Button>
+            <Button size="small" onClick={() => { navigate("/game/1") }}>연결 게임 <AiOutlineForward /></Button>
               <div style={{display: "flex", alignItems: "center"}}>
                 <AiFillEye size="15"/>
                 1532
