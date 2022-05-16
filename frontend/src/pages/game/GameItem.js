@@ -14,21 +14,21 @@ function GameItem() {
   const { userNickname } = useOutletContext();
   const explainData = [
     { 
-      id: 0, 
+      id: 100, 
       title: "연결 게임", 
-      img: "/img/nurirang_carousel1.JPG", 
+      img: "/img/cardconnectgamethumbnail.PNG", 
       content: "모든 짝이 맞게 카드를 뒤집어주세요!"
     },
     { 
-      id: 1, 
+      id: 102, 
       title: "틀린 부분 찾기 게임", 
       img: "/img/nurirang_carousel1.JPG", 
       content: "누리 코드를 보고 자바 코드에서 틀린 부분을 찾아주세요!" 
     },
     {
-      id: 2, 
+      id: 101, 
       title: "업다운 게임", 
-      img: "/img/nurirang_carousel1.JPG", 
+      img: "/img/updowngamethumbnail.PNG", 
       content: `
       정수인 숫자 1~100 사이 중에서 누리랑이 마음 속으로 정한 숫자를 10번 안에 맞춰봐!
       (단, 출력 결과에 UP, DOWN 여부와 숫자를 예측하는 과정을 보여줘야 성공할 수 있어)
@@ -55,7 +55,7 @@ function GameItem() {
     setTimerStart(false);
     setTimerEnd(true);
     setResultShow(true);
-    saveRank(parseInt(params), time);
+    saveRank(explainData[params].id, time);
   }
 
   function restartGame() {
@@ -130,9 +130,9 @@ function GameItem() {
         />
       }
       <Timer setTime={setTime} data={explainData[params]} timerStart={timerStart} timerEnd={timerEnd} />
-      {params === "1" && <LinkGame start={start} finishGame={finishGame} />}
-      {params === "2" && <WrongFindGame />}
-      {params === "3" && <UpDown start={start} finishGame={finishGame} />}
+      {params === "0" && <LinkGame start={start} finishGame={finishGame} />}
+      {params === "1" && <WrongFindGame />}
+      {params === "2" && <UpDown start={start} finishGame={finishGame} />}
     </div>
   )
 }

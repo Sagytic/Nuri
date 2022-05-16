@@ -38,7 +38,6 @@ function Result({ time, gameData, userNickname, rankData, restartGame, moveAllGa
             )
           })}
         </ul>
-        <div>{rankIdx}</div>
         <div className="Result-button-group">
           <button className="Result-button" onClick={() => moveAllGames()}>다른 게임 하기</button>
           <button className="Result-button" onClick={() => restartGame()}>다시하기</button>
