@@ -183,7 +183,7 @@ public class UserController {
 
 	}
 
-	@GetMapping("/completed")
+	@GetMapping("/completed_game")
 	@ApiOperation(value = "게임 풀이가 완료된 목록")
 	@ApiResponses({
 			@ApiResponse(code = 200, message = "성공"),
@@ -199,7 +199,7 @@ public class UserController {
 		return ResponseEntity.status(200).body(mathGameCodeList);
 	}
 
-	@GetMapping("/viewed")
+	@GetMapping("/viewed_game")
 	@ApiOperation(value = "게임을 도전한 목록")
 	@ApiResponses({
 			@ApiResponse(code = 200, message = "성공"),
@@ -212,6 +212,38 @@ public class UserController {
 		String userEmail = userDetails.getUsername();
 		User user = userService.getUserByUserEmail(userEmail);
 		List<MathGameCode> mathGameCodeList = codeService.findViewedGame(user);
+		return ResponseEntity.status(200).body(mathGameCodeList);
+	}
+
+	@GetMapping("/completed_problem")
+	@ApiOperation(value = "수학 문제 풀이가 완료된 목록")
+	@ApiResponses({
+			@ApiResponse(code = 200, message = "성공"),
+			@ApiResponse(code = 401, message = "인증 실패"),
+			@ApiResponse(code = 404, message = "사용자 없음"),
+			@ApiResponse(code = 500, message = "서버 오류")
+	})
+	public ResponseEntity<List<MathGameCode>> completeProblem(@ApiIgnore Authentication authentication) {
+		NuriUserDetails userDetails = (NuriUserDetails)authentication.getDetails();
+		String userEmail = userDetails.getUsername();
+		User user = userService.getUserByUserEmail(userEmail);
+		List<MathGameCode> mathGameCodeList = codeService.findCompletedCode(user);
+		return ResponseEntity.status(200).body(mathGameCodeList);
+	}
+
+	@GetMapping("/viewed_problem")
+	@ApiOperation(value = "수학 문제를 도전한 목록")
+	@ApiResponses({
+			@ApiResponse(code = 200, message = "성공"),
+			@ApiResponse(code = 401, message = "인증 실패"),
+			@ApiResponse(code = 404, message = "사용자 없음"),
+			@ApiResponse(code = 500, message = "서버 오류")
+	})
+	public ResponseEntity<List<MathGameCode>> viewProblem(@ApiIgnore Authentication authentication) {
+		NuriUserDetails userDetails = (NuriUserDetails)authentication.getDetails();
+		String userEmail = userDetails.getUsername();
+		User user = userService.getUserByUserEmail(userEmail);
+		List<MathGameCode> mathGameCodeList = codeService.findViewedCode(user);
 		return ResponseEntity.status(200).body(mathGameCodeList);
 	}
 }

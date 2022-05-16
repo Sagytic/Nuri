@@ -9,11 +9,11 @@ import java.util.Date;
 
 @Getter
 @Setter
-@ApiModel("mathGameCodeSavePostReq")
-public class MathGameCodeSavePostReq {
+@ApiModel("mathCodeSavePostReq")
+public class MathCodeSavePostReq {
     Integer status;
     Long mathgameId;
+    String code;
     @ApiModelProperty(hidden=true)
     Date createdAt;
-
 }

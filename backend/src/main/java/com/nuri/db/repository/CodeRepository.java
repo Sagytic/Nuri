@@ -13,11 +13,17 @@ public interface CodeRepository extends JpaRepository<MathGameCode, Long> {
     @Query(value = "SELECT * from mathgamecode where user_id = 1 and mathgame_id = :id", nativeQuery = true)
     MathGameCode getAnswer(@Param("id") Long id);
 
-    @Query(value = "SELECT * from mathgamecode where user_id = :userId and status = 1", nativeQuery = true)
+    @Query(value = "SELECT * from mathgamecode where user_id = :userId and status = 1 and mathgame_id >= 100", nativeQuery = true)
     List<MathGameCode> findMathGameCompletedByUserId(@Param("userId") Long userId);
 
-    @Query(value = "SELECT * from mathgamecode where user_id = :userId and status = 0", nativeQuery = true)
+    @Query(value = "SELECT * from mathgamecode where user_id = :userId and status = 0 and mathgame_id >= 100", nativeQuery = true)
     List<MathGameCode> findMathGameViewedByUserId(@Param("userId") Long userId);
+
+    @Query(value = "SELECT * from mathgamecode where user_id = :userId and status = 1 and mathgame_id < 100", nativeQuery = true)
+    List<MathGameCode> findMathCompletedByUserId(@Param("userId") Long userId);
+
+    @Query(value = "SELECT * from mathgamecode where user_id = :userId and status = 0 and mathgame_id < 100", nativeQuery = true)
+    List<MathGameCode> findMathViewedByUserId(@Param("userId") Long userId);
 
     @Query(value = "SELECT * from mathgamecode where user_id = :userId and mathgame_id = :mathgameId", nativeQuery = true)
     MathGameCode findByMathGameIdAndUserId(@Param("userId") Long userId, @Param("mathgameId") Long mathgameId);
