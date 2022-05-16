@@ -6,6 +6,7 @@ const checkNickNameUrl = server.BASE_URL + server.ROUTES.checkNickName;
 const signupUrl = server.BASE_URL + server.ROUTES.signup;
 const loginUrl = server.BASE_URL + server.ROUTES.login;
 const userInfoUrl = server.BASE_URL + server.ROUTES.userData;
+const tGameUrl= server.BASE_URL + server.ROUTES.tGameSetUp;
 
 function CheckId(id) {
   const params = { userId: id };
@@ -69,4 +70,9 @@ function GetUserCode() {
   })
 }
 
-export { CheckId, CheckNickName, UserSignup, UserLogin, UserInfo, ChangeUserNickname, ChangeUserPhoto, ChangeUserBackgroundImg, GetUserCode };
+function TGameSetUp(count, uNum) {
+  const params = { count: count, uNum: uNum };
+  return axios.get(tGameUrl, { params });
+}
+
+export { CheckId, CheckNickName, UserSignup, UserLogin, UserInfo, ChangeUserNickname, ChangeUserPhoto, ChangeUserBackgroundImg, GetUserCode, TGameSetUp };
