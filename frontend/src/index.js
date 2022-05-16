@@ -17,7 +17,6 @@ import MyPage from './pages/myPage/MyPage'
 import SignUp from './pages/user/SignUp'
 import Login from './pages/user/Login'
 import Ide from './pages/ide/Ide'
-import WrongFindGame from './components/game/WrongFindGame'
 import TGame from './components/game/TGame'
 import MathItem from './pages/math/MathItem';
 
@@ -40,7 +39,6 @@ root.render(
         <Route path="user/signup" element={<SignUp />}></Route>
         <Route path="user/login" element={<Login />}></Route>
         <Route path="ide" element={<Ide />}></Route>
-        <Route path="wrong" element={<WrongFindGame />}></Route>
         <Route path="TGame" element={<TGame />}></Route>
       </Route>
     </Routes>

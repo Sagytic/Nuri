@@ -16,18 +16,20 @@ public class GameRankRes {
     Long mathgameId;
     Long userId;
     String userEmail;
+    String userNickname;
     double time;
 
-    public GameRankRes(Long gamerankId, Long mathgameId, Long userId, String userEmail, double time){
+    public GameRankRes(Long gamerankId, Long mathgameId, Long userId, String userEmail, String userNickname, double time){
         this.gamerankId = gamerankId;
         this.mathgameId = mathgameId;
         this.userId = userId;
         this.userEmail = userEmail;
+        this.userNickname = userNickname;
         this.time = time;
     }
 
     public static GameRankRes of(GameRank gamerank){
-        GameRankRes res = new GameRankRes(gamerank.getGamerankId(), gamerank.getMathgame().getMathgameId(), gamerank.getUser().getUserId(), gamerank.getUser().getUserEmail(), gamerank.getTime());
+        GameRankRes res = new GameRankRes(gamerank.getGamerankId(), gamerank.getMathgame().getMathgameId(), gamerank.getUser().getUserId(), gamerank.getUser().getUserEmail(), gamerank.getUser().getUserNickname(), gamerank.getTime());
         return res;
     }
 }
