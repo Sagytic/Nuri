@@ -1,19 +1,26 @@
 import { useState, useEffect } from 'react';
 import { NavLink, useNavigate } from 'react-router-dom';
-import { FiMenu } from 'react-icons/fi';
+import { FiMenu, FiLogOut } from 'react-icons/fi';
 import "./Nav.css"
 
-function Nav({ userNickname }) {
+function Nav({ userNickname, userPhoto, setUserNickname }) {
   const navigate = useNavigate();
+  const userPhotoSrc = userPhoto ? 'data:image/png;base64,' + userPhoto : process.env.PUBLIC_URL + "/img/yahoogaji.PNG"
   const [menuIconShow, setMenuIconShow] = useState(window.innerWidth <= 760 ? true : false);
   const [menuShow, setMenuShow] = useState(false);
 
   function moveLogin() {
-    navigate("/user/login")
+    navigate("/user/login");
   }
 
   function moveMypage() {
     navigate("/mypage");
+  }
+
+  function logout() {
+    localStorage.removeItem("jwt");
+    setUserNickname("");
+    navigate("/user/login");
   }
 
   function resizeHandler() {
@@ -33,7 +40,7 @@ function Nav({ userNickname }) {
     return function() {
       window.removeEventListener('resize', resizeHandler);
     }
-  }, [menuShow])
+  }, [menuShow, userNickname])
 
   return (
     <div className="Nav">
@@ -58,7 +65,11 @@ function Nav({ userNickname }) {
           <NavLink className="Nav-item" to="/math" >문제풀기</NavLink>
         </div>}
         {userNickname !== ""
-        ? <button className="Nav-item-button" onClick={() => moveMypage()}>{userNickname}</button>
+        ? 
+        <div className="Nav-item-login">
+          <img className="Nav-profile-img" onClick={() => moveMypage()} alt="프로필 이미지" src={userPhotoSrc} />
+          <FiLogOut className="Nav-logout-button" onClick={() => logout()} size="30px"/>
+        </div>
         : <button className="Nav-item-button" onClick={() => moveLogin()}>로그인</button>}
       </div>
     </div>

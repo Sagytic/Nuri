@@ -6,12 +6,10 @@ import Modal from 'react-modal';
 import gameSound from '../game/gameSound'
 import BGM from '../../audio/gameSound.mp3'
 
-function WrongFindGame({ start, finishGame }) {
+function WrongFindGame({ start, finishGame, time }) {
     const nuriCode = "/img/nuriCode.png"
     const javaCode = "/img/javaCode.png"
     const [cnt, setCnt] = useState(0);
-    const [modalState, setModalState] = useState(false);
-    const [failModal, setFailModal] = useState(false);
     const [q1, setQ1] = useState(false);
     const [q2, setQ2] = useState(false);
     const [q3, setQ3] = useState(false);
@@ -27,33 +25,14 @@ function WrongFindGame({ start, finishGame }) {
     const [ans3, setAns3] = useState(null);
     const [ans4, setAns4] = useState(null);
     const [ans5, setAns5] = useState(null);
-    const [min, setMin] = useState(0);
-    const [sec, setSec] = useState(0);
     const timer = useRef(null);
-    const time = useRef(0);
-    gameSound(BGM,1,2000);
+    // gameSound(BGM,1,2000);
 
 
     useEffect(() => {
         newGame();
       // eslint-disable-next-line react-hooks/exhaustive-deps
       }, [start])
-
-    useEffect(()=>{
-        timer.current=setInterval(()=>{
-            setMin(parseInt(time.current / 6000));
-            setSec(parseInt(time.current / 100) % 60);
-            time.current += 1;
-        },10)
-        return () => clearInterval(timer.current);
-    },[])
-
-    useEffect(()=>{
-        if(time.current >= 30000){
-            clearInterval(timer.current);
-            setFailModal(true);
-        }
-    })
 
     function newGame() {
         setCnt(0);
@@ -84,7 +63,6 @@ function WrongFindGame({ start, finishGame }) {
             setCheck1({display:'block'});
             setAns1({color:'red'});
             if(cnt === 4){
-                setModalState(true);
                 finishGame();
             }
         }
@@ -95,7 +73,6 @@ function WrongFindGame({ start, finishGame }) {
             setCheck2({display:'block'});
             setAns2({color:'red'});
             if(cnt === 4){
-                setModalState(true);
                 finishGame();
             }
         }
@@ -106,7 +83,6 @@ function WrongFindGame({ start, finishGame }) {
             setCheck3({display:'block'});
             setAns3({color:'red'});
             if(cnt === 4){
-                setModalState(true);
                 finishGame();
             }
         }
@@ -117,7 +93,6 @@ function WrongFindGame({ start, finishGame }) {
             setCheck4({display:'block'});
             setAns4({color:'red'});
             if(cnt === 4){
-                setModalState(true);
                 finishGame();
             }
         }
@@ -129,7 +104,6 @@ function WrongFindGame({ start, finishGame }) {
             setAns5({color:'red'});
             if(cnt === 4){
                 clearInterval(timer.current);
-                setModalState(true);
                 finishGame();
             }
         }
@@ -165,7 +139,7 @@ function WrongFindGame({ start, finishGame }) {
         </span>
         
         <div>
-            <Progress className="progressBar" percent={time.current / 300} status="success" style={{width:1200}}/>
+            <Progress className="progressBar" percent={time / 3} status="success" style={{width:1200}}/>
             <div>
                  <br></br>
                 <span className="res">

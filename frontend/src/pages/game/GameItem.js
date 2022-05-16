@@ -1,15 +1,17 @@
-import React, { useState } from "react";
-import { useParams, useNavigate } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { useOutletContext, useParams, useNavigate } from "react-router-dom";
 import Explain from "../../components/game/Explain";
 import Result from "../../components/game/Result";
 import Timer from "../../components/game/Timer";
 import LinkGame from "../../components/game/LinkGame";
 import WrongFindGame from "../../components/game/WrongFindGame";
 import UpDown from "../../components/game/UpDown";
+import { SaveRank, GetRank } from "../../components/game/GameAxios";
 import "./GameItem.css";
 
 function GameItem() {
 
+  const { userNickname } = useOutletContext();
   const explainData = [
     { 
       id: 0, 
@@ -40,10 +42,12 @@ function GameItem() {
   const params = useParams().id;
   const navigate = useNavigate();
   const [start, setStart] = useState(0);
+  const [time, setTime] = useState(0);
   const [timerStart, setTimerStart] = useState(false);
   const [timerEnd, setTimerEnd] = useState(false);
   const [explainShow, setExplainShow] = useState(true);
   const [resultShow, setResultShow] = useState(false);
+  const [rankData, setRankData] = useState([]);
 
   function startGame() {
     setTimerStart(true);
@@ -54,6 +58,7 @@ function GameItem() {
     setTimerStart(false);
     setTimerEnd(true);
     setResultShow(true);
+    saveRank(parseInt(params), time);
   }
 
   function restartGame() {
@@ -69,26 +74,69 @@ function GameItem() {
     setStart(0);
   }
 
+  function saveRank(mathgameId, time) {
+    const rankData = {
+      mathgameId: mathgameId,
+      time: time,
+    }
+    SaveRank(rankData)
+    .then(() => {
+      console.log("랭킹 저장 완료");
+    })
+    .then(() => {
+      getRank(mathgameId);
+    })
+    .catch(() => {
+      console.log("랭킹 저장 실패")
+    })
+  }
+
+  function getRank(mathgameId) {
+    GetRank(mathgameId)
+    .then((response) => {
+      console.log("랭킹 가져오기 완료", response.data);
+      if (response.data.length <= 5) {
+        const tempData = new Array(5 - response.data.length).fill({ userId: 0, userEmail: "----", time: 0 })
+        setRankData(response.data.concat(tempData));
+      } else {
+        setRankData(response.data);
+      }
+    })
+    .catch(() => {
+      console.log("랭킹 가져오기 실패");
+    })
+  }
+
+  useEffect(() => {
+    if (localStorage.getItem("jwt") === null) {
+      navigate("/user/login")
+    }
+  }, [navigate])
+
   return (
     <div className="GameItem">
       {explainShow && 
         <Explain 
-          data={explainData[params]}
+          data={explainData[params-1]}
           startGame={startGame}
           moveAllGames={moveAllGames}
         />
       }
       {resultShow && 
         <Result
-          data={explainData[params]}
+          time={time}
+          rankData={rankData}
+          userNickname={userNickname}
+          gameData={explainData[params-1]}
           restartGame={restartGame}
           moveAllGames={moveAllGames}
         />
       }
-      <Timer data={explainData[params]} timerStart={timerStart} timerEnd={timerEnd} />
-      {params === "0" && <LinkGame start={start} finishGame={finishGame} />}
-      {params === "1" && <WrongFindGame start={start} finishGame={finishGame}/>}
-      {params === "2" && <UpDown start={start} finishGame={finishGame} />}
+      <Timer setTime={setTime} data={explainData[params-1]} timerStart={timerStart} timerEnd={timerEnd} />
+      {params === "1" && <LinkGame start={start} finishGame={finishGame} />}
+      {params === "2" && <WrongFindGame start={start} finishGame={finishGame} time={time}/>}
+      {params === "3" && <UpDown start={start} finishGame={finishGame} />}
+
     </div>
   )
 }
