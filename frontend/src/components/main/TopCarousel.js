@@ -35,9 +35,9 @@ export default class SimpleSlider extends Component {
                 <Link to='/reference' state={{PathStep:0}}>살펴보기</Link>
               </button>
             </div>
-              <img src={Img + 'img/nurirang_carousel1.png'} alt="carousel1" />
+              <img src={Img + 'img/nurirang_carousel2.png'} alt="carousel1" />
           </div>
-          <div className="slides">
+          <div className="slides2">
             <div className="contents-text">
               <h2>코딩을 게임으로 배울 수 있다고?</h2>
               <p>다양한 게임을 통해 </p>
@@ -47,9 +47,9 @@ export default class SimpleSlider extends Component {
                 <Link to='/game'>살펴보기</Link>
               </button>
             </div>
-              <img src={Img + 'img/nurirang_carousel1.png'} alt="carousel1" />
+              <img src={Img + 'img/nurirang_carousel3.png'} alt="carousel2" />
           </div>
-          <div className="slides">
+          <div className="slides3">
             <div className="contents-text">
               <h2>귀찮게 손으로 풀 필요가 없다고?</h2>
               <p>x = -b +-(b^2-4ac)/2 .....?</p>
@@ -59,7 +59,7 @@ export default class SimpleSlider extends Component {
                 <Link to='/math'>살펴보기</Link>
               </button>
             </div>
-              <img src={Img + 'img/nurirang_carousel1.png'} alt="carousel1" />
+              <img src={Img + 'img/nurirang_carousel4.png'} alt="carousel3" />
           </div>
         </Slider>
       </div>

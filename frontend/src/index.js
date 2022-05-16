@@ -20,7 +20,6 @@ import Ide from './pages/ide/Ide'
 import Wrong from './components/game/WrongFindGame'
 import LogProblem from './components/problem/logProblem';
 import UpDown from './components/game/UpDown';
-import Wrong from './components/game/WrongFindGame'
 import TGame from './components/game/TGame'
 
 const root = ReactDOM.createRoot(
