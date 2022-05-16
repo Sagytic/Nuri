@@ -24,4 +24,10 @@ public class MathGameServiceImpl implements MathGameService{
         return updateMathGame.getViews();
     }
 
+    @Override
+    public List<MathGame> findMathGamebyId(Long mathGameId) {
+        return mathgameRepository.findMathGamebyId(mathGameId);
+    }
+
+
 }

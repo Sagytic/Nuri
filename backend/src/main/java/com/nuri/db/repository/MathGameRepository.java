@@ -15,6 +15,9 @@ public interface MathGameRepository extends JpaRepository<MathGame, Long> {
     @Query(value = "SELECT * from mathgame where type = :type", nativeQuery = true)
     List<MathGame> findMathGamebytype(@Param("type") int type);
 
+    @Query(value = "SELECT * from mathgame where mathgame_id = :mathgameId", nativeQuery = true)
+    List<MathGame> findMathGamebyId(@Param("mathgameId") Long mathgameId);
+
     @Transactional
     @Modifying
     @Query(value = "UPDATE mathgame set views = views + 1 where id = :id", nativeQuery = true)
