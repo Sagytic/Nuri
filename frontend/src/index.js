@@ -43,7 +43,6 @@ root.render(
         <Route path="user/login" element={<Login />}></Route>
         <Route path="ide" element={<Ide />}></Route>
         <Route path="updown" element={<UpDown />}></Route>
-        <Route path="wrong" element={<WrongFindGame />}></Route>
         <Route path="TGame" element={<TGame />}></Route>
         <Route path="log-problem" element={<LogProblem />}></Route>
       </Route>

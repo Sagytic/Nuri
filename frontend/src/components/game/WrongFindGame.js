@@ -6,12 +6,10 @@ import Modal from 'react-modal';
 import gameSound from '../game/gameSound'
 import BGM from '../../audio/gameSound.mp3'
 
-function WrongFindGame() {
+function WrongFindGame({ start, finishGame, time }) {
     const nuriCode = "/img/nuriCode.png"
     const javaCode = "/img/javaCode.png"
     const [cnt, setCnt] = useState(0);
-    const [modalState, setModalState] = useState(false);
-    const [failModal, setFailModal] = useState(false);
     const [q1, setQ1] = useState(false);
     const [q2, setQ2] = useState(false);
     const [q3, setQ3] = useState(false);
@@ -27,28 +25,33 @@ function WrongFindGame() {
     const [ans3, setAns3] = useState(null);
     const [ans4, setAns4] = useState(null);
     const [ans5, setAns5] = useState(null);
-    const [min, setMin] = useState(0);
-    const [sec, setSec] = useState(0);
     const timer = useRef(null);
-    const time = useRef(0);
-    gameSound(BGM,1,2000);
-    
+    // gameSound(BGM,1,2000);
 
-    useEffect(()=>{
-        timer.current=setInterval(()=>{
-            setMin(parseInt((time.current)/60));
-            setSec(time.current % 60);
-            time.current += 1;
-        },1000)
-        return () => clearInterval(timer.current);
-    },[])
 
-    useEffect(()=>{
-        if(time.current > 300){
-            clearInterval(timer.current);
-            setFailModal(true);
-        }
-    })
+    useEffect(() => {
+        newGame();
+      // eslint-disable-next-line react-hooks/exhaustive-deps
+      }, [start])
+
+    function newGame() {
+        setCnt(0);
+        setQ1(false);
+        setCheck1({display:'none'});
+        setAns1({color:'black'});
+        setQ2(false);
+        setCheck2({display:'none'});
+        setAns2({color:'black'});
+        setQ3(false);
+        setCheck3({display:'none'});
+        setAns3({color:'black'});
+        setQ4(false);
+        setCheck4({display:'none'});
+        setAns4({color:'black'});
+        setQ5(false);
+        setCheck5({display:'none'});
+        setAns5({color:'black'});
+      }
 
     function click(e){
         var x = e.nativeEvent.offsetX;
@@ -60,7 +63,7 @@ function WrongFindGame() {
             setCheck1({display:'block'});
             setAns1({color:'red'});
             if(cnt === 4){
-                setModalState(true);
+                finishGame();
             }
         }
 
@@ -70,7 +73,7 @@ function WrongFindGame() {
             setCheck2({display:'block'});
             setAns2({color:'red'});
             if(cnt === 4){
-                setModalState(true);
+                finishGame();
             }
         }
 
@@ -80,7 +83,7 @@ function WrongFindGame() {
             setCheck3({display:'block'});
             setAns3({color:'red'});
             if(cnt === 4){
-                setModalState(true);
+                finishGame();
             }
         }
 
@@ -90,7 +93,7 @@ function WrongFindGame() {
             setCheck4({display:'block'});
             setAns4({color:'red'});
             if(cnt === 4){
-                setModalState(true);
+                finishGame();
             }
         }
 
@@ -101,20 +104,19 @@ function WrongFindGame() {
             setAns5({color:'red'});
             if(cnt === 4){
                 clearInterval(timer.current);
-                setModalState(true);
+                finishGame();
             }
         }
     }
     
     return (
     <div onClick={click}>
-        <h2>5개 과목에 점수를 입력 받아 평균을 구하고 평균에 따라 우수, 부족을 출력 하는 코드 입니다.</h2>
-        <h2>자바 코드에서 틀린 부분을 찾아 클릭 하세요.</h2>
-        <span className="nuriCode">
+        <br></br>
+        <span className="nuriPicture">
             <img alt="nuri code" src={process.env.PUBLIC_URL + nuriCode}/>
         </span>
         <span>
-        <div className="javaCode">
+        <div className="javaPicture">
             <img alt="nuri code" src={process.env.PUBLIC_URL + javaCode}/>
             <span className="findCheck1">
                 <p style={check1}>O</p>
@@ -131,12 +133,15 @@ function WrongFindGame() {
             <span className="findCheck5">
                 <p style={check5}>O</p>
             </span>
+            <br></br>
+            <br></br>
         </div>
         </span>
+        
         <div>
-            <Progress className="progressBar" percent={time.current / 3} status="success" style={{width:1200}}/>
+            <Progress className="progressBar" percent={time / 3} status="success" style={{width:1200}}/>
             <div>
-                <span className="timeRes">{min}분 {sec}초 </span>
+                 <br></br>
                 <span className="res">
                     <span  style={ans1}> O </span>
                     <span  style={ans2}>O </span>
@@ -148,19 +153,6 @@ function WrongFindGame() {
             </div>
             
         </div>
-
-        <Modal isOpen={modalState} onRequestClose={()=>setModalState(false)}>
-            <div>성공을 축하드립니다.</div>
-            <div>
-                {min}분 {sec}초
-            </div>
-            <button onClick={()=>setModalState(false)}>랭킹보러가기</button>
-        </Modal>
-
-        <Modal isOpen={failModal} onRequestClose={()=>setModalState(false)}>
-            <div>시간 초과</div>
-            <button onClick={()=>setModalState(false)}>랭킹보러가기</button>
-        </Modal>
     </div>
     )
   }

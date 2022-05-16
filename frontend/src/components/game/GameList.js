@@ -65,6 +65,20 @@ export default function GameListCard() {
           </div>
         </Card>
       </div>
+      <div className="Card-Contents">
+        <Card sx={{ maxWidth: 345 }}>
+          <CardMedia
+            component="img"
+            alt="testImg"
+            height="140"
+            image={testImg}
+          />
+          <CardActions>
+            <Button size="small" onClick={() => { navigate("/game/2") }}>틀린 코드 맞추기 게임 <AiOutlineForward /></Button>
+            <span><AiFillEye />1532</span>
+          </CardActions>
+        </Card>
+      </div>
     </div>
   );
 }
