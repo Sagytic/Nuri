@@ -5,7 +5,7 @@ import "./Nav.css"
 
 function Nav({ userNickname, userPhoto, setUserNickname }) {
   const navigate = useNavigate();
-  const userPhotoSrc = userPhoto ? 'data:image/png;base64,' + userPhoto : process.env.PUBLIC_URL + "/img/yahoogaji.PNG"
+  const userPhotoSrc = userPhoto ? 'data:image/png;base64,' + userPhoto : process.env.PUBLIC_URL + "/img/nurirang_carousel1.JPG"
   const [menuIconShow, setMenuIconShow] = useState(window.innerWidth <= 760 ? true : false);
   const [menuShow, setMenuShow] = useState(false);
 

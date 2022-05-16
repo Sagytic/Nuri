@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import axios from 'axios';
 import server from "../../API/server";
 import Editor from "@monaco-editor/react";
+import { AiOutlineCopy } from "react-icons/ai";
+import { BiSave } from "react-icons/bi";
 import "./MathIde.css";
 
 function MathIde({ theme, toggle }) {
@@ -22,6 +24,12 @@ function MathIde({ theme, toggle }) {
     } catch {
       return unescape(escaped);
     }
+  }
+
+  function copy() {
+    const text = window.copyToCode;
+    navigator.clipboard.writeText(text);
+    alert('코드를 복사했습니다!');
   }
 
   function run() {
@@ -72,23 +80,13 @@ function MathIde({ theme, toggle }) {
   return (
     <>
       <div className="MathIde-item">
-        <div className="MathIde-item-header" style={{ textDecoration: "underLine 5px"}}>자바 코드</div>
-        <div className={"MathIde-item-content " + (toggle ? "" : "toggle-off")}>
-          <Editor
-            id="javaCode"
-            height="30vh"
-            defaultLanguage="java"
-            defaultValue=""
-            theme={theme}
-            value={javaCode}
-          />
-        </div>
-      </div>
-
-      <div className="MathIde-item">
         <div className="MathIde-item-header">
           <div style={{ textDecoration: "underLine 5px"}}>누리 코드</div>
-          <button className="MathIde-item-button" onClick={run}>RUN</button>
+          <div className="MathIde-item-button-group">
+            <AiOutlineCopy className="MathIde-item-icon" size="30" onClick={() => copy()}/>
+            <BiSave className="MathIde-item-icon" size="30" />
+            <button className="MathIde-item-button" onClick={run}>RUN</button>
+          </div>
         </div>
         <div className={"MathIde-item-content " + (toggle ? "" : "toggle-off")}>
           <Editor
@@ -99,6 +97,20 @@ function MathIde({ theme, toggle }) {
             theme={theme}
             value={nuriCode}
             onChange={nuriCodeHandler}
+          />
+        </div>
+      </div>
+
+      <div className="MathIde-item">
+        <div className="MathIde-item-header" style={{ textDecoration: "underLine 5px"}}>자바 코드</div>
+        <div className={"MathIde-item-content " + (toggle ? "" : "toggle-off")}>
+          <Editor
+            id="javaCode"
+            height="30vh"
+            defaultLanguage="java"
+            defaultValue=""
+            theme={theme}
+            value={javaCode}
           />
         </div>
       </div>
