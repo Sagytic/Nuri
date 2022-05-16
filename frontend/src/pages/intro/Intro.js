@@ -3,6 +3,7 @@ import Background from "../../components/intro/Background";
 import IntroHeader from "../../components/intro/IntroHeader";
 import IntroMain from "../../components/intro/IntroMain";
 import IntroContent from "../../components/intro/IntroContent";
+import IntroIde from "../../components/intro/IntroIde";
 import IntroMascot from "../../components/intro/IntroMascot";
 import "./Intro.css";
 
@@ -31,11 +32,11 @@ function Intro() {
   '한글'로 할 수 있습니다
   `
 
-  const content1 = {
-    text: '한글 코드와 동시에 Java, Python, C 등의 언어도 학습할 수 있습니다.',
-    img: ["/img/nuriCode.PNG", "/img/javaCode.PNG"],
-    imgW: "48%",
-  }
+  // const content1 = {
+  //   text: '한글 코드와 동시에 Java, Python, C 등의 언어도 학습할 수 있습니다.',
+  //   img: ["/img/nuriCode.PNG", "/img/javaCode.PNG"],
+  //   imgW: "48%",
+  // }
 
   const content2 = {
     text: '누리 문법을 학습하고, 게임과 수학 문제를 통해 쉽게 코딩을 배울 수 있습니다',
@@ -54,7 +55,8 @@ function Intro() {
       <IntroHeader text={text1} alignItems="flex-start"/>
       <IntroHeader text={text2} alignItems="flex-end"/>
       <IntroMain text={text3}/>
-      <IntroContent content={content1}/>
+      <IntroIde />
+      {/* <IntroContent content={content1}/> */}
       <IntroContent content={content2}/>
       <IntroMascot content={mascot}/>
     </div>
