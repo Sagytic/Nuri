@@ -17,10 +17,8 @@ import MyPage from './pages/myPage/MyPage'
 import SignUp from './pages/user/SignUp'
 import Login from './pages/user/Login'
 import Ide from './pages/ide/Ide'
-import LogProblem from './components/problem/logProblem';
-import UpDown from './components/game/UpDown';
-import WrongFindGame from './components/game/WrongFindGame'
 import TGame from './components/game/TGame'
+import MathItem from './pages/math/MathItem';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root')
@@ -32,9 +30,8 @@ root.render(
       <Route path="/"  element={<App />}>
         <Route path="main" element={<Main />}></Route>
         <Route path="intro" element={<Intro />}></Route>
-        <Route path="math" element={<Math />}>
-          {/* <Route path="/:id" element={<Math />} /> */}
-        </Route>
+        <Route path="math" element={<Math />}></Route>
+        <Route path="math/:id" element={<MathItem />} />
         <Route path="game" element={<Game />}></Route>
         <Route path="game/:id" element={<GameItem />}></Route>
         <Route path="reference" element={<Reference />}></Route>
@@ -42,9 +39,7 @@ root.render(
         <Route path="user/signup" element={<SignUp />}></Route>
         <Route path="user/login" element={<Login />}></Route>
         <Route path="ide" element={<Ide />}></Route>
-        <Route path="updown" element={<UpDown />}></Route>
         <Route path="TGame" element={<TGame />}></Route>
-        <Route path="log-problem" element={<LogProblem />}></Route>
       </Route>
     </Routes>
   </BrowserRouter>

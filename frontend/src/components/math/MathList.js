@@ -1,4 +1,5 @@
 import React from 'react';
+import { useNavigate } from "react-router-dom";
 import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
 // import CardContent from '@mui/material/CardContent';
@@ -11,6 +12,8 @@ import "./MathList.css"
 export default function ImgMediaCard() {
   const Img = process.env.PUBLIC_URL + "img/"
 
+  const navigate = useNavigate();
+
   return (
     <div className="GameList-Container">
       <div className="Card-Contents">
@@ -22,7 +25,7 @@ export default function ImgMediaCard() {
             image= {Img + "math1thumbnail.PNG"}
           />
           <CardActions>
-            <Button size="small">통나무 자르기 <AiOutlineForward /></Button>
+            <Button size="small"  onClick={() => { navigate("/math/0") }}>통나무 자르기 <AiOutlineForward /></Button>
               <div style={{display: "flex", alignItems: "center"}}>
                   <AiFillEye size="15"/>
                   14
@@ -39,7 +42,7 @@ export default function ImgMediaCard() {
             image= {Img + "math2thumbnail.PNG"}
           />
           <CardActions>
-            <Button size="small">원주율 구하기 <AiOutlineForward /></Button>
+            <Button size="small"  onClick={() => { navigate("/math/1") }}>원주율 구하기 <AiOutlineForward /></Button>
               <div style={{display: "flex", alignItems: "center"}}>
                 <AiFillEye size="15"/>
                 1532
@@ -57,7 +60,7 @@ export default function ImgMediaCard() {
           />
           <div className="Card-Footer">
           <CardActions>
-            <Button size="small">원의 원주 구하기 <AiOutlineForward /></Button>
+            <Button size="small" onClick={() => { navigate("/math/2") }}>원의 원주 구하기 <AiOutlineForward /></Button>
               <div style={{display: "flex", alignItems: "center"}}>
                 <AiFillEye size="15"/>
                 287

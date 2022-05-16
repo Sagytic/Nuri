@@ -8,7 +8,7 @@ function Result({ time, gameData, userNickname, rankData, restartGame, moveAllGa
     const totalTime = inputTime * 100
     const minute = parseInt(totalTime / 6000);
     const sec = parseInt((totalTime / 100) % 60);
-    const milliSec = totalTime % 100;
+    const milliSec = parseInt(totalTime % 100);
     return [minute, sec, milliSec]
   }
 
@@ -38,7 +38,6 @@ function Result({ time, gameData, userNickname, rankData, restartGame, moveAllGa
             )
           })}
         </ul>
-        <div>{rankIdx}</div>
         <div className="Result-button-group">
           <button className="Result-button" onClick={() => moveAllGames()}>다른 게임 하기</button>
           <button className="Result-button" onClick={() => restartGame()}>다시하기</button>

@@ -62,7 +62,7 @@ function AllGameList() {
           />
           <div className="Card-Footer">
           <CardActions>
-            <Button size="small" onClick={() => { navigate("/game/2") }}>틀린 부분 찾기 <AiOutlineForward /></Button>
+            <Button size="small" onClick={() => { navigate("/game/1") }}>틀린 부분 찾기 <AiOutlineForward /></Button>
               <div style={{display: "flex", alignItems: "center"}}>
                 <AiFillEye size="15"/>
                 1532
