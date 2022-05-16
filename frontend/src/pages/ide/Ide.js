@@ -80,8 +80,12 @@ function Ide() {
 
     function copy() {
         const text = window.copyToCode;
-        navigator.clipboard.writeText(text);
-        alert('코드를 복사했습니다!');
+        if (text === undefined) {
+            alert("복사할 내용이 없습니다.")
+        } else {
+            navigator.clipboard.writeText(text);
+            alert('코드를 복사했습니다!');
+        }
     }
 
     function toggleClick(){

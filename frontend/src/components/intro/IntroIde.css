@@ -1,0 +1,20 @@
+.ide-contents {
+  width: 100%;
+}
+
+.ide-contents .Nuri-Ide {
+  width: 40%;
+  display: inline-block;
+  padding-right: 4rem;
+}
+
+.ide-contents .Java-Ide {
+  width: 40%;
+  display: inline-block;
+  padding-left: 4rem;
+}
+
+.ide-contents .Ide-alt {
+  display: flex;
+  justify-content: space-around;
+}

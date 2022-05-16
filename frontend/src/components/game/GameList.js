@@ -16,20 +16,20 @@ export default function GameListCard() {
   const API_BASE_URL = server.BASE_URL;
   const GameImg = process.env.PUBLIC_URL + "img/"
   const navigate = useNavigate();
-  function viewUPdate(number) {
+  function viewUpdate(number) {
     const id = number;
-    // axios
-    // .get(API_BASE_URL + '/api/v1/mathgame/' + id,
-    //     id,
-    //     {
-    //         Headers: {
-    //             contentType: "application/json"
-    //         }
-    //     })
-    // .then((res) => {
-    //     console.log(res);
-    // })
-    console.log(id);
+    axios
+    .get(API_BASE_URL + '/api/v1/mathgame/' + id,
+        id,
+        {
+            Headers: {
+                contentType: "application/json"
+            }
+        })
+    .then((res) => {
+        console.log(res);
+        navigate("/game/2")
+    })
   }
 
   return (
@@ -48,8 +48,8 @@ export default function GameListCard() {
             </Typography>
           </CardContent> */}
           <CardActions>
-            {/* <Button size="small" onClick={[() => { navigate("/game/2") }, viewUPdate(1)]}>업다운 게임 <AiOutlineForward /></Button> */}
-            <Button size="small" onClick={() => { navigate("/game/2") }}>업다운 게임 <AiOutlineForward /></Button>
+            <Button size="small" onClick={() => {viewUpdate(2)}}>업다운 게임 <AiOutlineForward /></Button>
+            {/* <Button size="small" onClick={() => { navigate("/game/2") }}>업다운 게임 <AiOutlineForward /></Button> */}
               <div style={{display: "flex", alignItems: "center"}}>
                 <AiFillEye size="15"/>
                 14
