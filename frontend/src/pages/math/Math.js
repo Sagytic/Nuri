@@ -1,5 +1,5 @@
 import React from "react";
-import MathList from '../../components/math/MathList'
+import AllMathList from '../../components/math/AllMathList'
 import Box from '@mui/material/Box';
 import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
@@ -40,7 +40,7 @@ function Math() {
       </Box>
       </>
 
-      <MathList />
+      <AllMathList />
     </div>
   )  
 }

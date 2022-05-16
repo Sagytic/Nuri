@@ -5,6 +5,7 @@ import "./Ide.css"
 import Editor from "@monaco-editor/react";
 import { ToggleButton } from "@mui/material";
 import {  } from "@mui/system";
+import { AiOutlineCopy } from "react-icons/ai";
 
 function Ide() {
     const API_BASE_URL = server.BASE_URL;
@@ -56,7 +57,10 @@ function Ide() {
             })
     }
 
+    const copyToCode = "";
+
     function nuriCodeHandler(e) {
+        window.copyToCode = e;
         var data = {
             id:"",
             mathGameId:"",
@@ -72,6 +76,12 @@ function Ide() {
         .then((res)=>{
             setJavaCode(res.data);
         })
+    }
+
+    function copy() {
+        const text = window.copyToCode;
+        navigator.clipboard.writeText(text);
+        alert('코드를 복사했습니다!');
     }
 
     function toggleClick(){
@@ -90,9 +100,12 @@ function Ide() {
     
     return (
         <div className="ide-contents">
+            <div className="CopyBtn">
+                <button onClick={copy}><AiOutlineCopy size="40"/></button>
+            </div>
 
-            <div>테마 설정</div>
-            <ToggleButton onClick={toggleClick} toggle={toggle}>
+            <div style={{marginLeft:"5%",}}>테마 설정</div>
+            <ToggleButton onClick={toggleClick} toggle={toggle} style={{marginLeft:"5%",}}>
             </ToggleButton>
             <h3>{toggle ? "OFF" : "ON"}</h3>
 

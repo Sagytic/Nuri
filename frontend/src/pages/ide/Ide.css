@@ -1,7 +1,7 @@
 textarea{width:500px; height:100px; 
     /*   resize:none; */
     /*   resize: horizontal; */
-     resize: vertical;
+    resize: vertical;
 }
 
 .ide-contents {
@@ -12,4 +12,16 @@ textarea{width:500px; height:100px;
   width:50%;
   height:300px;
   float: left;
+}
+
+.ide-contents .CopyBtn {
+  display: inline-block;
+  position: relative;
+  float: right;
+}
+
+.ide-contents .CopyBtn > button{
+  border: none;
+  background-color: white;
+  cursor: pointer;
 }

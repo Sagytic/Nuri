@@ -2,7 +2,6 @@ import React from 'react';
 import Fade from 'react-reveal/Fade';
 import Zoom from 'react-reveal/Zoom';
 import Typical from 'react-typical'
-import AnimatedNumber from 'react-animated-number';
 
 import "./MiddleIntro.css"
 
@@ -14,57 +13,11 @@ function MiddleIntro() {
   return (
   <div className="Middle-Contents">
     <div className="animated-number">
-      <AnimatedNumber
-        value={2318564}
-        style={{
-          fontSize: 100
-        }}
-        duration={1000}
-        formatValue={(n) => n.toFixed(0)}
-        frameStyle={(percentage) =>
-        percentage > 20 && percentage < 80 ? { opacity: 0.5 } : {}
-        }
-      />
 
-      <AnimatedNumber
-        value={5163854}
-        style={{
-          fontSize: 100
-        }}
-        duration={1000}
-        formatValue={(n) => n.toFixed(0)}
-        frameStyle={(percentage) =>
-        percentage > 20 && percentage < 80 ? { opacity: 0.5 } : {}
-        }
-      />
-
-      <AnimatedNumber
-        value={3}
-        style={{
-          fontSize: 100
-        }}
-        duration={1000}
-        formatValue={(n) => n.toFixed(0)}
-        frameStyle={(percentage) =>
-        percentage > 20 && percentage < 80 ? { opacity: 0.5 } : {}
-        }
-      />
-      
     </div>
 
-    <div className="animated-number-alt">
-      <span>문제/게임</span>
-      <span>문법</span>
-      <span>문법</span>
-    </div>
 
-    <div className="animated-number-alt2">
-      <span>설명설명설명설명설명설명설명설명설명</span>
-      <span>설명설명설명설명설명설명설명설명설명</span>
-      <span>문법설명설명설명설명설명설명설명설명</span>
-    </div>
-
-    {/* <div className="text-animation-container">
+    <div className="text-animation-container">
       <h1>안녕하세요, </h1>
       <Typical
         steps={[
@@ -75,7 +28,7 @@ function MiddleIntro() {
         loop={Infinity}
         wrapper="p"
       />
-    </div> */}
+    </div>
 
     <div className="scroll-animation-container">
 

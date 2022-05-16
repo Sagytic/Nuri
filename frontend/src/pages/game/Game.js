@@ -1,10 +1,11 @@
 import React from "react";
-import GameList from '../../components/game/GameList';
+import AllGameList from '../../components/game/AllGameList';
 import Box from '@mui/material/Box';
 import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
+
 import './Game.css'
 
 function Game() {
@@ -14,6 +15,8 @@ function Game() {
     setAlignments(event.target.value);
     console.log(event.target.value);
   };
+
+
   return (
     <div>
       <div className="contents-title">
@@ -40,7 +43,7 @@ function Game() {
       </Box>
       </>
 
-      <GameList />
+      <AllGameList />
     </div>
   )  
 }
