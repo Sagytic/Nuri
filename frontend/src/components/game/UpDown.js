@@ -7,7 +7,10 @@ import "./UpDown.css";
 
 function UpDown({ start, finishGame }) {
     const API_BASE_URL = server.BASE_URL;
-    const API_Judge_URL = server.Judge_URL;
+    //const API_Judge_URL = server.Judge_URL;
+    const API_RAPID_URL = server.Rapid_URL;
+    const API_RAPID_KEY = process.env.REACT_APP_RAPID_API;
+
     const defaultAnswer = [
         { id: 1, content: "" },
         { id: 2, content: "" },
@@ -39,33 +42,51 @@ function UpDown({ start, finishGame }) {
 
     function run() {
         input = nuriRandom;
-        var encodeNuriCode = encode(javaCode);
-        var encodeInput = encode(input);
+        var encodeInput = input;
         var data = {
-            source_code: encodeNuriCode,
+            source_code: javaCode,
             language_id: 62,
             stdin: encodeInput,
-            compiler_options: "",
-            command_line_arguments: "",
-            redirect_stderr_to_stdout: true,
         };
-        axios
-        .post(
-            API_Judge_URL + "/submissions?base64_encoded=true&wait=true",
-        data,
-        {
-            Headers: {
-                contentType: "application/json",
-            },
-        }
-        )
-        .then((res) => {
-            if (decode(res.data.stdout).slice(-3, -1) === "성공") {
-                setTimeout(() => {
-                   finishGame();
+        const options = {
+          method: 'POST',
+          url: API_RAPID_URL + '/submissions',
+          params: {base64_encoded: 'false', fields: '*'},
+          headers: {
+            'content-type': 'application/json',
+            'Content-Type': 'application/json',
+            'X-RapidAPI-Host': 'judge0-ce.p.rapidapi.com',
+            'X-RapidAPI-Key': API_RAPID_KEY
+          },
+          data
+        };
+        
+        axios.request(options).then(function (response) {
+            const options = {
+              method: 'GET',
+              url: API_RAPID_URL + '/submissions/' + response.data.token,
+              params: {base64_encoded: 'true', fields: '*'},
+              headers: {
+                'X-RapidAPI-Host': 'judge0-ce.p.rapidapi.com',
+                'X-RapidAPI-Key': API_RAPID_KEY
+              }
+            };
+            
+            axios.request(options).then(function (response) {
+              console.log(response.data);
+              console.log(decode(response.data.source_code))
+              console.log(decode(response.data.stdout))
+              if(decode(response.data.stdout).slice(-3,-1) === "성공"){
+                setTimeout(()=>{
+                  finishGame();
                 }, 2000)
-            }
-            setResult(decode(res.data.stdout));
+              }
+                setResult(decode(response.data.stdout));
+            }).catch(function (error) {
+                console.error(error);
+            });
+        }).catch(function (error) {
+            console.error(error);
         });
 
     }
