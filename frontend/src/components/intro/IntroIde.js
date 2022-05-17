@@ -10,6 +10,8 @@ import { AiOutlineCopy } from "react-icons/ai";
 function Ide() {
   const API_BASE_URL = server.BASE_URL;
   const API_Judge_URL = server.Judge_URL;
+  const API_RAPID_URL = server.Rapid_URL;
+  const API_RAPID_KEY = process.env.REACT_APP_RAPID_API;
   var nuriCode, input;
   const [result, setResult] = useState(null);
   const [javaCode, setJavaCode] = useState(null);
@@ -31,30 +33,62 @@ function Ide() {
 
 function run() {
   console.log(input);
-  var encodeNuriCode = encode(javaCode);
-  var encodeInput = encode(input);
   var data = {
-      source_code: encodeNuriCode,
+      source_code: javaCode,
       language_id: 62,
-      stdin: encodeInput,
+      stdin: input,
       compiler_options: "",
       command_line_arguments: "",
       redirect_stderr_to_stdout: true
   }
   console.log(javaCode);
-  axios
-      .post(API_Judge_URL + '/submissions?base64_encoded=true&wait=true',
-          data,
-          {
-              Headers: {
-                  contentType: "application/json"
-              }
-          })
-      .then((res) => {
-          console.log(javaCode);
-          console.log(decode(res.data.stdout));
-          setResult(decode(res.data.stdout));
-      })
+//   axios
+//       .post(API_Judge_URL + '/submissions?base64_encoded=true&wait=true',
+//           data,
+//           {
+//               Headers: {
+//                   contentType: "application/json"
+//               }
+//           })
+//       .then((res) => {
+//           console.log(javaCode);
+//           console.log(decode(res.data.stdout));
+//           setResult(decode(res.data.stdout));
+//       })
+const options = {
+    method: 'POST',
+    url: API_RAPID_URL + '/submissions',
+    params: {base64_encoded: 'false', fields: '*'},
+    headers: {
+      'content-type': 'application/json',
+      'Content-Type': 'application/json',
+      'X-RapidAPI-Host': 'judge0-ce.p.rapidapi.com',
+      'X-RapidAPI-Key': API_RAPID_KEY
+    },
+    data
+  };
+  
+  axios.request(options).then(function (response) {
+      console.log(API_RAPID_KEY);
+      console.log(response.data.token);
+      const options = {
+        method: 'GET',
+        url: API_RAPID_URL + '/submissions/' + response.data.token,
+        params: {base64_encoded: 'true', fields: '*'},
+        headers: {
+          'X-RapidAPI-Host': 'judge0-ce.p.rapidapi.com',
+          'X-RapidAPI-Key': API_RAPID_KEY
+        }
+      };
+      
+      axios.request(options).then(function (response) {
+          setResult(decode(response.data.stdout));
+      }).catch(function (error) {
+          console.error(error);
+      });
+  }).catch(function (error) {
+      console.error(error);
+  });
 }
 
     const copyToCode = "";
