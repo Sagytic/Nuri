@@ -18,3 +18,12 @@
   display: flex;
   justify-content: space-around;
 }
+
+.ide-contents .CopyBtn > button{
+  background-color: white;
+  border: none;
+  display: inline-block;
+  float: left;
+  margin-left: 2rem;
+  cursor: pointer;
+}

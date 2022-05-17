@@ -20,6 +20,6 @@ public interface MathGameRepository extends JpaRepository<MathGame, Long> {
 
     @Transactional
     @Modifying
-    @Query(value = "UPDATE mathgame set views = views + 1 where id = :id", nativeQuery = true)
+    @Query(value = "UPDATE mathgame set views = views + 1 where mathgame_id = :id", nativeQuery = true)
     void updateMathGameViews(@Param("id") Long id);
 }

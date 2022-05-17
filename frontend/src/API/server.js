@@ -2,6 +2,7 @@ const server = {
   // BASE_URL: "http://localhost:8081",
   BASE_URL: "https://nurihangeul.com:8081",
   Judge_URL: "https://ce.judge0.com",
+  Rapid_URL: "https://judge0-ce.p.rapidapi.com",
 
   ROUTES: {
     signup: "/api/v1/user/signup",
