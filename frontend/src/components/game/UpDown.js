@@ -21,7 +21,7 @@ function UpDown({ start, finishGame }) {
     const [result, setResult] = useState(null);
     const [javaCode, setJavaCode] = useState(null);
     const [javaCodeShow, setJavaCodeShow] = useState(false);
-    const Image = process.env.PUBLIC_URL + "/img/updownproblem.PNG";
+    const Image = process.env.PUBLIC_URL + "/img/updownproblem.png";
     var nuriRandom = Math.floor(Math.random() * (100 - 1) + 1); // 1~100
     var nuriCode, input;
 

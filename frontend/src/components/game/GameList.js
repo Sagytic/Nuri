@@ -1,10 +1,8 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
-// import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Button from '@mui/material/Button';
-// import Typography from '@mui/material/Typography';
 import { AiFillEye, AiOutlineForward } from 'react-icons/ai';
 import { useNavigate } from "react-router-dom";
 import axios from 'axios';
@@ -16,44 +14,54 @@ export default function GameListCard() {
   const API_BASE_URL = server.BASE_URL;
   const GameImg = process.env.PUBLIC_URL + "img/"
   const navigate = useNavigate();
+
   function viewUpdate(number) {
-    const id = number;
+    const id = number+100;
+    const pathId = number;
     axios
-    .get(API_BASE_URL + '/api/v1/mathgame/' + id,
-        id,
-        {
-            Headers: {
-                contentType: "application/json"
-            }
-        })
+    .patch(API_BASE_URL + '/api/v1/mathgame/' + id)
     .then((res) => {
         console.log(res);
-        navigate("/game/2")
+        navigate("/game/" + pathId);
     })
   }
+
+  const [views, setViews] = useState([]);
+  
+  useEffect(() => {
+    (async () => {
+      await axios
+        .get(
+          API_BASE_URL + "/api/v1/mathgame/0"
+        )
+        .then(
+          ({data}) => setViews(data)
+        );
+      console.log('조회수 받아오기')
+    })();
+  }, []);
+
 
   return (
     <div className="GameList-Container">
       <div className="Card-Contents">
+        {/* <button onClick={getViews()}>get views</button> */}
         <Card sx={{ maxWidth: 345 }}>
           <CardMedia
             component="img"
             alt="GameImg"
             height="140"
-            image={GameImg+"updowngamethumbnail.PNG"}
+            image={GameImg+"updowngamethumbnail.png"}
           />
-          {/* <CardContent>
-            <Typography gutterBottom variant="h5" component="div">
-              업다운 게임
-            </Typography>
-          </CardContent> */}
+
           <CardActions>
             <Button size="small" onClick={() => {viewUpdate(2)}}>업다운 게임 <AiOutlineForward /></Button>
-            {/* <Button size="small" onClick={() => { navigate("/game/2") }}>업다운 게임 <AiOutlineForward /></Button> */}
-              <div style={{display: "flex", alignItems: "center"}}>
+              { views.length >= 1 &&
+                <div style={{display: "flex", alignItems: "center"}}>
                 <AiFillEye size="15"/>
-                14
+                {views[2].views}
               </div>
+              }
           </CardActions>
         </Card>
       </div>
@@ -63,13 +71,17 @@ export default function GameListCard() {
             component="img"
             alt="GameImg"
             height="140"
-            image={GameImg+"cardconnectgamethumbnail.PNG"}
+            image={GameImg+"cardconnectgamethumbnail.png"}
           />
           <CardActions>
-            <Button size="small" onClick={() => { navigate("/game/0") }}>연결 게임 <AiOutlineForward /></Button>
+            <Button size="small" onClick={() => {viewUpdate(0)}}>연결 게임 <AiOutlineForward /></Button>
               <div style={{display: "flex", alignItems: "center"}}>
+                { views.length >= 1 &&
+                <div style={{display: "flex", alignItems: "center"}}>
                 <AiFillEye size="15"/>
-                1532
+                {views[0].views}
+              </div>
+              }
               </div>
           </CardActions>
         </Card>
@@ -80,14 +92,18 @@ export default function GameListCard() {
             component="img"
             alt="GameImg"
             height="140"
-            image={GameImg+"finddifferentgamethumbnail.PNG"}
+            image={GameImg+"finddifferentgamethumbnail.png"}
           />
           <div className="Card-Footer">
           <CardActions>
-            <Button size="small" onClick={() => { navigate("/game/1") }}>틀린 부분 찾기! <AiOutlineForward /></Button>
+            <Button size="small" onClick={() => {viewUpdate(1)}}>틀린 부분 찾기! <AiOutlineForward /></Button>
               <div style={{display: "flex", alignItems: "center"}}>
+                { views.length >= 1 &&
+                <div style={{display: "flex", alignItems: "center"}}>
                 <AiFillEye size="15"/>
-                287
+                {views[1].views}
+              </div>
+              }
               </div>
           </CardActions>
           </div>
