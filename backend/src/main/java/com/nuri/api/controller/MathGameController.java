@@ -3,6 +3,7 @@ package com.nuri.api.controller;
 import com.nuri.api.request.GameRankSavePostReq;
 import com.nuri.api.request.MathCodeSavePostReq;
 import com.nuri.api.request.MathGameCodeSavePostReq;
+import com.nuri.api.request.PracticeCodeSavePostReq;
 import com.nuri.api.response.GameRankRes;
 import com.nuri.api.service.CodeService;
 import com.nuri.api.service.GameRankService;
@@ -21,6 +22,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 import springfox.documentation.annotations.ApiIgnore;
+
 import java.util.List;
 import java.util.Random;
 import java.util.Scanner;
@@ -128,6 +130,26 @@ public class MathGameController {
         User user = userDetails.getUser();
 
         if (codeService.saveMathCode(mathCodeSavePostReq, user) != null) {
+            return ResponseEntity.status(200).body(BaseResponseBody.of(200, "Success"));
+        }
+        return ResponseEntity.status(500).body(BaseResponseBody.of(500, "Error"));
+    }
+
+
+    @PostMapping("/practice")
+    @ApiOperation(value = "ide로 연습 코딩 저장")
+    @ApiResponses({
+            @ApiResponse(code = 200, message = "성공"),
+            @ApiResponse(code = 401, message = "인증 실패"),
+            @ApiResponse(code = 404, message = "사용자 없음"),
+            @ApiResponse(code = 500, message = "서버 오류")
+    })
+    public ResponseEntity<? extends BaseResponseBody> practice(@RequestBody PracticeCodeSavePostReq practiceCodeSavePostReq, @ApiIgnore Authentication authentication) {
+        NuriUserDetails userDetails = (NuriUserDetails)authentication.getDetails();
+        Long userId = userDetails.getUser().getUserId();
+        User user = userDetails.getUser();
+
+        if (codeService.savePracticeCode(practiceCodeSavePostReq, user) != null) {
             return ResponseEntity.status(200).body(BaseResponseBody.of(200, "Success"));
         }
         return ResponseEntity.status(500).body(BaseResponseBody.of(500, "Error"));

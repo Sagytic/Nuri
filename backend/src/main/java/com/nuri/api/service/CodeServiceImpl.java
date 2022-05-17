@@ -2,11 +2,14 @@ package com.nuri.api.service;
 
 import com.nuri.api.request.MathCodeSavePostReq;
 import com.nuri.api.request.MathGameCodeSavePostReq;
+import com.nuri.api.request.PracticeCodeSavePostReq;
 import com.nuri.db.entity.MathGame;
 import com.nuri.db.entity.MathGameCode;
+import com.nuri.db.entity.PracticeCode;
 import com.nuri.db.entity.User;
 import com.nuri.db.repository.CodeRepository;
 import com.nuri.db.repository.MathGameRepository;
+import com.nuri.db.repository.PracticeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -18,6 +21,8 @@ public class CodeServiceImpl implements CodeService{
     CodeRepository codeRepository;
     @Autowired
     MathGameRepository mathgameRepository;
+    @Autowired
+    PracticeRepository practiceRepository;
 
     @Override
     public MathGameCode getAnswer(Long mathgameId) {
@@ -60,6 +65,20 @@ public class CodeServiceImpl implements CodeService{
     }
 
     @Override
+    public PracticeCode savePracticeCode(PracticeCodeSavePostReq practiceCodeSavePostReq, User user) {
+        PracticeCode practiceCode = new PracticeCode();
+        practiceCode.setUser(user);
+        practiceCode.setCode(practiceCodeSavePostReq.getCode());
+        practiceCode.setTitle(practiceCodeSavePostReq.getTitle());
+        PracticeCode practiceCodeExist = practiceRepository.findByTitleAndUserId(user.getUserId(), practiceCodeSavePostReq.getTitle());
+        if(practiceCodeExist!=null) {
+            practiceRepository.delete(practiceCodeExist);
+        }
+        practiceRepository.save(practiceCode);
+        return practiceCode;
+    }
+
+    @Override
     public List<MathGameCode> findCompletedGame(User user) {
         return (List<MathGameCode>) codeRepository.findMathGameCompletedByUserId(user.getUserId());
     }
@@ -76,7 +95,13 @@ public class CodeServiceImpl implements CodeService{
 
     @Override
     public List<MathGameCode> findViewedCode(User user) {
-        return (List<MathGameCode>) codeRepository.findMathViewedByUserId(user.getUserId());
+        List<MathGameCode> findCode = codeRepository.findMathViewedByUserId(user.getUserId());
+        return findCode;
+    }
+
+    @Override
+    public List<PracticeCode> findPracticeByUserId(User user) {
+        return (List<PracticeCode>) practiceRepository.findPracticeByUserId(user.getUserId());
     }
 
 

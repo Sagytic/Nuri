@@ -1,6 +1,7 @@
 package com.nuri.api.controller;
 
 import com.nuri.api.request.UserUpdatePostReq;
+import com.nuri.api.response.PracticeCodeRes;
 import com.nuri.api.response.UserRes;
 import com.nuri.api.service.CodeService;
 import com.nuri.api.service.MathGameService;
@@ -8,6 +9,7 @@ import com.nuri.api.service.UserService;
 import com.nuri.common.auth.NuriUserDetails;
 import com.nuri.common.model.response.BaseResponseBody;
 import com.nuri.db.entity.MathGameCode;
+import com.nuri.db.entity.PracticeCode;
 import com.nuri.db.entity.User;
 import io.swagger.annotations.*;
 import org.slf4j.Logger;
@@ -245,5 +247,22 @@ public class UserController {
 		User user = userService.getUserByUserEmail(userEmail);
 		List<MathGameCode> mathGameCodeList = codeService.findViewedCode(user);
 		return ResponseEntity.status(200).body(mathGameCodeList);
+	}
+
+
+	@GetMapping("/practice")
+	@ApiOperation(value = "ide로 저장한 코딩 목록")
+	@ApiResponses({
+			@ApiResponse(code = 200, message = "성공"),
+			@ApiResponse(code = 401, message = "인증 실패"),
+			@ApiResponse(code = 404, message = "사용자 없음"),
+			@ApiResponse(code = 500, message = "서버 오류")
+	})
+	public ResponseEntity<List<PracticeCodeRes>> practice(@ApiIgnore Authentication authentication) {
+		NuriUserDetails userDetails = (NuriUserDetails)authentication.getDetails();
+		String userEmail = userDetails.getUsername();
+		User user = userService.getUserByUserEmail(userEmail);
+		List<PracticeCodeRes> practiceCodeList = codeService.findPracticeByUserId(user);
+		return ResponseEntity.status(200).body(practiceCodeList);
 	}
 }

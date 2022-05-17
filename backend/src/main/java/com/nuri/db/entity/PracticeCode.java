@@ -25,7 +25,7 @@ public class PracticeCode {
     String title;
     @Column(name="code", nullable = false, length = 5000)
     String code;
-    @Column(name="status", nullable = false)
+    @Column(name="status")
     int status;
     @Column(name="created_at", nullable = false)
     OffsetDateTime createdAt = OffsetDateTime.now();
