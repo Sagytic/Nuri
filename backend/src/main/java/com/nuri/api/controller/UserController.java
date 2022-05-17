@@ -1,6 +1,7 @@
 package com.nuri.api.controller;
 
 import com.nuri.api.request.UserUpdatePostReq;
+import com.nuri.api.response.MathGameCodeRes;
 import com.nuri.api.response.PracticeCodeRes;
 import com.nuri.api.response.UserRes;
 import com.nuri.api.service.CodeService;
@@ -8,8 +9,6 @@ import com.nuri.api.service.MathGameService;
 import com.nuri.api.service.UserService;
 import com.nuri.common.auth.NuriUserDetails;
 import com.nuri.common.model.response.BaseResponseBody;
-import com.nuri.db.entity.MathGameCode;
-import com.nuri.db.entity.PracticeCode;
 import com.nuri.db.entity.User;
 import io.swagger.annotations.*;
 import org.slf4j.Logger;
@@ -33,7 +32,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/v1/user")
 public class UserController {
-	
+
 	@Autowired
 	UserService userService;
 
@@ -45,15 +44,15 @@ public class UserController {
 
 	@Autowired
 	MathGameService mathGameService;
-	
+
 	@GetMapping()
 	@ApiOperation(value = "회원 본인 정보 조회(토큰 기반)", notes = "로그인한 회원 본인의 정보를 응답한다.")
-    @ApiResponses({
-        @ApiResponse(code = 200, message = "성공"),
-        @ApiResponse(code = 401, message = "인증 실패"),
-        @ApiResponse(code = 404, message = "사용자 없음"),
-        @ApiResponse(code = 500, message = "서버 오류")
-    })
+	@ApiResponses({
+			@ApiResponse(code = 200, message = "성공"),
+			@ApiResponse(code = 401, message = "인증 실패"),
+			@ApiResponse(code = 404, message = "사용자 없음"),
+			@ApiResponse(code = 500, message = "서버 오류")
+	})
 	public ResponseEntity<UserRes> getUserInfo(@ApiIgnore Authentication authentication) {
 		/**
 		 * 요청 헤더 액세스 토큰이 포함된 경우에만 실행되는 인증 처리이후, 리턴되는 인증 정보 객체(authentication) 통해서 요청한 유저 식별.
@@ -193,12 +192,14 @@ public class UserController {
 			@ApiResponse(code = 404, message = "사용자 없음"),
 			@ApiResponse(code = 500, message = "서버 오류")
 	})
-	public ResponseEntity<List<MathGameCode>> complete(@ApiIgnore Authentication authentication) {
+	public ResponseEntity<List<MathGameCodeRes>> complete(@ApiIgnore Authentication authentication) {
 		NuriUserDetails userDetails = (NuriUserDetails)authentication.getDetails();
 		String userEmail = userDetails.getUsername();
 		User user = userService.getUserByUserEmail(userEmail);
-		List<MathGameCode> mathGameCodeList = codeService.findCompletedGame(user);
-		return ResponseEntity.status(200).body(mathGameCodeList);
+
+		List<MathGameCodeRes> gameCodeList = codeService.findCompletedGame(user);
+
+		return ResponseEntity.status(200).body(gameCodeList);
 	}
 
 	@GetMapping("/viewed_game")
@@ -209,12 +210,14 @@ public class UserController {
 			@ApiResponse(code = 404, message = "사용자 없음"),
 			@ApiResponse(code = 500, message = "서버 오류")
 	})
-	public ResponseEntity<List<MathGameCode>> view(@ApiIgnore Authentication authentication) {
+	public ResponseEntity<List<MathGameCodeRes>> view(@ApiIgnore Authentication authentication) {
 		NuriUserDetails userDetails = (NuriUserDetails)authentication.getDetails();
 		String userEmail = userDetails.getUsername();
 		User user = userService.getUserByUserEmail(userEmail);
-		List<MathGameCode> mathGameCodeList = codeService.findViewedGame(user);
-		return ResponseEntity.status(200).body(mathGameCodeList);
+
+		List<MathGameCodeRes> gameCodeRes = codeService.findViewedGame(user);
+
+		return ResponseEntity.status(200).body(gameCodeRes);
 	}
 
 	@GetMapping("/completed_problem")
@@ -225,11 +228,13 @@ public class UserController {
 			@ApiResponse(code = 404, message = "사용자 없음"),
 			@ApiResponse(code = 500, message = "서버 오류")
 	})
-	public ResponseEntity<List<MathGameCode>> completeProblem(@ApiIgnore Authentication authentication) {
+	public ResponseEntity<List<MathGameCodeRes>> completeProblem(@ApiIgnore Authentication authentication) {
 		NuriUserDetails userDetails = (NuriUserDetails)authentication.getDetails();
 		String userEmail = userDetails.getUsername();
 		User user = userService.getUserByUserEmail(userEmail);
-		List<MathGameCode> mathGameCodeList = codeService.findCompletedCode(user);
+
+		List<MathGameCodeRes> mathGameCodeList = codeService.findCompletedCode(user);
+
 		return ResponseEntity.status(200).body(mathGameCodeList);
 	}
 
@@ -241,14 +246,15 @@ public class UserController {
 			@ApiResponse(code = 404, message = "사용자 없음"),
 			@ApiResponse(code = 500, message = "서버 오류")
 	})
-	public ResponseEntity<List<MathGameCode>> viewProblem(@ApiIgnore Authentication authentication) {
+	public ResponseEntity<List<MathGameCodeRes>> viewProblem(@ApiIgnore Authentication authentication) {
 		NuriUserDetails userDetails = (NuriUserDetails)authentication.getDetails();
 		String userEmail = userDetails.getUsername();
 		User user = userService.getUserByUserEmail(userEmail);
-		List<MathGameCode> mathGameCodeList = codeService.findViewedCode(user);
+
+		List<MathGameCodeRes> mathGameCodeList = codeService.findViewedCode(user);
+
 		return ResponseEntity.status(200).body(mathGameCodeList);
 	}
-
 
 	@GetMapping("/practice")
 	@ApiOperation(value = "ide로 저장한 코딩 목록")

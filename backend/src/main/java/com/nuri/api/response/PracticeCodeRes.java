@@ -15,19 +15,19 @@ import java.time.OffsetDateTime;
 @ApiModel("PracticeCodeResponse")
 public class PracticeCodeRes {
     Long practicecodeId;
-    String code;
     String title;
+    String code;
     OffsetDateTime createdAt;
 
-    public PracticeCodeRes(Long practicecodeId, String code, String title, OffsetDateTime time){
+    public PracticeCodeRes(Long practicecodeId, String title, String code, OffsetDateTime createdAt){
         this.practicecodeId = practicecodeId;
-        this.code = code;
         this.title = title;
+        this.code = code;
         this.createdAt = createdAt;
     }
 
     public static PracticeCodeRes of(PracticeCode practiceCode){
-        PracticeCodeRes res = new PracticeCodeRes(practiceCode.getPracticecodeId(), practiceCode.getCode(), practiceCode.getTitle(), practiceCode.getCreatedAt());
+        PracticeCodeRes res = new PracticeCodeRes(practiceCode.getPracticecodeId(), practiceCode.getTitle(), practiceCode.getCode(), practiceCode.getCreatedAt());
         return res;
     }
 }

@@ -174,6 +174,9 @@ public class MathGameController {
         return ResponseEntity.status(500).body(BaseResponseBody.of(500, "Error"));
     }
 
+
+
+    
     @GetMapping("/Tgame")
     @ApiOperation(value = "31게임")
     @ApiResponses({
