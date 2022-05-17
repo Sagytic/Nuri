@@ -1,18 +1,45 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useNavigate } from "react-router-dom";
 import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
-// import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Button from '@mui/material/Button';
-// import Typography from '@mui/material/Typography';
 import { AiFillEye, AiOutlineForward } from 'react-icons/ai';
+import axios from 'axios';
+import server from "../../API/server";
 import "./MathList.css"
 
-export default function ImgMediaCard() {
+export default function GameListCard() {
+  const API_BASE_URL = server.BASE_URL;
   const Img = process.env.PUBLIC_URL + "img/"
 
   const navigate = useNavigate();
+
+  function viewUpdate(number) {
+    const id = number + 1;
+    const pathId = number
+    axios
+    .patch(API_BASE_URL + '/api/v1/mathgame/' + id)
+    .then((res) => {
+        console.log(res);
+        navigate("/math/" + pathId);
+    })
+  }
+
+  const [views, setViews] = useState([]);
+
+  useEffect(() => {
+    (async () => {
+      await axios
+        .get(
+          API_BASE_URL + "/api/v1/mathgame/1"
+        )
+        .then(
+          ({data}) => setViews(data)
+        );
+      console.log('조회수 받아오기')
+    })();
+  }, []);
 
   return (
     <div className="GameList-Container">
@@ -22,14 +49,16 @@ export default function ImgMediaCard() {
             component="img"
             alt="MathImg1"
             height="140"
-            image= {Img + "math1thumbnail.PNG"}
+            image= {Img + "math1thumbnail.png"}
           />
           <CardActions>
-            <Button size="small"  onClick={() => { navigate("/math/0") }}>통나무 자르기 <AiOutlineForward /></Button>
-              <div style={{display: "flex", alignItems: "center"}}>
-                  <AiFillEye size="15"/>
-                  14
+            <Button size="small"  onClick={() => { viewUpdate(0) }}>통나무 자르기 <AiOutlineForward /></Button>
+            { views.length >= 1 &&
+                <div style={{display: "flex", alignItems: "center"}}>
+                <AiFillEye size="15"/>
+                {views[0].views}
               </div>
+            }
           </CardActions>
         </Card>
       </div>
@@ -39,14 +68,16 @@ export default function ImgMediaCard() {
             component="img"
             alt="MathImg2"
             height="140"
-            image= {Img + "math2thumbnail.PNG"}
+            image= {Img + "math2thumbnail.png"}
           />
           <CardActions>
-            <Button size="small"  onClick={() => { navigate("/math/1") }}>원주율 구하기 <AiOutlineForward /></Button>
-              <div style={{display: "flex", alignItems: "center"}}>
+            <Button size="small"  onClick={() => { viewUpdate(1) }}>원주율 구하기 <AiOutlineForward /></Button>
+            { views.length >= 1 &&
+                <div style={{display: "flex", alignItems: "center"}}>
                 <AiFillEye size="15"/>
-                1532
+                {views[1].views}
               </div>
+            }
           </CardActions>
         </Card>
       </div>
@@ -56,15 +87,17 @@ export default function ImgMediaCard() {
             component="img"
             alt="MathImg3"
             height="140"
-            image= {Img + "math3thumbnail.PNG"}
+            image= {Img + "math3thumbnail.png"}
           />
           <div className="Card-Footer">
           <CardActions>
-            <Button size="small" onClick={() => { navigate("/math/2") }}>원의 원주 구하기 <AiOutlineForward /></Button>
-              <div style={{display: "flex", alignItems: "center"}}>
+            <Button size="small" onClick={() => { viewUpdate(2) }}>원의 원주 구하기 <AiOutlineForward /></Button>
+            { views.length >= 1 &&
+                <div style={{display: "flex", alignItems: "center"}}>
                 <AiFillEye size="15"/>
-                287
+                {views[2].views}
               </div>
+            }
           </CardActions>
           </div>
         </Card>

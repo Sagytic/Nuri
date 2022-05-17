@@ -31,7 +31,7 @@ function MyPage() {
       "code" : "저장된 코드",
       "status" : 0,
       "CreatedAt" : "날짜",
-      "image" : "/img/yahoogaji.PNG",
+      "image" : "/img/yahoogaji.png",
       "views" : "10"
     },
     {
@@ -40,7 +40,7 @@ function MyPage() {
       "code" : "저장된 코드",
       "status" : 1,
       "CreatedAt" : "날짜",
-      "image" : "/img/yahoogaji.PNG",
+      "image" : "/img/yahoogaji.png",
       "views" : "10"
     },
     {
@@ -49,7 +49,7 @@ function MyPage() {
       "code" : "저장된 코드",
       "status" : 1,
       "CreatedAt" : "날짜",
-      "image" : "/img/yahoogaji.PNG",
+      "image" : "/img/yahoogaji.png",
       "views" : "10"
     },
     {
@@ -58,7 +58,7 @@ function MyPage() {
       "code" : "저장된 코드",
       "status" : 1,
       "CreatedAt" : "날짜",
-      "image" : "/img/yahoogaji.PNG",
+      "image" : "/img/yahoogaji.png",
       "views" : "10"
     },
     {
@@ -67,7 +67,7 @@ function MyPage() {
       "code" : "저장된 코드",
       "status" : 0,
       "CreatedAt" : "날짜",
-      "image" : "/img/yahoogaji.PNG",
+      "image" : "/img/yahoogaji.png",
       "views" : "10"
     },
     {
@@ -76,7 +76,7 @@ function MyPage() {
       "code" : "저장된 코드",
       "status" : 1,
       "CreatedAt" : "날짜",
-      "image" : "/img/yahoogaji.PNG",
+      "image" : "/img/yahoogaji.png",
       "views" : "10"
     },
     {
@@ -85,7 +85,7 @@ function MyPage() {
       "code" : "저장된 코드",
       "status" : 0,
       "CreatedAt" : "날짜",
-      "image" : "/img/yahoogaji.PNG",
+      "image" : "/img/yahoogaji.png",
       "views" : "10"
     },
     {
@@ -94,7 +94,7 @@ function MyPage() {
       "code" : "저장된 코드",
       "status" : 0,
       "CreatedAt" : "날짜",
-      "image" : "/img/yahoogaji.PNG",
+      "image" : "/img/yahoogaji.png",
       "views" : "10"
     },
     {
@@ -103,7 +103,7 @@ function MyPage() {
       "code" : "저장된 코드",
       "status" : 0,
       "CreatedAt" : "날짜",
-      "image" : "/img/yahoogaji.PNG",
+      "image" : "/img/yahoogaji.png",
       "views" : "10"
     },
   ]

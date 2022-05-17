@@ -34,13 +34,13 @@ function Intro() {
 
   // const content1 = {
   //   text: '한글 코드와 동시에 Java, Python, C 등의 언어도 학습할 수 있습니다.',
-  //   img: ["/img/nuriCode.PNG", "/img/javaCode.PNG"],
+  //   img: ["/img/nuriCode.png", "/img/javaCode.png"],
   //   imgW: "48%",
   // }
 
   const content2 = {
     text: '누리 문법을 학습하고, 게임과 수학 문제를 통해 쉽게 코딩을 배울 수 있습니다',
-    img: ["/img/nurirang_carousel2.PNG", "/img/updownproblem.PNG", "/img/nurirang_carousel3.PNG"],
+    img: ["/img/nurirang_carousel2.png", "/img/updownproblem.png", "/img/nurirang_carousel3.png"],
     imgW: "32%",
   }
 
