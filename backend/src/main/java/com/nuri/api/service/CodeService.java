@@ -2,6 +2,7 @@ package com.nuri.api.service;
 
 import com.nuri.api.request.MathCodeSavePostReq;
 import com.nuri.api.request.MathGameCodeSavePostReq;
+import com.nuri.api.response.MathGameCodeRes;
 import com.nuri.db.entity.MathGameCode;
 import com.nuri.db.entity.User;
 
@@ -12,9 +13,9 @@ public interface CodeService {
     MathGameCode saveMathGameCode(MathGameCodeSavePostReq mathGameCodeSavePostReq, User user);
     MathGameCode saveMathCode(MathCodeSavePostReq mathCodeSavePostReq, User user);
 
-    List<MathGameCode> findCompletedGame(User user);
-    List<MathGameCode> findViewedGame(User user);
+    List<MathGameCodeRes> findCompletedGame(User user);
+    List<MathGameCodeRes> findViewedGame(User user);
 
-    List<MathGameCode> findCompletedCode(User user);
-    List<MathGameCode> findViewedCode(User user);
+    List<MathGameCodeRes> findCompletedCode(User user);
+    List<MathGameCodeRes> findViewedCode(User user);
 }
