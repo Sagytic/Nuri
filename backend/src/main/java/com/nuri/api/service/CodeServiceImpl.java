@@ -137,5 +137,17 @@ public class CodeServiceImpl implements CodeService{
         return practiceCodeResList;
     }
 
+    @Override
+    public MathGameCode findByMathGameIdAndUserId(User user, Long mathgamecodeId) {
+        MathGameCode mathGameCode = codeRepository.findByMathGameIdAndUserId(user.getUserId(), mathgamecodeId);
+        return mathGameCode;
+    }
+
+    @Override
+    public PracticeCode findByPracticeCodeIdAndUserId(User user, Long practicecodeId) {
+        PracticeCode practiceCode = practiceRepository.findByPracticeCodeIdAndUserId(user.getUserId(), practicecodeId);
+        return practiceCode;
+    }
+
 
 }

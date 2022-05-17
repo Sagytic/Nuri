@@ -25,4 +25,8 @@ public interface CodeService {
     List<MathGameCodeRes> findViewedCode(User user);
 
     List<PracticeCodeRes> findPracticeByUserId(User user);
+
+    MathGameCode findByMathGameIdAndUserId(User user, Long mathgamecodeId);
+    PracticeCode findByPracticeCodeIdAndUserId(User user, Long practicecodeId);
+
 }

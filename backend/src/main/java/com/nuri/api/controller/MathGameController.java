@@ -5,6 +5,7 @@ import com.nuri.api.request.MathCodeSavePostReq;
 import com.nuri.api.request.MathGameCodeSavePostReq;
 import com.nuri.api.request.PracticeCodeSavePostReq;
 import com.nuri.api.response.GameRankRes;
+import com.nuri.api.response.PracticeCodeRes;
 import com.nuri.api.service.CodeService;
 import com.nuri.api.service.GameRankService;
 import com.nuri.api.service.MathGameService;
@@ -12,6 +13,7 @@ import com.nuri.common.auth.NuriUserDetails;
 import com.nuri.common.model.response.BaseResponseBody;
 import com.nuri.db.entity.MathGame;
 import com.nuri.db.entity.MathGameCode;
+import com.nuri.db.entity.PracticeCode;
 import com.nuri.db.entity.User;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -97,6 +99,25 @@ public class MathGameController {
         return ResponseEntity.status(200).body(gamerank);
     }
 
+    @PostMapping("/rank")
+    @ApiOperation(value = "게임이 끝나고 랭킹 저장")
+    @ApiResponses({
+            @ApiResponse(code = 200, message = "성공"),
+            @ApiResponse(code = 401, message = "인증 실패"),
+            @ApiResponse(code = 404, message = "사용자 없음"),
+            @ApiResponse(code = 500, message = "서버 오류")
+    })
+    public ResponseEntity<? extends BaseResponseBody> save(@RequestBody GameRankSavePostReq gamerankSavePostReq, @ApiIgnore Authentication authentication){
+        NuriUserDetails userDetails = (NuriUserDetails) authentication.getDetails();
+        Long userId = userDetails.getUser().getUserId();
+        User user = userDetails.getUser();
+
+        if (gamerankService.saveGameRank(gamerankSavePostReq, user) != null) {
+            return ResponseEntity.status(200).body(BaseResponseBody.of(200, "Success"));
+        }
+        return ResponseEntity.status(500).body(BaseResponseBody.of(500, "Error"));
+    }
+
     @PostMapping("/play")
     @ApiOperation(value = "게임의 도전/성공 여부 저장")
     @ApiResponses({
@@ -155,28 +176,42 @@ public class MathGameController {
         return ResponseEntity.status(500).body(BaseResponseBody.of(500, "Error"));
     }
 
-    @PostMapping("/rank")
-    @ApiOperation(value = "게임이 끝나고 랭킹 저장")
+    @PostMapping("/playOne")
+    @ApiOperation(value = "저장한 개별 게임/문제 코드 조회")
     @ApiResponses({
             @ApiResponse(code = 200, message = "성공"),
             @ApiResponse(code = 401, message = "인증 실패"),
             @ApiResponse(code = 404, message = "사용자 없음"),
             @ApiResponse(code = 500, message = "서버 오류")
     })
-    public ResponseEntity<? extends BaseResponseBody> save(@RequestBody GameRankSavePostReq gamerankSavePostReq, @ApiIgnore Authentication authentication){
-        NuriUserDetails userDetails = (NuriUserDetails) authentication.getDetails();
+    public ResponseEntity<MathGameCode> playOne(@ApiIgnore Authentication authentication, Long mathgamecodeId) {
+        NuriUserDetails userDetails = (NuriUserDetails)authentication.getDetails();
         Long userId = userDetails.getUser().getUserId();
         User user = userDetails.getUser();
 
-        if (gamerankService.saveGameRank(gamerankSavePostReq, user) != null) {
-            return ResponseEntity.status(200).body(BaseResponseBody.of(200, "Success"));
-        }
-        return ResponseEntity.status(500).body(BaseResponseBody.of(500, "Error"));
+        MathGameCode gameCode = codeService.findByMathGameIdAndUserId(user, mathgamecodeId);
+
+        return ResponseEntity.status(200).body(gameCode);
     }
 
+    @PostMapping("/practiceOne")
+    @ApiOperation(value = "저장한 개별 ide 코드 조회")
+    @ApiResponses({
+            @ApiResponse(code = 200, message = "성공"),
+            @ApiResponse(code = 401, message = "인증 실패"),
+            @ApiResponse(code = 404, message = "사용자 없음"),
+            @ApiResponse(code = 500, message = "서버 오류")
+    })
+    public ResponseEntity<PracticeCodeRes> practiceOne(@ApiIgnore Authentication authentication, Long practicecodeId) {
+        NuriUserDetails userDetails = (NuriUserDetails)authentication.getDetails();
+        Long userId = userDetails.getUser().getUserId();
+        User user = userDetails.getUser();
 
+        PracticeCode practiceCode = codeService.findByPracticeCodeIdAndUserId(user, practicecodeId);
 
-    
+        return ResponseEntity.status(200).body(practiceCode);
+    }
+
     @GetMapping("/Tgame")
     @ApiOperation(value = "31게임")
     @ApiResponses({
