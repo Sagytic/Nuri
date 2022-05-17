@@ -1,31 +1,61 @@
-import React from "react";
+import React from 'react';
 import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
 import CardMedia from '@mui/material/CardMedia';
 import Button from '@mui/material/Button';
 import { AiFillEye, AiOutlineForward } from 'react-icons/ai';
 import { useNavigate } from "react-router-dom";
-import './AllGameList.css'
+import axios from 'axios';
+import server from "../../API/server";
 
-function AllGameList() {
+import "./GameList.css"
+
+export default function GameListCard() {
+  const API_BASE_URL = server.BASE_URL;
+  const GameImg = process.env.PUBLIC_URL + "img/"
   const navigate = useNavigate();
-  const Img = process.env.PUBLIC_URL + "img/"
+
+  function viewUpdate(number) {
+    const id = number;
+    axios
+    .patch(API_BASE_URL + '/api/v1/mathgame/' + id)
+    .then((res) => {
+        console.log(res);
+        navigate("/game/" + id);
+    })
+  }
+
+  const viewsArr = []
+
+  async function getViews() {
+    const viewsList = [];
+    await axios
+    .get(API_BASE_URL + "/api/v1/mathgame/0")
+    .then((res) => {
+      for (let i = 0; i < 3; i++) {
+        viewsList.push(res.data[i].views)
+      }
+      window.viewsArr = viewsList;
+      console.log(viewsList)
+      console.log(viewsArr)
+    })
+  }
 
   return (
-    <div className="AllGameList-Container">
+    <div className="GameList-Container">
       <div className="Card-Contents">
         <Card sx={{ maxWidth: 345 }}>
           <CardMedia
             component="img"
-            alt="Img"
+            alt="GameImg"
             height="140"
-            image={Img+"updowngamethumbnail.PNG"}
+            image={GameImg+"updowngamethumbnail.png"}
           />
           <CardActions>
-            <Button size="small" onClick={() => { navigate("/game/2") }}>업다운 게임 <AiOutlineForward /></Button>
+            <Button size="small" onClick={() => {viewUpdate(2)}}>업다운 게임 <AiOutlineForward /></Button>
               <div style={{display: "flex", alignItems: "center"}}>
                 <AiFillEye size="15"/>
-                1532
+                {viewsArr[1]}
               </div>
           </CardActions>
         </Card>
@@ -34,15 +64,15 @@ function AllGameList() {
         <Card sx={{ maxWidth: 345 }}>
           <CardMedia
             component="img"
-            alt="Img"
+            alt="GameImg"
             height="140"
-            image={Img+"cardconnectgamethumbnail.PNG"}
+            image={GameImg+"cardconnectgamethumbnail.png"}
           />
           <CardActions>
-            <Button size="small" onClick={() => { navigate("/game/0") }}>연결 게임 <AiOutlineForward /></Button>
+            <Button size="small" onClick={() => {viewUpdate(0)}}>연결 게임 <AiOutlineForward /></Button>
               <div style={{display: "flex", alignItems: "center"}}>
                 <AiFillEye size="15"/>
-                1532
+                {viewsArr[0]}
               </div>
           </CardActions>
         </Card>
@@ -51,42 +81,21 @@ function AllGameList() {
         <Card sx={{ maxWidth: 345 }}>
           <CardMedia
             component="img"
-            alt="Img"
+            alt="GameImg"
             height="140"
-            image={Img+"finddifferentgamethumbnail.PNG"}
+            image={GameImg+"finddifferentgamethumbnail.png"}
           />
           <div className="Card-Footer">
           <CardActions>
-            <Button size="small" onClick={() => { navigate("/game/1") }}>틀린 부분 찾기 <AiOutlineForward /></Button>
+            <Button size="small" onClick={() => {viewUpdate(1)}}>틀린 부분 찾기! <AiOutlineForward /></Button>
               <div style={{display: "flex", alignItems: "center"}}>
                 <AiFillEye size="15"/>
-                1532
-              </div>
-          </CardActions>
-          </div>
-        </Card>
-      </div>
-      <div className="Card-Contents">
-        <Card sx={{ maxWidth: 345 }}>
-          <CardMedia
-            component="img"
-            alt="Img"
-            height="140"
-            image={Img+"31gamethumbnail.PNG"}
-          />
-          <div className="Card-Footer">
-          <CardActions>
-            <Button size="small" onClick={() => { navigate("/game/2") }}>31 게임 <AiOutlineForward /></Button>
-              <div style={{display: "flex", alignItems: "center"}}>
-                <AiFillEye size="15"/>
-                1532
+                {viewsArr[2]}
               </div>
           </CardActions>
           </div>
         </Card>
       </div>
     </div>
-  )  
+  );
 }
-
-export default AllGameList

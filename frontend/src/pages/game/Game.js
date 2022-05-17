@@ -1,5 +1,5 @@
 import React from "react";
-import AllGameList from '../../components/game/AllGameList';
+import GameList from '../../components/game/GameList';
 import Box from '@mui/material/Box';
 import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
@@ -43,7 +43,7 @@ function Game() {
       </Box>
       </>
 
-      <AllGameList />
+      <GameList />
     </div>
   )  
 }

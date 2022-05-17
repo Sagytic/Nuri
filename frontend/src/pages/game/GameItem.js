@@ -16,7 +16,7 @@ function GameItem() {
     { 
       id: 100, 
       title: "연결 게임", 
-      img: "/img/cardconnectgamethumbnail.PNG", 
+      img: "/img/cardconnectgamethumbnail.png", 
       content: "모든 짝이 맞게 카드를 뒤집어주세요!"
     },
     { 
@@ -31,7 +31,7 @@ function GameItem() {
     {
       id: 101, 
       title: "업다운 게임", 
-      img: "/img/updowngamethumbnail.PNG", 
+      img: "/img/updowngamethumbnail.png", 
       content: `
       정수인 숫자 1~100 사이 중에서 누리랑이 마음 속으로 정한 숫자를 10번 안에 맞춰봐!
       (단, 출력 결과에 UP, DOWN 여부와 숫자를 예측하는 과정을 보여줘야 성공할 수 있어)

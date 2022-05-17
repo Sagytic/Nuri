@@ -39,10 +39,10 @@ function MiddleIntro() {
         <img src={Img + '/img/blockCode.png'} alt="block code"/>
       </Fade>
       <Zoom bottom>
-        <img src={Img + '/img/nuriCode.PNG'} alt="korean code"/>
+        <img src={Img + '/img/nuriCode.png'} alt="korean code"/>
       </Zoom>
       <Fade right>
-        <img src={Img + '/img/javaCode.PNG'} alt="text code"/>
+        <img src={Img + '/img/javaCode.png'} alt="text code"/>
       </Fade>
     <div className="code-alt-container">
       <span>블록 코드</span>
