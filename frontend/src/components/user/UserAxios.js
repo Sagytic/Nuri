@@ -62,8 +62,32 @@ function ChangeUserBackgroundImg(data) {
   })
 }
 
-function GetUserCode() {
-  return axios.get(userInfoUrl + '/code', {
+function GetUserChallengGame() {
+  return axios.get(userInfoUrl + '/viewd_game', {
+    headers: {
+      Authorization: `Bearer ${localStorage.getItem("jwt")}`,
+    },
+  })
+}
+
+function GetUserSuccessGame() {
+  return axios.get(userInfoUrl + '/completed_game', {
+    headers: {
+      Authorization: `Bearer ${localStorage.getItem("jwt")}`,
+    },
+  })
+}
+
+function GetUserChallengMath() {
+  return axios.get(userInfoUrl + '/viewd_problem', {
+    headers: {
+      Authorization: `Bearer ${localStorage.getItem("jwt")}`,
+    },
+  })
+}
+
+function GetUserSuccessMath() {
+  return axios.get(userInfoUrl + '/completed_problem', {
     headers: {
       Authorization: `Bearer ${localStorage.getItem("jwt")}`,
     },
@@ -75,4 +99,18 @@ function TGameSetUp(count, uNum) {
   return axios.get(tGameUrl, { params });
 }
 
-export { CheckId, CheckNickName, UserSignup, UserLogin, UserInfo, ChangeUserNickname, ChangeUserPhoto, ChangeUserBackgroundImg, GetUserCode, TGameSetUp };
+export { 
+  CheckId, 
+  CheckNickName, 
+  UserSignup, 
+  UserLogin, 
+  UserInfo, 
+  ChangeUserNickname, 
+  ChangeUserPhoto, 
+  ChangeUserBackgroundImg, 
+  GetUserChallengGame,
+  GetUserSuccessGame,
+  GetUserChallengMath,
+  GetUserSuccessMath,
+  TGameSetUp 
+};

@@ -12,6 +12,7 @@ const server = {
     rank: "/api/v1/mathgame/rank",
     allMath: "/api/v1/mathgame",
     tGameSetUp: "/api/v1/mathgame/Tgame",
+    mathgameSave: "/api/v1/mathgame",
   }
 
 }

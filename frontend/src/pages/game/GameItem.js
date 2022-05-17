@@ -6,7 +6,7 @@ import Timer from "../../components/game/Timer";
 import LinkGame from "../../components/game/LinkGame";
 import WrongFindGame from "../../components/game/WrongFindGame";
 import UpDown from "../../components/game/UpDown";
-import { SaveRank, GetRank } from "../../components/game/GameAxios";
+import { SaveRank, GetRank, SaveGame } from "../../components/game/GameAxios";
 import "./GameItem.css";
 
 function GameItem() {
@@ -52,6 +52,7 @@ function GameItem() {
   function startGame() {
     setTimerStart(true);
     setExplainShow(false);
+    saveGame(explainData[params].id, 0);
   }
 
   function finishGame() {
@@ -59,6 +60,7 @@ function GameItem() {
     setTimerEnd(true);
     setResultShow(true);
     saveRank(explainData[params].id, time);
+    saveGame(explainData[params].id, 1);
   }
 
   function restartGame() {
@@ -107,6 +109,20 @@ function GameItem() {
     })
   }
 
+  function saveGame(mathgameId, status) {
+    const data = {
+      mathgameId: mathgameId,
+      status: status,
+    }
+    SaveGame(data)
+    .then(() => {
+      console.log("도전/해결한 문제 등록 성공");
+    })
+    .catch(() => {
+      console.log("도전/해결한 문제 등록 실패");
+    })
+  }
+
   useEffect(() => {
     if (localStorage.getItem("jwt") === null) {
       navigate("/user/login")
@@ -122,7 +138,7 @@ function GameItem() {
           moveAllGames={moveAllGames}
         />
       }
-      {resultShow && 
+      {resultShow &&
         <Result
           time={time}
           rankData={rankData}
