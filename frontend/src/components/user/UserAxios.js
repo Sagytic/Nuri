@@ -62,8 +62,40 @@ function ChangeUserBackgroundImg(data) {
   })
 }
 
-function GetUserCode() {
-  return axios.get(userInfoUrl + '/code', {
+function GetUserChallengeGame() {
+  return axios.get(userInfoUrl + '/viewed_game', {
+    headers: {
+      Authorization: `Bearer ${localStorage.getItem("jwt")}`,
+    },
+  })
+}
+
+function GetUserSuccessGame() {
+  return axios.get(userInfoUrl + '/completed_game', {
+    headers: {
+      Authorization: `Bearer ${localStorage.getItem("jwt")}`,
+    },
+  })
+}
+
+function GetUserChallengeMath() {
+  return axios.get(userInfoUrl + '/viewed_problem', {
+    headers: {
+      Authorization: `Bearer ${localStorage.getItem("jwt")}`,
+    },
+  })
+}
+
+function GetUserSuccessMath() {
+  return axios.get(userInfoUrl + '/completed_problem', {
+    headers: {
+      Authorization: `Bearer ${localStorage.getItem("jwt")}`,
+    },
+  })
+}
+
+function GetUserPractice() {
+  return axios.get(userInfoUrl + '/practice', {
     headers: {
       Authorization: `Bearer ${localStorage.getItem("jwt")}`,
     },
@@ -75,4 +107,19 @@ function TGameSetUp(count, uNum) {
   return axios.get(tGameUrl, { params });
 }
 
-export { CheckId, CheckNickName, UserSignup, UserLogin, UserInfo, ChangeUserNickname, ChangeUserPhoto, ChangeUserBackgroundImg, GetUserCode, TGameSetUp };
+export { 
+  CheckId, 
+  CheckNickName, 
+  UserSignup, 
+  UserLogin, 
+  UserInfo, 
+  ChangeUserNickname, 
+  ChangeUserPhoto, 
+  ChangeUserBackgroundImg, 
+  GetUserChallengeGame,
+  GetUserSuccessGame,
+  GetUserChallengeMath,
+  GetUserSuccessMath,
+  GetUserPractice,
+  TGameSetUp 
+};

@@ -6,7 +6,7 @@ import Timer from "../../components/game/Timer";
 import LinkGame from "../../components/game/LinkGame";
 import WrongFindGame from "../../components/game/WrongFindGame";
 import UpDown from "../../components/game/UpDown";
-import { SaveRank, GetRank } from "../../components/game/GameAxios";
+import { SaveRank, GetRank, SaveGame } from "../../components/game/GameAxios";
 import "./GameItem.css";
 
 function GameItem() {
@@ -19,6 +19,15 @@ function GameItem() {
       img: "/img/cardconnectgamethumbnail.png", 
       content: "모든 짝이 맞게 카드를 뒤집어주세요!"
     },
+    {
+      id: 101, 
+      title: "업다운 게임", 
+      img: "/img/updowngamethumbnail.png", 
+      content: `
+      정수인 숫자 1~100 사이 중에서 누리랑이 마음 속으로 정한 숫자를 10번 안에 맞춰봐!
+      (단, 출력 결과에 UP, DOWN 여부와 숫자를 예측하는 과정을 보여줘야 성공할 수 있어)
+      `
+    },
     { 
       id: 102, 
       title: "틀린 부분 찾기 게임", 
@@ -28,15 +37,6 @@ function GameItem() {
       누리 코드를 보고 자바 코드에서 틀린 부분을 찾아주세요!"`
       
     },
-    {
-      id: 101, 
-      title: "업다운 게임", 
-      img: "/img/updowngamethumbnail.png", 
-      content: `
-      정수인 숫자 1~100 사이 중에서 누리랑이 마음 속으로 정한 숫자를 10번 안에 맞춰봐!
-      (단, 출력 결과에 UP, DOWN 여부와 숫자를 예측하는 과정을 보여줘야 성공할 수 있어)
-      `
-    }
   ]
 
   const params = useParams().id;
@@ -52,6 +52,7 @@ function GameItem() {
   function startGame() {
     setTimerStart(true);
     setExplainShow(false);
+    saveGame(explainData[params].id, 0);
   }
 
   function finishGame() {
@@ -59,6 +60,7 @@ function GameItem() {
     setTimerEnd(true);
     setResultShow(true);
     saveRank(explainData[params].id, time);
+    saveGame(explainData[params].id, 1);
   }
 
   function restartGame() {
@@ -107,6 +109,20 @@ function GameItem() {
     })
   }
 
+  function saveGame(mathgameId, status) {
+    const data = {
+      mathgameId: mathgameId,
+      status: status,
+    }
+    SaveGame(data)
+    .then(() => {
+      console.log("도전/해결한 문제 등록 성공");
+    })
+    .catch(() => {
+      console.log("도전/해결한 문제 등록 실패");
+    })
+  }
+
   useEffect(() => {
     if (localStorage.getItem("jwt") === null) {
       navigate("/user/login")
@@ -122,7 +138,7 @@ function GameItem() {
           moveAllGames={moveAllGames}
         />
       }
-      {resultShow && 
+      {resultShow &&
         <Result
           time={time}
           rankData={rankData}
@@ -134,8 +150,8 @@ function GameItem() {
       }
       <Timer setTime={setTime} data={explainData[params]} timerStart={timerStart} timerEnd={timerEnd} />
       {params === "0" && <LinkGame start={start} finishGame={finishGame} />}
-      {params === "1" && <WrongFindGame start={start} finishGame={finishGame} time={time}/>}
-      {params === "2" && <UpDown start={start} finishGame={finishGame} />}
+      {params === "1" && <UpDown start={start} finishGame={finishGame} />}
+      {params === "2" && <WrongFindGame start={start} finishGame={finishGame} time={time}/>}
 
     </div>
   )

@@ -50,9 +50,10 @@ function Nav({ userNickname, userPhoto, setUserNickname }) {
         ? 
         <>
           <FiMenu size="2rem" onClick={() => toggleMenu()} style={{cursor: "pointer"}} />
-          <div className="Nav-items" style={{ visibility: menuShow ? "visible" : "hidden" }}>
+          <div className="Nav-items" onClick={() => toggleMenu()} style={{ visibility: menuShow ? "visible" : "hidden" }}>
             <NavLink className="Nav-item" to="/intro" >누리소개</NavLink>
             <NavLink className="Nav-item" to="/reference"  state={{ PathStep: 0 }}>살펴보기</NavLink>
+            <NavLink className="Nav-item" to="/ide" >코드짜기</NavLink>
             <NavLink className="Nav-item" to="/game" >게임하기</NavLink>
             <NavLink className="Nav-item" to="/math" >문제풀기</NavLink>
           </div>
@@ -61,6 +62,7 @@ function Nav({ userNickname, userPhoto, setUserNickname }) {
         <div className="Nav-items">
           <NavLink className="Nav-item" to="/intro" >누리소개</NavLink>
           <NavLink className="Nav-item" to="/reference" state={{ PathStep: 0}} >살펴보기</NavLink>
+          <NavLink className="Nav-item" to="/ide" >코드짜기</NavLink>
           <NavLink className="Nav-item" to="/game" >게임하기</NavLink>
           <NavLink className="Nav-item" to="/math" >문제풀기</NavLink>
         </div>}

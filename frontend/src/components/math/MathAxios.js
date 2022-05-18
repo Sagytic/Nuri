@@ -1,14 +1,22 @@
 import axios from "axios";
 import server from "../../API/server";
 
-const allMathUrl = server.BASE_URL + server.ROUTES.allMath
+const mathgameUrl = server.BASE_URL + server.ROUTES.mathgame;
 
 function GetAllMath() {
-  return axios.get(allMathUrl + "/1", {
+  return axios.get(mathgameUrl + "/1", {
     headers: {
       Authorization: `Bearer ${localStorage.getItem("jwt")}`,
     },
   })
 }
 
-export { GetAllMath };
+function SaveMath(data) {
+  return axios.post(mathgameUrl + "/problem", data, {
+    headers: {
+      Authorization: `Bearer ${localStorage.getItem("jwt")}`,
+    },
+  }) 
+}
+
+export { GetAllMath, SaveMath };

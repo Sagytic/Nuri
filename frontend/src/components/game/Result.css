@@ -24,6 +24,25 @@
   border-color: #FFD644;
 }
 
+.Result-rank-loading {
+  width: 400px;
+  height: 340px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.Result-rank-loading-icon {
+  animation: rotate_spinner 2s linear infinite;
+}
+
+@keyframes rotate_spinner {
+  100% {
+    transform: rotate(-720deg);
+  }
+}
+
 .Result-rank-list {
   box-sizing: border-box;
   width: 400px;
