@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import SaveModal from "../../components/math/SaveModal";
 import MathProblem from "../../components/math/MathProblem";
 import MathIde from "../../components/math/MathIde";
 import AnswerModal from "../../components/math/AnswerModal";
@@ -15,6 +16,8 @@ function MathItem() {
   const [theme, setTheme] = useState("vs-light");
   const [ansModalShow, setAnsModalShow] = useState(false);
   const [ansShow, setAnsShow] = useState(false);
+  const [isSuccess, setIsSuccess] = useState(false);
+  const [saveShow, setSaveShow] = useState(false);
 
   function toggleClick(){
     setToggle(!toggle);
@@ -23,6 +26,14 @@ function MathItem() {
     }else{
       setTheme("vs-light");
     }
+  }
+
+  function saveOn() {
+    setSaveShow(true);
+  }
+
+  function saveOff() {
+    setSaveShow(false);
   }
 
   function ansModalOn() {
@@ -56,6 +67,7 @@ function MathItem() {
 
   return (
     <div className="MathItem">
+      {saveShow && <SaveModal isSuccess={isSuccess} saveOff={saveOff} />}
       {mathData && 
         <MathProblem 
           problemData={mathData[params]} 
@@ -64,7 +76,7 @@ function MathItem() {
           ansModalOn={ansModalOn}
         />
       }
-      <MathIde theme={theme} toggle={toggle} />
+      {mathData && <MathIde theme={theme} toggle={toggle} problemData={mathData[params]} saveOn={saveOn} setIsSuccess={setIsSuccess} />}
       {ansModalShow && <AnswerModal ansModalOff={ansModalOff} ansOn={ansOn} />}
       {ansShow && <Answer theme={theme} toggle={toggle} problemData={mathData[params]} ansOff={ansOff}/>}
     </div>

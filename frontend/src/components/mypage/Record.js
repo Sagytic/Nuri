@@ -2,34 +2,14 @@ import React from "react";
 import CodeList from "./CodeList";
 import "./Record.css";
 
-function Record({ allCodeData, codeIdx, setCodeIdx }) {
-  
-  const challengedMathList = allCodeData.filter((code) => {
-    return code.type === 1 && code.status === 0;
-  })
-
-  const solvedMathList = allCodeData.filter((code) => {
-    return code.type === 1 && code.status === 1;
-  })
-
-  const challengedGameList = allCodeData.filter((code) => {
-    return code.type === 0 && code.status === 0;
-  })
-
-  const solvedGameList = allCodeData.filter((code) => {
-    return code.type === 0 && code.status === 1;
-  })
-
-  const practiceList = allCodeData.filter((code) => {
-    return code.type === 2 && code.status === 1;
-  })
+function Record({ codeData, codeIdx, setCodeIdx }) {
 
   const codeArray = [
-    {id: 0, title: "도전한 문제", content: challengedMathList},
-    {id: 1, title: "해결한 문제", content: solvedMathList},
-    {id: 2, title: "도전한 게임", content: challengedGameList},
-    {id: 3, title: "해결한 게임", content: solvedGameList},
-    {id: 4, title: "혼자 연습", content: practiceList},
+    {id: 0, title: "도전한 문제"},
+    {id: 1, title: "해결한 문제"},
+    {id: 2, title: "도전한 게임"},
+    {id: 3, title: "해결한 게임"},
+    {id: 4, title: "혼자 연습",},
   ]
 
   function changeCodeData(idx) {
@@ -40,18 +20,18 @@ function Record({ allCodeData, codeIdx, setCodeIdx }) {
   return (
     <div className="Record">
       <div className="Record-tag-group">
-        {codeArray.map((codeEle) => {
+        {codeArray.map((codeEle, idx) => {
           return (
           <div 
             key={codeEle.id} 
             className={codeIdx === codeEle.id ? "Record-tag-on" : "Record-tag"} 
             onClick={() => changeCodeData(codeEle.id)}
           >
-            {codeEle.title} {codeEle.content.length}
+            {codeEle.title} {codeData[idx].length}
           </div>)
         })}
       </div>
-      <CodeList codeData={codeArray[codeIdx].content} />
+      <CodeList codeData={codeData[codeIdx]} />
     </div>
   )
 }

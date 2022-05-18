@@ -11,9 +11,8 @@ const server = {
     login: "/api/v1/user/login",
     userData: "/api/v1/user",
     rank: "/api/v1/mathgame/rank",
-    allMath: "/api/v1/mathgame",
+    mathgame: "/api/v1/mathgame",
     tGameSetUp: "/api/v1/mathgame/Tgame",
-    mathgameSave: "/api/v1/mathgame",
   }
 
 }

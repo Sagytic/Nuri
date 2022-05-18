@@ -5,7 +5,16 @@ import Record from "../../components/mypage/Record";
 import ChangeInfo from "../../components/mypage/ChangeInfo";
 import ChangeNickname from "../../components/mypage/ChangeNickname";
 import { useOutletContext } from "react-router-dom";
-import { ChangeUserNickname, ChangeUserPhoto, ChangeUserBackgroundImg } from "../../components/user/UserAxios";
+import { 
+  ChangeUserNickname, 
+  ChangeUserPhoto, 
+  ChangeUserBackgroundImg,
+  GetUserChallengeMath,
+  GetUserSuccessMath,
+  GetUserChallengeGame,
+  GetUserSuccessGame,
+  GetUserPractice,
+} from "../../components/user/UserAxios";
 import { CheckNickName } from "../../components/user/UserAxios";
 import "./MyPage.css";
 
@@ -22,92 +31,8 @@ function MyPage() {
   const [tempBackImg, setTempBackImg] = useState(defaultBackImgSrc);
   const [nicknameMessage, setNickNameMessage] = useState("")
   const [codeIdx, setCodeIdx] = useState(0);
-  // const [allCodeData, setAllCodeData] = useState([]);
-
-  const allCodeData = [
-    {
-      "title" : "도전한 문제 1",
-      "type" : 1,
-      "code" : "저장된 코드",
-      "status" : 0,
-      "CreatedAt" : "날짜",
-      "image" : "/img/yahoogaji.png",
-      "views" : "10"
-    },
-    {
-      "title" : "해결한 문제 1",
-      "type" : 1,
-      "code" : "저장된 코드",
-      "status" : 1,
-      "CreatedAt" : "날짜",
-      "image" : "/img/yahoogaji.png",
-      "views" : "10"
-    },
-    {
-      "title" : "해결한 게임 1",
-      "type" : 0,
-      "code" : "저장된 코드",
-      "status" : 1,
-      "CreatedAt" : "날짜",
-      "image" : "/img/yahoogaji.png",
-      "views" : "10"
-    },
-    {
-      "title" : "해결한 게임 2",
-      "type" : 0,
-      "code" : "저장된 코드",
-      "status" : 1,
-      "CreatedAt" : "날짜",
-      "image" : "/img/yahoogaji.png",
-      "views" : "10"
-    },
-    {
-      "title" : "도전한 게임 2",
-      "type" : 0,
-      "code" : "저장된 코드",
-      "status" : 0,
-      "CreatedAt" : "날짜",
-      "image" : "/img/yahoogaji.png",
-      "views" : "10"
-    },
-    {
-      "title" : "해결한 문제 2",
-      "type" : 1,
-      "code" : "저장된 코드",
-      "status" : 1,
-      "CreatedAt" : "날짜",
-      "image" : "/img/yahoogaji.png",
-      "views" : "10"
-    },
-    {
-      "title" : "도전한 문제 2",
-      "type" : 1,
-      "code" : "저장된 코드",
-      "status" : 0,
-      "CreatedAt" : "날짜",
-      "image" : "/img/yahoogaji.png",
-      "views" : "10"
-    },
-    {
-      "title" : "도전한 문제 3",
-      "type" : 1,
-      "code" : "저장된 코드",
-      "status" : 0,
-      "CreatedAt" : "날짜",
-      "image" : "/img/yahoogaji.png",
-      "views" : "10"
-    },
-    {
-      "title" : "도전한 문제 4",
-      "type" : 1,
-      "code" : "저장된 코드",
-      "status" : 0,
-      "CreatedAt" : "날짜",
-      "image" : "/img/yahoogaji.png",
-      "views" : "10"
-    },
-  ]
-
+  const [getCodeData, setGetCodeData] = useState(false);
+  const [codeData, setCodeData] = useState(new Array(5).fill([]));
   const navigate = useNavigate();
 
   async function nickNameValidation() {
@@ -230,10 +155,60 @@ function MyPage() {
     setNickNameMessage("")
   }
   
+  function saveCodeData() {
+    const tempData = codeData;
+    GetUserChallengeMath()
+    .then((response) => {
+      tempData[0] = response.data
+      console.log("도전한 문제 받아오기")
+    })
+    .then(() => {
+      GetUserSuccessMath()
+      .then((response) => {
+        tempData[1] = response.data
+        console.log("해결한 문제 받아오기")
+      })
+      .then(() => {
+        GetUserChallengeGame()
+        .then((response) => {
+          tempData[2] = response.data
+          console.log("도전한 게임 받아오기")
+        })
+        .then(() => {
+          GetUserSuccessGame()
+          .then((response) => {
+            tempData[3] = response.data
+            console.log("해결한 게임 받아오기")
+          })
+          .then(() => {
+            GetUserPractice()
+            .then((response) => {
+              tempData[4] = response.data
+              console.log("혼자 연습 받아오기")
+            })
+            .then(() => {
+              console.log("마지막");
+              setCodeData(tempData);
+              setGetCodeData(true);
+            })
+          })
+        })
+      })
+    })
+    .catch(() => {
+      console.log("도전한 문제 불러오기 실패");
+    })
+  }
+
+
   useEffect(() => {
     
     if (localStorage.getItem("jwt") === null) {
       navigate("/user/login");
+    }
+
+    if (!getCodeData) {
+      saveCodeData();
     }
 
     setNickname(userNickname);
@@ -241,7 +216,8 @@ function MyPage() {
     setProfileImgSrc(defaultProfileImgSrc);
     setTempImg(defaultProfileImgSrc);
     setTempBackImg(defaultBackImgSrc);
-  }, [navigate, userNickname, codeIdx, defaultBackImgSrc, defaultProfileImgSrc])
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [navigate, getCodeData, codeData, userNickname, codeIdx, defaultBackImgSrc, defaultProfileImgSrc])
   
   return (
     <div className="MyPage">
@@ -271,7 +247,7 @@ function MyPage() {
           changeInfoDone={changeInfoDone} 
           changeInfoOff={changeInfoOff} 
         />
-        <Record allCodeData={allCodeData} codeIdx={codeIdx} setCodeIdx={setCodeIdx} />
+        {getCodeData && <Record codeData={codeData} codeIdx={codeIdx} setCodeIdx={setCodeIdx} />}
       </>}
     </div>
   )

@@ -55,11 +55,11 @@ export default function GameListCard() {
           />
 
           <CardActions>
-            <Button size="small" onClick={() => {viewUpdate(2)}}>업다운 게임 <AiOutlineForward /></Button>
+            <Button size="small" onClick={() => {viewUpdate(1)}}>업다운 게임 <AiOutlineForward /></Button>
               { views.length >= 1 &&
                 <div style={{display: "flex", alignItems: "center"}}>
                 <AiFillEye size="15"/>
-                {views[2].views}
+                {views[1].views}
               </div>
               }
           </CardActions>
@@ -96,12 +96,12 @@ export default function GameListCard() {
           />
           <div className="Card-Footer">
           <CardActions>
-            <Button size="small" onClick={() => {viewUpdate(1)}}>틀린 부분 찾기! <AiOutlineForward /></Button>
+            <Button size="small" onClick={() => {viewUpdate(2)}}>틀린 부분 찾기! <AiOutlineForward /></Button>
               <div style={{display: "flex", alignItems: "center"}}>
                 { views.length >= 1 &&
                 <div style={{display: "flex", alignItems: "center"}}>
                 <AiFillEye size="15"/>
-                {views[1].views}
+                {views[2].views}
               </div>
               }
               </div>

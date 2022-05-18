@@ -62,8 +62,8 @@ function ChangeUserBackgroundImg(data) {
   })
 }
 
-function GetUserChallengGame() {
-  return axios.get(userInfoUrl + '/viewd_game', {
+function GetUserChallengeGame() {
+  return axios.get(userInfoUrl + '/viewed_game', {
     headers: {
       Authorization: `Bearer ${localStorage.getItem("jwt")}`,
     },
@@ -78,8 +78,8 @@ function GetUserSuccessGame() {
   })
 }
 
-function GetUserChallengMath() {
-  return axios.get(userInfoUrl + '/viewd_problem', {
+function GetUserChallengeMath() {
+  return axios.get(userInfoUrl + '/viewed_problem', {
     headers: {
       Authorization: `Bearer ${localStorage.getItem("jwt")}`,
     },
@@ -88,6 +88,14 @@ function GetUserChallengMath() {
 
 function GetUserSuccessMath() {
   return axios.get(userInfoUrl + '/completed_problem', {
+    headers: {
+      Authorization: `Bearer ${localStorage.getItem("jwt")}`,
+    },
+  })
+}
+
+function GetUserPractice() {
+  return axios.get(userInfoUrl + '/practice', {
     headers: {
       Authorization: `Bearer ${localStorage.getItem("jwt")}`,
     },
@@ -108,9 +116,10 @@ export {
   ChangeUserNickname, 
   ChangeUserPhoto, 
   ChangeUserBackgroundImg, 
-  GetUserChallengGame,
+  GetUserChallengeGame,
   GetUserSuccessGame,
-  GetUserChallengMath,
+  GetUserChallengeMath,
   GetUserSuccessMath,
+  GetUserPractice,
   TGameSetUp 
 };
