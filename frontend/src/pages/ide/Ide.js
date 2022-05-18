@@ -1,7 +1,9 @@
 import React, { useState } from "react";
+import { useLocation } from "react-router-dom";
 import axios from 'axios';
 import server from "../../API/server";
 import Editor from "@monaco-editor/react";
+import SaveModal from "../../components/ide/SaveModal";
 import { AiOutlineCopy } from "react-icons/ai";
 import { BiSave } from "react-icons/bi";
 import "./Ide.css"
@@ -12,14 +14,25 @@ function Ide() {
     const API_RAPID_KEY = process.env.REACT_APP_RAPID_API;
 
     var nuriCode, input;
+    const { state } = useLocation();
+    nuriCode = state ? state : null;
     const [result, setResult] = useState(null);
     const [javaCode, setJavaCode] = useState(null);
     const [toggle, setToggle] = useState(true);
+    const [saveShow, setSaveShow] = useState(false);
+    const [saveNuriCode, setSaveNuriCode] = useState("");
     var [theme, setTheme] = useState("vs-light");
-    
 
-    const encode = (str) => {
-        return btoa(unescape(encodeURIComponent(str)));
+    function saveOn() {
+        if (saveNuriCode.length === 0) {
+            alert("코드를 작성하고 저장하기 버튼을 눌러주세요")
+            return
+        }
+        setSaveShow(true);
+    }
+
+    function saveOff() {
+        setSaveShow(false);
     }
 
     const decode = (bytes) => {
@@ -79,6 +92,7 @@ function Ide() {
             mathGameId:"",
             userCode:e
         }
+        setSaveNuriCode(e);
         axios
         .post(API_BASE_URL + "/api/v1/console/convert",
         data,{
@@ -116,6 +130,7 @@ function Ide() {
     
     return (
         <div className="Ide">
+            {saveShow && <SaveModal saveNuriCode={saveNuriCode} saveOff={saveOff} />}
             <div className="Ide-item">
                 <div className="Ide-item-header">
                     <div style={{ textDecoration: "underLine 5px"}}>누리 코드</div>
@@ -127,7 +142,7 @@ function Ide() {
                             {toggle ? "다크모드" : "일반모드"}
                         </button>
                         <AiOutlineCopy className="Ide-item-icon" size="30" onClick={() => copy()}/>
-                        <BiSave className="Ide-item-icon" size="30" />
+                        <BiSave className="Ide-item-icon" size="30" onClick={() => saveOn()}/>
                         <button className="Ide-item-button" onClick={() => run()}>RUN</button>
                     </div>
                 </div>

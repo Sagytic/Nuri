@@ -9,11 +9,7 @@ import {
   ChangeUserNickname, 
   ChangeUserPhoto, 
   ChangeUserBackgroundImg,
-  GetUserChallengeMath,
-  GetUserSuccessMath,
-  GetUserChallengeGame,
-  GetUserSuccessGame,
-  GetUserPractice,
+  GetAllSaveData,
 } from "../../components/user/UserAxios";
 import { CheckNickName } from "../../components/user/UserAxios";
 import "./MyPage.css";
@@ -154,52 +150,6 @@ function MyPage() {
     setChangeNicknameShow(false);
     setNickNameMessage("")
   }
-  
-  function saveCodeData() {
-    const tempData = codeData;
-    GetUserChallengeMath()
-    .then((response) => {
-      tempData[0] = response.data
-      console.log("도전한 문제 받아오기")
-    })
-    .then(() => {
-      GetUserSuccessMath()
-      .then((response) => {
-        tempData[1] = response.data
-        console.log("해결한 문제 받아오기")
-      })
-      .then(() => {
-        GetUserChallengeGame()
-        .then((response) => {
-          tempData[2] = response.data
-          console.log("도전한 게임 받아오기")
-        })
-        .then(() => {
-          GetUserSuccessGame()
-          .then((response) => {
-            tempData[3] = response.data
-            console.log("해결한 게임 받아오기")
-          })
-          .then(() => {
-            GetUserPractice()
-            .then((response) => {
-              tempData[4] = response.data
-              console.log("혼자 연습 받아오기")
-            })
-            .then(() => {
-              console.log("마지막");
-              setCodeData(tempData);
-              setGetCodeData(true);
-            })
-          })
-        })
-      })
-    })
-    .catch(() => {
-      console.log("도전한 문제 불러오기 실패");
-    })
-  }
-
 
   useEffect(() => {
     
@@ -208,7 +158,14 @@ function MyPage() {
     }
 
     if (!getCodeData) {
-      saveCodeData();
+      GetAllSaveData()
+      .then((response) => {
+        setCodeData(response.data)
+        setGetCodeData(true);
+      })
+      .catch(() => {
+        console.log("도전한 문제 불러오기 실패");
+      })
     }
 
     setNickname(userNickname);
@@ -216,7 +173,6 @@ function MyPage() {
     setProfileImgSrc(defaultProfileImgSrc);
     setTempImg(defaultProfileImgSrc);
     setTempBackImg(defaultBackImgSrc);
-
   }, [navigate, getCodeData, codeData, userNickname, codeIdx, defaultBackImgSrc, defaultProfileImgSrc])
   
   return (

@@ -102,6 +102,14 @@ function GetUserPractice() {
   })
 }
 
+function GetAllSaveData() {
+  return axios.get(userInfoUrl + "/all_math", {
+    headers: {
+      Authorization: `Bearer ${localStorage.getItem("jwt")}`,
+    },
+  })
+}
+
 function TGameSetUp(count, uNum) {
   const params = { count: count, uNum: uNum };
   return axios.get(tGameUrl, { params });
@@ -121,5 +129,6 @@ export {
   GetUserChallengeMath,
   GetUserSuccessMath,
   GetUserPractice,
+  GetAllSaveData,
   TGameSetUp 
 };
