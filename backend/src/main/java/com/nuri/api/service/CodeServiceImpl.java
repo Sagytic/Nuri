@@ -41,7 +41,7 @@ public class CodeServiceImpl implements CodeService{
         mathGameCode.setStatus(mathGameCodeSavePostReq.getStatus());
         MathGame mathgame = mathgameRepository.getOne(mathGameCodeSavePostReq.getMathgameId());
         mathGameCode.setMathgame(mathgame);
-        MathGameCode mathGameCodeExist = codeRepository.findByMathGameIdAndUserId(user.getUserId(), mathgame.getMathgameId());
+        MathGameCode mathGameCodeExist = codeRepository.findByMathGameIdAndUserId(user.getUserId(), mathGameCodeSavePostReq.getMathgameId());
         if(mathGameCodeExist!=null) {
             codeRepository.delete(mathGameCodeExist);
         }
@@ -59,7 +59,7 @@ public class CodeServiceImpl implements CodeService{
         mathGameCode.setStatus(mathCodeSavePostReq.getStatus());
         MathGame mathgame = mathgameRepository.getOne(mathCodeSavePostReq.getMathgameId());
         mathGameCode.setMathgame(mathgame);
-        MathGameCode mathGameCodeExist = codeRepository.findByMathGameIdAndUserId(user.getUserId(), mathgame.getMathgameId());
+        MathGameCode mathGameCodeExist = codeRepository.findByMathGameIdAndUserId(user.getUserId(), mathCodeSavePostReq.getMathgameId());
         if(mathGameCodeExist!=null) {
             codeRepository.delete(mathGameCodeExist);
         }
