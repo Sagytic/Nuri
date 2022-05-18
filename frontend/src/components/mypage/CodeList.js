@@ -11,15 +11,15 @@ function CodeList({ codeData }) {
   function imgSrc(mathgameId) {
 
     if (mathgameId < 100) {
-      return `math${mathgameId + 1}thumbnail.PNG`;
+      return `math${mathgameId + 1}thumbnail.png`;
     } else if (mathgameId === 100) {
-      return "cardconnectgamethumbnail.PNG";
+      return "cardconnectgamethumbnail.png";
     } else if (mathgameId === 101) {
-      return "updowngamethumbnail.PNG";
+      return "updowngamethumbnail.png";
     } else if (mathgameId === 102) {
-      return "finddifferentgamehumbnail.PNG";
+      return "finddifferentgamethumbnail.png";
     } else {
-      return "nurirang_carosel1.JPG";
+      return "nurirang_carousel1.JPG";
     }
   }
 
