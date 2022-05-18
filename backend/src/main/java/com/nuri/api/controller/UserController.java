@@ -274,7 +274,7 @@ public class UserController {
 	}
 
 	@GetMapping("/all_math")
-	@ApiOperation(value = "전체 게임/수학문제 코드 저장목록")
+	@ApiOperation(value = "전체 게임/수학문제/Ide 코드 저장목록")
 	@ApiResponses({
 			@ApiResponse(code = 200, message = "성공"),
 			@ApiResponse(code = 401, message = "인증 실패"),
