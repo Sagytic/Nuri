@@ -42,11 +42,12 @@ public class CodeServiceImpl implements CodeService{
         MathGame mathgame = mathgameRepository.getOne(mathGameCodeSavePostReq.getMathgameId());
         mathGameCode.setMathgame(mathgame);
         MathGameCode mathGameCodeExist = codeRepository.findByMathGameIdAndUserId(user.getUserId(), mathGameCodeSavePostReq.getMathgameId());
-        if(mathGameCodeExist!=null) {
-            codeRepository.delete(mathGameCodeExist);
+        if(mathGameCodeExist.getStatus()!=1) {
+            if(mathGameCodeExist!=null) {
+                codeRepository.delete(mathGameCodeExist);
+            }
+            codeRepository.save(mathGameCode);
         }
-        codeRepository.save(mathGameCode);
-
         return mathGameCode;
     }
 
