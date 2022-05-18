@@ -23,6 +23,7 @@ public interface CodeService {
 
     List<MathGameCodeRes> findCompletedCode(User user);
     List<MathGameCodeRes> findViewedCode(User user);
+    List<MathGameCodeRes> findAllCode(User user);
 
     List<PracticeCodeRes> findPracticeByUserId(User user);
 

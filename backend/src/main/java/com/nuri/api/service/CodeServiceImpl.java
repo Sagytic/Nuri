@@ -112,6 +112,17 @@ public class CodeServiceImpl implements CodeService{
         return mathgameCodeResList;
     }
 
+    @Override
+    public List<MathGameCodeRes> findAllCode(User user) {
+        List<MathGameCode> mathGameCodeList = codeRepository.findAllMathByUserId(user.getUserId());
+        List<MathGameCodeRes> mathgameCodeResList = new LinkedList<>();
+        for(int i=0; i<mathGameCodeList.size(); i++){
+            MathGame mathGame = mathgameRepository.getOne(mathGameCodeList.get(i).getMathgame().getMathgameId());
+            mathgameCodeResList.add(MathGameCodeRes.of(mathGameCodeList.get(i), mathGame));
+        }
+        return mathgameCodeResList;
+    }
+
 
     @Override
     public PracticeCode savePracticeCode(PracticeCodeSavePostReq practiceCodeSavePostReq, User user) {
