@@ -11,28 +11,33 @@ function CodeList({ codeData }) {
   function imgSrc(mathgameId) {
 
     if (mathgameId < 100) {
-      return `math${mathgameId + 1}thumbnail.PNG`;
+      return `math${mathgameId}thumbnail.PNG`;
     } else if (mathgameId === 100) {
       return "cardconnectgamethumbnail.PNG";
     } else if (mathgameId === 101) {
       return "updowngamethumbnail.PNG";
     } else if (mathgameId === 102) {
-      return "finddifferentgamehumbnail.PNG";
+      return "finddifferentgamethumbnail.PNG";
     } else {
-      return "nurirang_carosel1.JPG";
+      return "nurirang_carousel1.JPG";
     }
   }
 
-  function moveMathGame(mathgameId) {
+  function moveMathGame(mathgameId, code) {
 
     if (mathgameId < 100) {
-      navigate(`/math/${mathgameId}`);
+      addViews(mathgameId)
+      navigate(`/math/${mathgameId - 1}`, { state: code});
     } else if (mathgameId <= 102) {
       addViews(mathgameId)
       navigate(`/game/${mathgameId - 100}`);
     } else {
-      navigate("/ide");
+      navigate("/ide", { state: code});
     }
+  }
+
+  function date(createdData) {
+    return `${createdData.slice(0, 4)}-${createdData.slice(5, 7)}-${createdData.slice(8, 10)}`
   }
 
   const CodeSet = styled.ul`
@@ -94,11 +99,16 @@ function CodeList({ codeData }) {
     <CodeSet>
       {codeData.map(( code ) => {
         return (
-          <CodeItem key={code.title} onClick={() => moveMathGame(code.mathgameId)}>
+          <CodeItem key={code.title} onClick={() => moveMathGame(code.mathgameId, code.code)}>
             <CodeImg alt="게임/문제 썸네일 이미지" src={process.env.PUBLIC_URL + `/img/${imgSrc(code.mathgameId)}`}/>
             <CodeContent>
               <CodeButton>{code.title}</CodeButton>
-              <CodeButton><AiFillEye size="25px" />{code.views}</CodeButton>
+              {code.mathgameId 
+                ? 
+                <CodeButton><AiFillEye size="25px" />{code.views}</CodeButton> 
+                : 
+                <CodeButton>작성시간 : {date(code.createdAt)}</CodeButton>
+              }
             </CodeContent>
           </CodeItem>
         )

@@ -74,6 +74,7 @@ function LinkGame({ start, finishGame }) {
 
   useEffect(() => {
     newGame();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [start])
 
   return (
