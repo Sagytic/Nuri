@@ -9,7 +9,6 @@ import { AiOutlineCopy } from "react-icons/ai";
 
 function Ide() {
   const API_BASE_URL = server.BASE_URL;
-  const API_Judge_URL = server.Judge_URL;
   const API_RAPID_URL = server.Rapid_URL;
   const API_RAPID_KEY = process.env.REACT_APP_RAPID_API;
   var nuriCode, input;
@@ -32,7 +31,6 @@ function Ide() {
   }
 
 function run() {
-  console.log(input);
   var data = {
       source_code: javaCode,
       language_id: 62,
@@ -41,20 +39,7 @@ function run() {
       command_line_arguments: "",
       redirect_stderr_to_stdout: true
   }
-  console.log(javaCode);
-//   axios
-//       .post(API_Judge_URL + '/submissions?base64_encoded=true&wait=true',
-//           data,
-//           {
-//               Headers: {
-//                   contentType: "application/json"
-//               }
-//           })
-//       .then((res) => {
-//           console.log(javaCode);
-//           console.log(decode(res.data.stdout));
-//           setResult(decode(res.data.stdout));
-//       })
+
 const options = {
     method: 'POST',
     url: API_RAPID_URL + '/submissions',
@@ -69,8 +54,6 @@ const options = {
   };
   
   axios.request(options).then(function (response) {
-      console.log(API_RAPID_KEY);
-      console.log(response.data.token);
       const options = {
         method: 'GET',
         url: API_RAPID_URL + '/submissions/' + response.data.token,
@@ -124,7 +107,6 @@ const options = {
 
     function toggleClick(){
         setToggle((prev) => !prev);
-        console.log(toggle);
         if(toggle){
             setTheme("vs-dark");
         }else{

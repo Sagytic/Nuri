@@ -12,7 +12,6 @@ function Math() {
 
   const handleChange = (event) => {
     setAlignments(event.target.value);
-    console.log(event.target.value);
   };
   return (
     <div>
