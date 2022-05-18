@@ -1,21 +1,27 @@
 import React, { useEffect, useState } from "react";
+import { useLocation } from "react-router-dom";
 import axios from 'axios';
 import server from "../../API/server";
 import Editor from "@monaco-editor/react";
 import { AiOutlineCopy } from "react-icons/ai";
 import { BiSave } from "react-icons/bi";
 import "./MathIde.css";
+import { SaveMath } from "./MathAxios";
 import ResultModal from "./ResultModal";
 
-function MathIde({ theme, toggle, problemData, saveOn, setIsSuccess }) {
+function MathIde({ theme, toggle, problemData }) {
   const API_BASE_URL = server.BASE_URL;
   const API_RAPID_URL = server.Rapid_URL;
   const API_RAPID_KEY = process.env.REACT_APP_RAPID_API;
   var nuriCode, input;
+  const { state } = useLocation();
+  nuriCode = state ? state : null;
   const [result, setResult] = useState(null);
+  const [saveNuriCode, setSaveNuriCode] = useState(null);
   const [javaCode, setJavaCode] = useState(null);
   const [answerResult, setAnswerResult] = useState("answer");
   const [resultShow, setResultShow] = useState(false);
+  const [isSuccess, setIsSuccess] = useState(false);
 
   const decode = (bytes) => {
     var escaped = escape(atob(bytes));
@@ -83,6 +89,7 @@ function MathIde({ theme, toggle, problemData, saveOn, setIsSuccess }) {
       mathGameId:"",
       userCode:e
     }
+    setSaveNuriCode(e);
     axios
     .post(API_BASE_URL + "/api/v1/console/convert",
     data,{
@@ -117,6 +124,26 @@ function MathIde({ theme, toggle, problemData, saveOn, setIsSuccess }) {
     run(javaCode, setResult);
   }
 
+  function saveButton() {
+    if (!saveNuriCode) {
+      alert("코드를 작성한 뒤 저장 버튼을 클릭해 주세요")
+      return
+    }
+
+    const saveData = {
+      code: saveNuriCode,
+      mathgameId: problemData.mathgameId,
+      status: isSuccess ? 1 : 0,
+    }
+    SaveMath(saveData)
+    .then(() => {
+      console.log("문제 저장 완료")
+    })
+    .catch(() => {
+      console.log("문제 저장 실패")
+    })
+  }
+
   useEffect(() => {
     answerCodeRun();
   // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -141,7 +168,7 @@ function MathIde({ theme, toggle, problemData, saveOn, setIsSuccess }) {
           <div style={{ textDecoration: "underLine 5px"}}>누리 코드</div>
           <div className="MathIde-item-button-group">
             <AiOutlineCopy className="MathIde-item-icon" size="30" onClick={() => copy()}/>
-            <BiSave className="MathIde-item-icon" onClick={() => saveOn()} size="30" />
+            <BiSave className="MathIde-item-icon" onClick={() => saveButton()} size="30" />
             <button className="MathIde-item-button" onClick={() => codeRun()}>RUN</button>
           </div>
         </div>

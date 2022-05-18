@@ -160,34 +160,28 @@ function MyPage() {
     GetUserChallengeMath()
     .then((response) => {
       tempData[0] = response.data
-      console.log("도전한 문제 받아오기")
     })
     .then(() => {
       GetUserSuccessMath()
       .then((response) => {
         tempData[1] = response.data
-        console.log("해결한 문제 받아오기")
       })
       .then(() => {
         GetUserChallengeGame()
         .then((response) => {
           tempData[2] = response.data
-          console.log("도전한 게임 받아오기")
         })
         .then(() => {
           GetUserSuccessGame()
           .then((response) => {
             tempData[3] = response.data
-            console.log("해결한 게임 받아오기")
           })
           .then(() => {
             GetUserPractice()
             .then((response) => {
               tempData[4] = response.data
-              console.log("혼자 연습 받아오기")
             })
             .then(() => {
-              console.log("마지막");
               setCodeData(tempData);
               setGetCodeData(true);
             })

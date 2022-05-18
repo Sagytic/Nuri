@@ -16,7 +16,6 @@ function App() {
     if (isLogin) {
       UserInfo()
       .then((response) => {
-        console.log("회원 정보 받아오기 성공", response.data);
         setUserNickname(response.data.userNickname);
         setUserPhoto(response.data.userPhoto);
         setUserBackImg(response.data.userBackgroundImage);
