@@ -21,7 +21,6 @@ export default function GameListCard() {
     axios
     .patch(API_BASE_URL + '/api/v1/mathgame/' + id)
     .then((res) => {
-        console.log(res);
         navigate("/game/" + pathId);
     })
   }
@@ -37,7 +36,6 @@ export default function GameListCard() {
         .then(
           ({data}) => setViews(data)
         );
-      console.log('조회수 받아오기')
     })();
   }, []);
 
@@ -45,7 +43,6 @@ export default function GameListCard() {
   return (
     <div className="GameList-Container">
       <div className="Card-Contents">
-        {/* <button onClick={getViews()}>get views</button> */}
         <Card sx={{ maxWidth: 345 }}>
           <CardMedia
             component="img"

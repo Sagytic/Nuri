@@ -146,7 +146,6 @@ function MathIde({ theme, toggle, problemData }) {
 
   useEffect(() => {
     answerCodeRun();
-  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   useEffect(() => {

@@ -7,7 +7,6 @@ import "./UpDown.css";
 
 function UpDown({ start, finishGame }) {
     const API_BASE_URL = server.BASE_URL;
-    //const API_Judge_URL = server.Judge_URL;
     const API_RAPID_URL = server.Rapid_URL;
     const API_RAPID_KEY = process.env.REACT_APP_RAPID_API;
 
@@ -73,9 +72,6 @@ function UpDown({ start, finishGame }) {
             };
             
             axios.request(options).then(function (response) {
-              console.log(response.data);
-              console.log(decode(response.data.source_code))
-              console.log(decode(response.data.stdout))
               if(decode(response.data.stdout).slice(-3,-1) === "성공"){
                 setTimeout(()=>{
                   finishGame();
@@ -161,7 +157,6 @@ function UpDown({ start, finishGame }) {
     useEffect(() => {
         setAnswer(defaultAnswer);
         setResult(null);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [start])
 
   return (

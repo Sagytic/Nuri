@@ -45,8 +45,7 @@ function Ide() {
     }
 
     function run() {
-        console.log(API_RAPID_URL);
-        console.log(API_RAPID_KEY)
+
         var data = {
             source_code: javaCode,
             language_id: 62,
@@ -57,35 +56,33 @@ function Ide() {
             url: API_RAPID_URL + '/submissions',
             params: {base64_encoded: 'false', fields: '*'},
             headers: {
-              'content-type': 'application/json',
-              'Content-Type': 'application/json',
-              'X-RapidAPI-Host': 'judge0-ce.p.rapidapi.com',
-              'X-RapidAPI-Key': API_RAPID_KEY
+            'content-type': 'application/json',
+            'Content-Type': 'application/json',
+            'X-RapidAPI-Host': 'judge0-ce.p.rapidapi.com',
+            'X-RapidAPI-Key': API_RAPID_KEY
             },
             data
-          };
-          
-          axios.request(options).then(function (response) {
-              console.log(API_RAPID_KEY);
-              console.log(response.data.token);
-              const options = {
+        };
+
+        axios.request(options).then(function (response) {
+            const options = {
                 method: 'GET',
                 url: API_RAPID_URL + '/submissions/' + response.data.token,
                 params: {base64_encoded: 'true', fields: '*'},
                 headers: {
-                  'X-RapidAPI-Host': 'judge0-ce.p.rapidapi.com',
-                  'X-RapidAPI-Key': API_RAPID_KEY
+                    'X-RapidAPI-Host': 'judge0-ce.p.rapidapi.com',
+                    'X-RapidAPI-Key': API_RAPID_KEY
                 }
-              };
-              
-              axios.request(options).then(function (response) {
-                  setResult(decode(response.data.stdout));
-              }).catch(function (error) {
-                  console.error(error);
-              });
-          }).catch(function (error) {
-              console.error(error);
-          });
+            };
+            
+            axios.request(options).then(function (response) {
+                setResult(decode(response.data.stdout));
+            }).catch(function (error) {
+                console.error(error);
+            });
+        }).catch(function (error) {
+            console.error(error);
+        });
     }
 
     function nuriCodeHandler(e) {

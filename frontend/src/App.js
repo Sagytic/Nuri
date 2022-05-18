@@ -21,7 +21,7 @@ function App() {
         setUserBackImg(response.data.userBackgroundImage);
       })
       .catch(() => {
-        console.log("회원 정보 받아오기 실패")
+        alert('error');
       })
     }
   }, [])
