@@ -8,18 +8,6 @@ function LinkGame({ start, finishGame }) {
     {id: 1, pair: 0, title: "int"},
     {id: 2, pair: 1, title: "소수"},
     {id: 3, pair: 1, title: "double"},
-    // {id: 4, pair: 2, title: "최대"},
-    // {id: 5, pair: 2, title: "max"},
-    // {id: 6, pair: 3, title: "최소"},
-    // {id: 7, pair: 3, title: "min"},
-    // {id: 8, pair: 4, title: "구간반복"},
-    // {id: 9, pair: 4, title: "for"},
-    // {id: 10, pair: 5, title: "조건반복"},
-    // {id: 11, pair: 5, title: "while"},
-    // {id: 12, pair: 6, title: "만약 / 아니면"},
-    // {id: 13, pair: 6, title: "if / else"},
-    // {id: 14, pair: 7, title: "무작위"},
-    // {id: 15, pair: 7, title: "random"},
   ]
 
   
@@ -86,7 +74,6 @@ function LinkGame({ start, finishGame }) {
 
   useEffect(() => {
     newGame();
-  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [start])
 
   return (

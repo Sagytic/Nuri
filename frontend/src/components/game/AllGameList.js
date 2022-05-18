@@ -20,7 +20,6 @@ export default function GameListCard() {
     axios
     .patch(API_BASE_URL + '/api/v1/mathgame/' + id)
     .then((res) => {
-        console.log(res);
         navigate("/game/" + id);
     })
   }
@@ -36,8 +35,6 @@ export default function GameListCard() {
         viewsList.push(res.data[i].views)
       }
       window.viewsArr = viewsList;
-      console.log(viewsList)
-      console.log(viewsArr)
     })
   }
 

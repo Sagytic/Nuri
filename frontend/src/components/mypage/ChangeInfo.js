@@ -28,14 +28,12 @@ function ChangeInfo({
 
   function changeProfileImg(event) {
     if (event.target.files[0]) {
-      console.log(event.target.files[0])
       setTempImg(event.target.files[0])
     }
   }
 
   function changeBackImg(event) {
     if (event.target.files[0]) {
-      console.log(event.target.files[0])
       setTempBackImg(event.target.files[0])
     }
   }

@@ -216,7 +216,7 @@ function MyPage() {
     setProfileImgSrc(defaultProfileImgSrc);
     setTempImg(defaultProfileImgSrc);
     setTempBackImg(defaultBackImgSrc);
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+
   }, [navigate, getCodeData, codeData, userNickname, codeIdx, defaultBackImgSrc, defaultProfileImgSrc])
   
   return (

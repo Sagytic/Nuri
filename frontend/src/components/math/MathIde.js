@@ -119,7 +119,6 @@ function MathIde({ theme, toggle, problemData, saveOn, setIsSuccess }) {
 
   useEffect(() => {
     answerCodeRun();
-  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   useEffect(() => {
