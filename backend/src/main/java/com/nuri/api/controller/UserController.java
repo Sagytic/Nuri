@@ -238,6 +238,7 @@ public class UserController {
 		return ResponseEntity.status(200).body(mathGameCodeList);
 	}
 
+
 	@GetMapping("/viewed_problem")
 	@ApiOperation(value = "수학 문제를 도전한 목록")
 	@ApiResponses({
@@ -270,5 +271,32 @@ public class UserController {
 		User user = userService.getUserByUserEmail(userEmail);
 		List<PracticeCodeRes> practiceCodeList = codeService.findPracticeByUserId(user);
 		return ResponseEntity.status(200).body(practiceCodeList);
+	}
+
+	@GetMapping("/all_math")
+	@ApiOperation(value = "전체 게임/수학문제/Ide 코드 저장목록")
+	@ApiResponses({
+			@ApiResponse(code = 200, message = "성공"),
+			@ApiResponse(code = 401, message = "인증 실패"),
+			@ApiResponse(code = 404, message = "사용자 없음"),
+			@ApiResponse(code = 500, message = "서버 오류")
+	})
+	public ResponseEntity<List[]> allMath(@ApiIgnore Authentication authentication) {
+		NuriUserDetails userDetails = (NuriUserDetails)authentication.getDetails();
+		String userEmail = userDetails.getUsername();
+		User user = userService.getUserByUserEmail(userEmail);
+
+		List<MathGameCodeRes> mathGameCodeTryList = codeService.findViewedCode(user);
+		List<MathGameCodeRes> mathGameCodeFinishList = codeService.findCompletedCode(user);
+		List<MathGameCodeRes> gameCodeTryRes = codeService.findViewedGame(user);
+		List<MathGameCodeRes> gameCodeFinishList = codeService.findCompletedGame(user);
+		List<PracticeCodeRes> practiceCodeList = codeService.findPracticeByUserId(user);
+
+//		List<MathGameCodeRes> mathGameCodeList = codeService.findAllCode(user);
+
+		List[] result = {mathGameCodeTryList, mathGameCodeFinishList, gameCodeTryRes, gameCodeFinishList, practiceCodeList};
+
+
+		return ResponseEntity.status(200).body(result);
 	}
 }

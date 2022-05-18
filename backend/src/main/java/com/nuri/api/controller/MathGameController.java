@@ -5,7 +5,6 @@ import com.nuri.api.request.MathCodeSavePostReq;
 import com.nuri.api.request.MathGameCodeSavePostReq;
 import com.nuri.api.request.PracticeCodeSavePostReq;
 import com.nuri.api.response.GameRankRes;
-import com.nuri.api.response.PracticeCodeRes;
 import com.nuri.api.service.CodeService;
 import com.nuri.api.service.GameRankService;
 import com.nuri.api.service.MathGameService;
@@ -202,7 +201,7 @@ public class MathGameController {
             @ApiResponse(code = 404, message = "사용자 없음"),
             @ApiResponse(code = 500, message = "서버 오류")
     })
-    public ResponseEntity<PracticeCodeRes> practiceOne(@ApiIgnore Authentication authentication, Long practicecodeId) {
+    public ResponseEntity<PracticeCode> practiceOne(@ApiIgnore Authentication authentication, Long practicecodeId) {
         NuriUserDetails userDetails = (NuriUserDetails)authentication.getDetails();
         Long userId = userDetails.getUser().getUserId();
         User user = userDetails.getUser();

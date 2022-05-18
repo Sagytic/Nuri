@@ -41,7 +41,7 @@ public class CodeServiceImpl implements CodeService{
         mathGameCode.setStatus(mathGameCodeSavePostReq.getStatus());
         MathGame mathgame = mathgameRepository.getOne(mathGameCodeSavePostReq.getMathgameId());
         mathGameCode.setMathgame(mathgame);
-        MathGameCode mathGameCodeExist = codeRepository.findByMathGameIdAndUserId(user.getUserId(), mathgame.getMathgameId());
+        MathGameCode mathGameCodeExist = codeRepository.findByMathGameIdAndUserId(user.getUserId(), mathGameCodeSavePostReq.getMathgameId());
         if(mathGameCodeExist!=null) {
             codeRepository.delete(mathGameCodeExist);
         }
@@ -59,7 +59,7 @@ public class CodeServiceImpl implements CodeService{
         mathGameCode.setStatus(mathCodeSavePostReq.getStatus());
         MathGame mathgame = mathgameRepository.getOne(mathCodeSavePostReq.getMathgameId());
         mathGameCode.setMathgame(mathgame);
-        MathGameCode mathGameCodeExist = codeRepository.findByMathGameIdAndUserId(user.getUserId(), mathgame.getMathgameId());
+        MathGameCode mathGameCodeExist = codeRepository.findByMathGameIdAndUserId(user.getUserId(), mathCodeSavePostReq.getMathgameId());
         if(mathGameCodeExist!=null) {
             codeRepository.delete(mathGameCodeExist);
         }
@@ -104,6 +104,17 @@ public class CodeServiceImpl implements CodeService{
     @Override
     public List<MathGameCodeRes> findViewedCode(User user) {
         List<MathGameCode> mathGameCodeList = codeRepository.findMathViewedByUserId(user.getUserId());
+        List<MathGameCodeRes> mathgameCodeResList = new LinkedList<>();
+        for(int i=0; i<mathGameCodeList.size(); i++){
+            MathGame mathGame = mathgameRepository.getOne(mathGameCodeList.get(i).getMathgame().getMathgameId());
+            mathgameCodeResList.add(MathGameCodeRes.of(mathGameCodeList.get(i), mathGame));
+        }
+        return mathgameCodeResList;
+    }
+
+    @Override
+    public List<MathGameCodeRes> findAllCode(User user) {
+        List<MathGameCode> mathGameCodeList = codeRepository.findAllMathByUserId(user.getUserId());
         List<MathGameCodeRes> mathgameCodeResList = new LinkedList<>();
         for(int i=0; i<mathGameCodeList.size(); i++){
             MathGame mathGame = mathgameRepository.getOne(mathGameCodeList.get(i).getMathgame().getMathgameId());

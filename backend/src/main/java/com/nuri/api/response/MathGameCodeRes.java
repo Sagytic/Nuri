@@ -15,19 +15,21 @@ public class MathGameCodeRes {
     Long mathgameId;
     String title;
     String code;
+    int status;
     int views;
     OffsetDateTime createdAt;
 
-    public MathGameCodeRes(Long mathgameId, String title, String code, int views, OffsetDateTime createdAt){
+    public MathGameCodeRes(Long mathgameId, String title, String code, int status, int views, OffsetDateTime createdAt){
         this.mathgameId = mathgameId;
         this.title = title;
         this.code = code;
+        this.status = status;
         this.views = views;
         this.createdAt = createdAt;
     }
 
     public static MathGameCodeRes of(MathGameCode mathGameCode, MathGame mathGame){
-        MathGameCodeRes res = new MathGameCodeRes(mathGame.getMathgameId(), mathGame.getTitle(), mathGameCode.getCode(), mathGame.getViews(), mathGameCode.getCreatedAt());
+        MathGameCodeRes res = new MathGameCodeRes(mathGame.getMathgameId(), mathGame.getTitle(), mathGameCode.getCode(), mathGameCode.getStatus(), mathGame.getViews(), mathGameCode.getCreatedAt());
         return res;
     }
 }
