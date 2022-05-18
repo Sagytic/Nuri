@@ -6,14 +6,6 @@ function NuriRefButtons() {
 
   return (
   <div className="button-Contents">
-    {/* <a href="/reference/login" class="myButton">#기본타입</a>
-    <a href="#!" class="myButton">#배열</a>
-    <a href="#!" class="myButton">#자료구조</a>
-    <a href="#!" class="myButton">#반복</a>
-    <a href="#!" class="myButton">#분기</a>
-    <a href="#!" class="myButton">#수학</a>
-    <a href="#!" class="myButton">#출력</a>
-    <a href="#!" class="myButton">#출력</a> */}
     <Link to='/reference' state={{PathStep:0}} className="myButton"># 변수</Link>
     <Link to='/reference' state={{PathStep:1}} className="myButton"># 들여쓰기</Link>
     <Link to='/reference' state={{PathStep:2}} className="myButton"># 기본타입</Link>

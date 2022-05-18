@@ -2,9 +2,7 @@ import React, { useEffect, useState, useRef } from "react";
 import "./WrongFindGame.css";
 import { Progress } from 'react-sweet-progress';
 import "react-sweet-progress/lib/style.css";
-import Modal from 'react-modal';
-import gameSound from '../game/gameSound'
-import BGM from '../../audio/gameSound.mp3'
+
 
 function WrongFindGame({ start, finishGame, time }) {
     const nuriCode = "/img/nuriCode.png"
@@ -31,8 +29,7 @@ function WrongFindGame({ start, finishGame, time }) {
 
     useEffect(() => {
         newGame();
-      // eslint-disable-next-line react-hooks/exhaustive-deps
-      }, [start])
+    }, [start])
 
     function newGame() {
         setCnt(0);
@@ -51,12 +48,12 @@ function WrongFindGame({ start, finishGame, time }) {
         setQ5(false);
         setCheck5({display:'none'});
         setAns5({color:'black'});
-      }
+    }
 
     function click(e){
         var x = e.nativeEvent.offsetX;
         var y = e.nativeEvent.offsetY;
-      
+    
         if(x>=270 && x<=280 && y>=100 && y<=112 && !q1){
             setCnt(cnt+1);
             setQ1(true);
@@ -141,7 +138,7 @@ function WrongFindGame({ start, finishGame, time }) {
         <div>
             <Progress className="progressBar" percent={time / 3} status="success" style={{width:1200}}/>
             <div>
-                 <br></br>
+                <br></br>
                 <span className="res">
                     <span  style={ans1}> O </span>
                     <span  style={ans2}>O </span>
@@ -155,6 +152,6 @@ function WrongFindGame({ start, finishGame, time }) {
         </div>
     </div>
     )
-  }
-  
-  export default WrongFindGame
+}
+
+export default WrongFindGame

@@ -6,16 +6,9 @@ import MathList from "../../components/math/MathList";
 import Nurirang from "../../components/main/Nurirang";
 import { useNavigate } from "react-router-dom";
 import { FcPlus } from "react-icons/fc";
-// import NuriRefButtons from "../../components/main/NuriRefButtons";
-// import BottomCarousel from "../../components/main/BottomCarousel";
 
 
 import "./Main.css"
-
-// import Nav from './components/main/Nav';
-
-// import Carousel from 'react-material-ui-carousel'
-// import { Paper, Button } from '@mui/material'
 
 function Main() {
 
@@ -44,14 +37,6 @@ function Main() {
         </button>
       </div>
       <MathList />
-      {/* <div className="Contents-title">
-        <h2>누리 문법</h2>
-      </div>
-      <NuriRefButtons />
-      <div className="Contents-title">
-        <h2>한글 프로그래밍</h2>
-      </div> */}
-      {/* <BottomCarousel /> */}
     </div>
   )
 }
