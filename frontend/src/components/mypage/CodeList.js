@@ -17,7 +17,7 @@ function CodeList({ codeData }) {
     } else if (mathgameId === 101) {
       return "updowngamethumbnail.PNG";
     } else if (mathgameId === 102) {
-      return "finddifferentgamehumbnail.PNG";
+      return "finddifferentgamethumbnail.PNG";
     } else {
       return "nurirang_carousel1.JPG";
     }

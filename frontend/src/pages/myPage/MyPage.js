@@ -9,11 +9,7 @@ import {
   ChangeUserNickname, 
   ChangeUserPhoto, 
   ChangeUserBackgroundImg,
-  GetUserChallengeMath,
-  GetUserSuccessMath,
-  GetUserChallengeGame,
-  GetUserSuccessGame,
-  GetUserPractice,
+  GetAllSaveData,
 } from "../../components/user/UserAxios";
 import { CheckNickName } from "../../components/user/UserAxios";
 import "./MyPage.css";
@@ -154,46 +150,6 @@ function MyPage() {
     setChangeNicknameShow(false);
     setNickNameMessage("")
   }
-  
-  function saveCodeData() {
-    const tempData = codeData;
-    GetUserChallengeMath()
-    .then((response) => {
-      tempData[0] = response.data
-    })
-    .then(() => {
-      GetUserSuccessMath()
-      .then((response) => {
-        tempData[1] = response.data
-      })
-      .then(() => {
-        GetUserChallengeGame()
-        .then((response) => {
-          tempData[2] = response.data
-        })
-        .then(() => {
-          GetUserSuccessGame()
-          .then((response) => {
-            tempData[3] = response.data
-          })
-          .then(() => {
-            GetUserPractice()
-            .then((response) => {
-              tempData[4] = response.data
-            })
-            .then(() => {
-              setCodeData(tempData);
-              setGetCodeData(true);
-            })
-          })
-        })
-      })
-    })
-    .catch(() => {
-      console.log("도전한 문제 불러오기 실패");
-    })
-  }
-
 
   useEffect(() => {
     
@@ -202,7 +158,14 @@ function MyPage() {
     }
 
     if (!getCodeData) {
-      saveCodeData();
+      GetAllSaveData()
+      .then((response) => {
+        setCodeData(response.data)
+        setGetCodeData(true);
+      })
+      .catch(() => {
+        console.log("도전한 문제 불러오기 실패");
+      })
     }
 
     setNickname(userNickname);
@@ -210,7 +173,6 @@ function MyPage() {
     setProfileImgSrc(defaultProfileImgSrc);
     setTempImg(defaultProfileImgSrc);
     setTempBackImg(defaultBackImgSrc);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [navigate, getCodeData, codeData, userNickname, codeIdx, defaultBackImgSrc, defaultProfileImgSrc])
   
   return (
