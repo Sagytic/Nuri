@@ -6,6 +6,7 @@ import Editor from "@monaco-editor/react";
 import SaveModal from "../../components/ide/SaveModal";
 import { AiOutlineCopy } from "react-icons/ai";
 import { BiSave } from "react-icons/bi";
+import Spinner from "../../components/spinner/Spinner"
 import "./Ide.css"
 
 function Ide() {
@@ -45,7 +46,7 @@ function Ide() {
     }
 
     function run() {
-
+        window.spinnerOn = true;
         var data = {
             source_code: javaCode,
             language_id: 62,
@@ -77,11 +78,14 @@ function Ide() {
             
             axios.request(options).then(function (response) {
                 setResult(decode(response.data.stdout));
+                window.spinnerOn = false;
             }).catch(function (error) {
                 console.error(error);
+                window.spinnerOn = false;
             });
         }).catch(function (error) {
             console.error(error);
+            window.spinnerOn = false;
         });
     }
 
@@ -127,9 +131,12 @@ function Ide() {
     function inputValueHandler(e){
         input = e;
     }
-    
+
+    const spinnerOn = false;
+
     return (
         <div className="Ide">
+            {spinnerOn && <Spinner />}
             {saveShow && <SaveModal saveNuriCode={saveNuriCode} saveOff={saveOff} />}
             <div className="Ide-item">
                 <div className="Ide-item-header">
