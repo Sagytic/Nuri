@@ -20,6 +20,7 @@ function Result({ time, gameData, userNickname, rankData, restartGame, moveAllGa
 
   useEffect(() => {
     checkRank();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [rankData])
 
   return (
