@@ -16,11 +16,6 @@ function Timer({ setTime, data, timerStart, timerEnd }) {
         const newMin = parseInt(unit.current / 6000)
         const newSec = parseInt((unit.current / 100) % 60);
         const newMilli = unit.current % 100;
-        if (newMilli < 10) {
-          const addMilli = '0' + unit.current % 100;
-        } else{
-          const addMilli = unit.current % 100;
-        }
         setMinute(newMin);
         setSec(newSec);
         setMilliSec(newMilli);
@@ -31,6 +26,14 @@ function Timer({ setTime, data, timerStart, timerEnd }) {
       unit.current = 0
     }
   }, [timerStart, setTime]);
+
+  function addZero(time) {
+    if (time < 10) {
+      return `0${time}`
+    } else {
+      return time
+    }
+  }
 
   useEffect(() => {
     if (unit.current >= 30000) {
@@ -45,7 +48,7 @@ function Timer({ setTime, data, timerStart, timerEnd }) {
   return (
     <div className="Timer">
       <div className="Timer-header">{data.title}</div>
-      <div className="Timer-header">{minute} 분 {sec} 초 {milliSec}</div>
+      <div className="Timer-header">{addZero(minute)} 분 {addZero(sec)} 초 {addZero(milliSec)}</div>
     </div>
   )
 };
