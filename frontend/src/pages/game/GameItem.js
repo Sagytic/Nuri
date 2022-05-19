@@ -31,7 +31,7 @@ function GameItem() {
     { 
       id: 102, 
       title: "틀린 부분 찾기 게임", 
-      img: "/img/nurirang_carousel1.JPG", 
+      img: "/img/finddifferentgamethumbnail.png", 
       content: `
       5개 과목에 점수를 입력 받아 평균을 구하고 평균에 따라 우수, 부족을 출력하는 코드 입니다
       누리 코드를 보고 자바 코드에서 틀린 부분을 찾아주세요!"`
