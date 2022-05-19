@@ -9,7 +9,7 @@ function Result({ time, gameData, userNickname, rankData, restartGame, moveAllGa
     const totalTime = inputTime * 100
     const minute = parseInt(totalTime / 6000);
     const sec = parseInt((totalTime / 100) % 60);
-    const milliSec = parseInt(totalTime % 10);
+    const milliSec = parseInt(totalTime % 100);
     return [minute, sec, milliSec]
   }
 
