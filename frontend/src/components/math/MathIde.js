@@ -4,7 +4,7 @@ import axios from 'axios';
 import server from "../../API/server";
 import Editor from "@monaco-editor/react";
 import { AiOutlineCopy } from "react-icons/ai";
-import { BiSave } from "react-icons/bi";
+import { MdSaveAlt } from "react-icons/md";
 import "./MathIde.css";
 import { SaveMath } from "./MathAxios";
 import ResultModal from "./ResultModal";
@@ -168,7 +168,7 @@ function MathIde({ theme, toggle, problemData }) {
           <div style={{ textDecoration: "underLine 5px"}}>누리 코드</div>
           <div className="MathIde-item-button-group">
             <AiOutlineCopy className="MathIde-item-icon" size="30" onClick={() => copy()}/>
-            <BiSave className="MathIde-item-icon" onClick={() => saveButton()} size="30" />
+            <MdSaveAlt className="MathIde-item-icon" onClick={() => saveButton()} size="30" />
             <button className="MathIde-item-button" onClick={() => codeRun()}>RUN</button>
           </div>
         </div>
