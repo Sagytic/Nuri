@@ -21,6 +21,7 @@ function Ide() {
     const [javaCode, setJavaCode] = useState(null);
     const [toggle, setToggle] = useState(true);
     const [saveShow, setSaveShow] = useState(false);
+    const [spinnerCatch, setSpinnerCatch] = useState(false);
     const [saveNuriCode, setSaveNuriCode] = useState("");
     var [theme, setTheme] = useState("vs-light");
 
@@ -36,6 +37,14 @@ function Ide() {
         setSaveShow(false);
     }
 
+    function spinnerOn() {
+        setSpinnerCatch(true);
+    }
+
+    function spinnerOff() {
+        setSpinnerCatch(false);
+    }
+
     const decode = (bytes) => {
         var escaped = escape(atob(bytes));
         try {
@@ -46,7 +55,7 @@ function Ide() {
     }
 
     function run() {
-        window.spinnerOn = true;
+        spinnerOn();
         var data = {
             source_code: javaCode,
             language_id: 62,
@@ -78,14 +87,14 @@ function Ide() {
             
             axios.request(options).then(function (response) {
                 setResult(decode(response.data.stdout));
-                window.spinnerOn = false;
+                spinnerOff();
             }).catch(function (error) {
                 console.error(error);
-                window.spinnerOn = false;
+                spinnerOff();
             });
         }).catch(function (error) {
             console.error(error);
-            window.spinnerOn = false;
+            spinnerOff();
         });
     }
 
@@ -132,11 +141,10 @@ function Ide() {
         input = e;
     }
 
-    const spinnerOn = false;
 
     return (
         <div className="Ide">
-            {spinnerOn && <Spinner />}
+            {spinnerCatch && <Spinner />}
             {saveShow && <SaveModal saveNuriCode={saveNuriCode} saveOff={saveOff} />}
             <div className="Ide-item">
                 <div className="Ide-item-header">
