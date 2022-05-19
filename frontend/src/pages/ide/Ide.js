@@ -5,7 +5,7 @@ import server from "../../API/server";
 import Editor from "@monaco-editor/react";
 import SaveModal from "../../components/ide/SaveModal";
 import { AiOutlineCopy } from "react-icons/ai";
-import { BiSave } from "react-icons/bi";
+import { MdSaveAlt } from "react-icons/md";
 import Spinner from "../../components/spinner/Spinner"
 import "./Ide.css"
 
@@ -157,7 +157,7 @@ function Ide() {
                             {toggle ? "다크모드" : "일반모드"}
                         </button>
                         <AiOutlineCopy className="Ide-item-icon" size="30" onClick={() => copy()}/>
-                        <BiSave className="Ide-item-icon" size="30" onClick={() => saveOn()}/>
+                        <MdSaveAlt className="Ide-item-icon" size="30" onClick={() => saveOn()}/>
                         <button className="Ide-item-button" onClick={() => run()}>RUN</button>
                     </div>
                 </div>
