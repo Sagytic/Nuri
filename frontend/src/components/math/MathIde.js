@@ -8,6 +8,7 @@ import { MdSaveAlt } from "react-icons/md";
 import "./MathIde.css";
 import { SaveMath } from "./MathAxios";
 import ResultModal from "./ResultModal";
+import Spinner from "../spinner/Spinner"
 
 function MathIde({ theme, toggle, problemData }) {
   const API_BASE_URL = server.BASE_URL;
@@ -22,6 +23,15 @@ function MathIde({ theme, toggle, problemData }) {
   const [answerResult, setAnswerResult] = useState("answer");
   const [resultShow, setResultShow] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
+  const [spinnerCatch, setSpinnerCatch] = useState(false);
+
+  function spinnerOn() {
+    setSpinnerCatch(true);
+  }
+
+  function spinnerOff() {
+    setSpinnerCatch(false);
+  }
 
   const decode = (bytes) => {
     var escaped = escape(atob(bytes));
@@ -75,11 +85,14 @@ function MathIde({ theme, toggle, problemData }) {
         
         axios.request(options).then(function (response) {
           inputSetState(decode(response.data.stdout));
+          spinnerOff();
         }).catch(function (error) {
             console.error(error);
+            spinnerOff();
         });
     }).catch(function (error) {
         console.error(error);
+        spinnerOff();
     });
   }
 
@@ -121,6 +134,7 @@ function MathIde({ theme, toggle, problemData }) {
   }
 
   function codeRun() {
+    spinnerOn();
     run(javaCode, setResult);
   }
 
@@ -157,6 +171,7 @@ function MathIde({ theme, toggle, problemData }) {
   
   return (
     <>
+      {spinnerCatch && <Spinner />}
       {resultShow && <ResultModal 
         result={result} 
         answerResult={answerResult} 
