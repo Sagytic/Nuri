@@ -27,6 +27,14 @@ function Timer({ setTime, data, timerStart, timerEnd }) {
     }
   }, [timerStart, setTime]);
 
+  function addZero(time) {
+    if (time < 10) {
+      return `0${time}`
+    } else {
+      return time
+    }
+  }
+
   useEffect(() => {
     if (unit.current >= 30000) {
       clearInterval(timer.current)
@@ -40,7 +48,7 @@ function Timer({ setTime, data, timerStart, timerEnd }) {
   return (
     <div className="Timer">
       <div className="Timer-header">{data.title}</div>
-      <div className="Timer-header">{minute} 분 {sec} 초 {milliSec}</div>
+      <div className="Timer-header">{addZero(minute)} 분 {addZero(sec)} 초 {addZero(milliSec)}</div>
     </div>
   )
 };
