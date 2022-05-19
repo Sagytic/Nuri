@@ -16,6 +16,11 @@ function Timer({ setTime, data, timerStart, timerEnd }) {
         const newMin = parseInt(unit.current / 6000)
         const newSec = parseInt((unit.current / 100) % 60);
         const newMilli = unit.current % 100;
+        if (newMilli < 10) {
+          const addMilli = '0' + unit.current % 100;
+        } else{
+          const addMilli = unit.current % 100;
+        }
         setMinute(newMin);
         setSec(newSec);
         setMilliSec(newMilli);
