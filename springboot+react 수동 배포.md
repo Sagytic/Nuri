@@ -18,7 +18,7 @@
 
 ### 1. pem 키 사용방법
 
-![](C:\Users\sevct\ssafy\2th\free\S06P31S202\README\세션%20세팅.png)
+![](https://i.ibb.co/YZhW6gd/image.png)
 
 1. 지급받은 pem 키를 MobaXterm에서 새 세션을 열어 private key에 넣는다.
 2. 다른 설정은 건드리지 말고 Remote host에 `ubuntu@k6s202.p.ssafy.io`를 입력한다.(k6s202는 발급받은 pem키 파일명과 똑같이 바꿈)
@@ -119,7 +119,7 @@ sudo apt-get isntall nginx -y
 
 7. mysql workbench에서 connections 세팅을 선택한다.
 
-![](C:\Users\sevct\ssafy\2th\free\S06P31S202\README\mysql.png)
+![](https://i.ibb.co/fn7jYCh/mysql.png)
 
 8. 새로 커넥션을 생성하고 connection name은 아무거나, hostname은 remote host 에 입력한 주소를 적고 port는 3306을 사용한다.
 
@@ -220,7 +220,7 @@ sudo apt-get isntall nginx -y
    sudo systemctl status nginx
    ```
    
-   ![](C:\Users\sevct\ssafy\2th\free\S06P31S202\README\nginx.png)
+   ![](https://i.ibb.co/8mBQzC1/nginx.png)
 
 7. 외부 접근을 위해 방화벽엣 80 포트를 허가해둔다.
    
