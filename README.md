@@ -121,6 +121,15 @@
 
 ![image](https://user-images.githubusercontent.com/54352208/168958771-f8d28a4b-ab45-4bab-944d-4d7c698889c1.png)
 
+## 오픈소스 전략
+**다양한 언어로의 확장성**
+  - 복잡하고 고도화된 문법 적용
+  - 오픈소스를 통한 컨버터 기능 확장
+
+**자유로운 형식의 게임 / 문제 추가**
+  - 게임 / 문제 추가 템플릿 제공
+  - 자유로운 형식의 게임 / 문제 추가
+
 ## Notion
 
 ![image](https://user-images.githubusercontent.com/54352208/168958972-9cadecec-9cad-487b-9953-494e1e2e2f1f.png)
