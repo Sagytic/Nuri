@@ -122,7 +122,7 @@ export default function ImgMediaCard() {
           </div>
         </Card>
       </div>
-      <div className="Card-Contents">
+      {/* <div className="Card-Contents">
         <Card sx={{ maxWidth: 345 }}>
         <CardMedia
             component="img"
@@ -142,7 +142,7 @@ export default function ImgMediaCard() {
           </CardActions>
           </div>
         </Card>
-      </div>
+      </div> */}
       <div className="Card-Contents">
         <Card sx={{ maxWidth: 345 }}>
         <CardMedia
@@ -164,7 +164,7 @@ export default function ImgMediaCard() {
           </div>
         </Card>
       </div>
-      <div className="Card-Contents">
+      {/* <div className="Card-Contents">
         <Card sx={{ maxWidth: 345 }}>
         <CardMedia
             component="img"
@@ -184,8 +184,8 @@ export default function ImgMediaCard() {
           </CardActions>
           </div>
         </Card>
-      </div>
-      <div className="Card-Contents">
+      </div> */}
+      {/* <div className="Card-Contents">
         <Card sx={{ maxWidth: 345 }}>
         <CardMedia
             component="img"
@@ -205,7 +205,7 @@ export default function ImgMediaCard() {
           </CardActions>
           </div>
         </Card>
-      </div>
+      </div> */}
       <div className="Card-Contents">
         <Card sx={{ maxWidth: 345 }}>
         <CardMedia
