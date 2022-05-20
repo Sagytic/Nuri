@@ -23,7 +23,7 @@
 logs
 **/*.backup.*
 **/*.back.*
-build
+# build
 package-lock.json
 
 node_modules
