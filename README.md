@@ -102,7 +102,8 @@
 ![image](https://user-images.githubusercontent.com/54352208/168983561-99fc41ad-fe93-44c8-89d3-2fe583b9f9e4.png)
 
 **연결게임**
-![image](https://user-images.githubusercontent.com/54352208/168983654-a7a2b921-a4b8-46a5-84d0-0e970b214a93.png)
+![nuri_connenct_game](https://user-images.githubusercontent.com/54352208/169441304-a3e0483d-c249-4fc4-9960-40f0a9814f79.PNG)
+
 
 **틀린 부분 찾기 게임**
 ![image](https://user-images.githubusercontent.com/54352208/168983756-26705455-fa84-461e-bfcf-f9f102c0a188.png)
