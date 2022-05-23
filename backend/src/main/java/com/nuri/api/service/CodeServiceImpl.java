@@ -42,10 +42,16 @@ public class CodeServiceImpl implements CodeService{
         MathGame mathgame = mathgameRepository.getOne(mathGameCodeSavePostReq.getMathgameId());
         mathGameCode.setMathgame(mathgame);
         MathGameCode mathGameCodeExist = codeRepository.findByMathGameIdAndUserId(user.getUserId(), mathGameCodeSavePostReq.getMathgameId());
-        if(mathGameCodeExist.getStatus()!=1) {
-            if(mathGameCodeExist!=null) {
-                codeRepository.delete(mathGameCodeExist);
+        // 먼저 이 유저가 이 게임을 한 적이 있는지 (null값 여부 판단)
+        // 있다면 해결한 게임이 아닌 경우 즉, 도전한 게임인 경우 이전 기록 삭제 후 저장
+        if(mathGameCodeExist!=null) {
+            // 있는데 해결한 게임인 경우, 도전한 게임으로 안바뀌게!
+            if (mathGameCodeExist.getStatus() != 1) {  // 해결한 게임이 아닌 경우
+                // null값이 아니면( 중복 방지 )
+                codeRepository.delete(mathGameCodeExist);  // 이미 있는 게임 기록을 삭제
+                codeRepository.save(mathGameCode);  // 후 저장
             }
+        }else{
             codeRepository.save(mathGameCode);
         }
         return mathGameCode;
@@ -56,7 +62,7 @@ public class CodeServiceImpl implements CodeService{
         MathGameCode mathGameCode = new MathGameCode();
         mathGameCode.setUser(user);
         mathGameCode.setCode(mathCodeSavePostReq.getCode());
-//        mathGameCode.setMathgamecodeId(mathGameCode.getMathgamecodeId());
+//      mathGameCode.setMathgamecodeId(mathGameCode.getMathgamecodeId());
         mathGameCode.setStatus(mathCodeSavePostReq.getStatus());
         MathGame mathgame = mathgameRepository.getOne(mathCodeSavePostReq.getMathgameId());
         mathGameCode.setMathgame(mathgame);
